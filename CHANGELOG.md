@@ -17,6 +17,6 @@ All notable changes to the "tbscript" extension will be documented in this file.
 
 <!--- next entry here -->
 
-### [1.0.0] 2021-11-21
+### [1.0.0] 2021-11-15
 
 - Initial release
