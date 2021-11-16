@@ -1,3 +1,8 @@
+![](https://vsmarketplacebadge.apphb.com/version-short/willasm.tbscript-vscode-ext.svg)
+![](https://vsmarketplacebadge.apphb.com/installs-short/willasm.tbscript-vscode-ext.svg)
+![](https://vsmarketplacebadge.apphb.com/downloads-short/willasm.tbscript-vscode-ext.svg)
+![](https://vsmarketplacebadge.apphb.com/rating/willasm.tbscript-vscode-ext.svg)
+
 # tbscript README
 
 Language support for TeraByte's tbscript programming language.

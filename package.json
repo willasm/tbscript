@@ -6,7 +6,7 @@
     "author": {
         "name": "William McKeever"
     },
-	"license": "MIT",
+	"license": "MIT View LICENSE.md",
     "version": "1.0.0",
     "engines": {
         "vscode": "^1.61.0"
@@ -28,6 +28,10 @@
         "onLanguage:tbscript",
         "onCommand:tbscript.run"
     ],
+    "bugs": {
+      "url": "https://github.com/willasm/tbscript/issues",
+      "email": "willmck63@gmail.com"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/willasm/tbscript.git"
