@@ -1,0 +1,185 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "TeraByte Script",
+	"patterns": [
+
+		{ "include": "#comments"            },
+		{ "include": "#operators"           },
+		{ "include": "#strings"             },
+		{ "include": "#constants"           },
+		{ "include": "#keywords.keyword"    },
+		{ "include": "#keywords.control"    },
+		{ "include": "#keywords.system"     },
+		{ "include": "#keywords.strings"    },
+		{ "include": "#keywords.terminal"   },
+		{ "include": "#keywords.disk"       },
+		{ "include": "#keywords.disk2"      },
+		{ "include": "#keywords.gui"        }
+	],
+
+	"repository": {
+
+
+		"comments": {
+			"patterns":[
+			{
+			"name": "comment.line.double-slash.tbscript",
+			"match": "//.*"
+			},
+			{
+			"name": "comment.line.character.tbscript",
+			"match": ";.*"
+			}
+			]
+		},
+	
+
+		"operators": {
+			"patterns": [
+			{
+			"name": "keyword.operator.arithmetic.tbscript",
+			"match": "(\\-|\\+|\\*|/|%)"
+			},
+			{
+			"name": "keyword.operator.comparison.tbscript",
+			"match": "(<>|<=|>=|<|>)"
+			},
+			{
+			"name": "keyword.operator.ternary.tbscript",
+			"match": "(\\?|\\:)"
+			},
+			{
+			"name": "keyword.operator.logical.tbscript",
+			"match": "(?i)(\\band|\\bor|&|\\|)"
+			},
+			{
+			"name": "keyword.operator.assignment.tbscript",
+			"match": "="
+			},
+			{
+			"name": "keyword.operator.concatenation.tbscript",
+			"match": "#"
+			},
+			{
+			"name": "keyword.operator.brackets.tbscript",
+			"match": "(\\[|\\]|\\{|\\}|\\(|\\))"
+				}
+				]
+		},
+	
+
+		"strings": {
+			"patterns": [{
+				"begin": "\"",
+				"beginCaptures": {
+					"1": {
+					"name": "string.quoted.double.begin.tbscript"
+					}
+				},
+				"end": "\"",
+				"endCaptures": {
+					"1": {
+					"name": "string.quoted.double.end.tbscript"
+				  	}
+				},
+				"name" : "string.quoted.double.tbscript",
+				"patterns": [
+					{
+					"name": "constant.character.escaped.dbl.tbscript",
+					"match": "\\^."
+					}
+					]
+				},
+				{
+				"begin": "\\'",
+				"beginCaptures": {
+					"1": {
+					"name": "string.quoted.single.begin.tbscript"
+					}
+				},
+				"end": "\\'",
+				"endCaptures": {
+					"1": {
+					"name": "string.quoted.single.end.tbscript"
+					}
+				},
+				"name" : "string.quoted.single.tbscript",
+				"patterns": [
+					{
+					"name": "constant.character.escaped.single.tbscript",
+					"match": "\\^."
+					}
+					]
+				}
+
+			]
+		},
+
+
+		"constants": {
+			"patterns":[
+				{
+				"name": "constant.numeric.hexidecimal.tbscript",
+				"match": "(\\b0x[0-9A-Fa-f]+\\b)"
+				},
+				{
+				"name": "constant.numeric.tbscript",
+				"match": "(\\b[0-9]+[0-9\\.]*\\b)"
+				}
+			]
+		},
+
+
+
+		"keywords.keyword": {
+		"patterns": [{
+			"name": "keyword.tbscript",
+			"match": "\\b(?i)(main|const|global|include|rand|sub|end +sub|unset|file|cab|key|inf|tbosdt|tbosdt_user|tbosdt_key)\\b"
+				}]
+			},
+		"keywords.control": {
+		"patterns": [{
+			"name": "keyword.control.tbscript",
+			"match": "\\b(if|then|elseif|else|end +if|while|wend|for|next|return|goto|break|exitloop)\\b"
+				}]
+			},
+		"keywords.system": {
+		"patterns": [{
+			"name": "keyword.system.tbscript",
+			"match": "\\b(?i)(arg|argc|directvideo|exec|ext|getdate|getdatetime|getenv|getkey|getstr|gettime|getsysino|getuefivar|setenv|setlocale|setuefivar|sleep|WinGetMonitors|elevate|boot|uefi|bootitems|bootorder|current|timeout|secureboot|bootnext|startparams|option|seq|usblio|noquoteswitch|quiet|usevollab|locking|sectoralign|codepage|bcdbootmatch|delkey|delvalue|getkeyord|getvalue|getvalueord|iselevated|windelkey|windelvalue|wingetkeyord|wingetvalue|wingetvalueord|winsetvalue)\\b"
+				}]
+			},
+		"keywords.strings": {
+		"patterns": [{
+			"name": "keyword.strings.tbscript",
+			"match": "\\b(?i)(asc|binary|chr|hex|instr|isstrtype|lcase|left|len|mid|oct|pad|right|ucase)\\b"
+				}]
+			},
+		"keywords.terminal": {
+		"patterns": [{
+			"name": "keyword.terminal.tbscript",
+			"match": "\\b(?i)(cls|conctl|print|printl|setcp|txascii|txcursortype|txgetblock|txgetinfo|txgotoxy|txinit|txmode|txoutch|txputblock|txsetattr|txterm|txwherex|txwherey|exit|md|cd|rd|vol|pwd|stats|dir|ls|extract|copy|list|add|del|ren|resize|set|ver|reboot|run|runtbs|slide|mount|umount|regexport|regimport|help|interactive|stay|setvalue)\\b"
+				}]
+			},
+		"keywords.disk": {
+		"patterns": [{
+			"name": "keyword.disk.tbscript",
+			"match": "\\b(?i)(chdir|findfirst|findnext|getcwd|getdrive|isdrive|lof|mkdir|open|close|readl|rename|rmdir|rmfile|seek|setattr|setdrive|writel|ini|fsinfo|fs_sn|fs_volname|fs_name|fs_csize|fs_ssize|hdcacheinfo|md5|osstat|st_dev|st_ino|st_mode|st_nlink|st_uid|st_gid|st_rdev|st_size|st_atime|st_mtime|st_ctime|sha256)\\b"
+				}]
+			},
+		"keywords.disk2": {
+		"patterns": [{
+			"name": "keyword.disk.tbscript",
+			"match": "\\b(?i)(getdrvltrinfo|gethdinfo|num|bioshdnum|sig|secsize|c|h|s|embr|OutOfSync|gpt|MaxEntries|bus|name|partition|volume|startlba|endlba|id|guid|type|size|fsid|fsidn|fsinfoid|fsname|fsidname|mbrflag|mbrentry|peflag|drvltr|ex|usedsectors|freesectors|lastusedsector|aacount)\\b"
+				}]
+			},
+		"keywords.gui": {
+		"patterns": [{
+			"name": "keyword.other.gui.tbscript",
+			"match": "\\b(?i)(GUIButton|GUICheckBox|GUICombo|GUIDialog|GUIEnable|GUIEventWait|GUIGetEvent|GUIGetText|GUIGetValue|GUIGroupBox|GUIInput|GUIInsertItem|GUIList|GUIMenu|GUIPos|GUIProgress|GUIRadioButton|GUIRemoveItem|GUISetFocus|GUISetText|GUISetValue|GUIShow|GUIStatic|GUITimeDate|GUITree|GUIVertBarSep)\\b"
+				}]
+			}
+				
+	},
+	"scopeName": "source.tbscript"
+}
