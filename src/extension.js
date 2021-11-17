@@ -26,7 +26,7 @@ var outputChannel;
 //---------------------------------------------------------
 function activate(context) {
   //- Log Extension Active Message
-  console.log('Congratulations, your extension "tbscript" is now active!');
+  //console.log('Congratulations, your extension "tbscript" is now active!');
 
   //- Create Output Channel
   outputChannel = vscode.window.createOutputChannel('TeraByte Script');
@@ -55,7 +55,7 @@ module.exports = {
 //---------------------------------------
 function RunScriptInternal() {
 
-  console.log('Internal TBCMD Command');
+  //console.log('Internal TBCMD Command');
 
   //----------------------------------
   //--- Document Name and Path Strings
@@ -68,7 +68,7 @@ function RunScriptInternal() {
   //--- If Document is Dirty Then Save the File First
   let DirtyFlag = vscode.window.activeTextEditor.document.isDirty;
   if (DirtyFlag) {
-    console.log("Document is Dirty Saving Now");
+    //console.log("Document is Dirty Saving Now");
     let SaveCommand = vscode.window.activeTextEditor.document.save;
     SaveCommand();
   };
@@ -107,7 +107,7 @@ function RunScriptInternal() {
 //---------------------------------------
 function RunScriptExternal() {
 
-  console.log('External TBCMD Command');
+  //console.log('External TBCMD Command');
 
   //----------------------------------
   //--- Document Name and Path Strings
@@ -120,7 +120,7 @@ function RunScriptExternal() {
   //--- If Document is Dirty Then Save the File First
   let DirtyFlag = vscode.window.activeTextEditor.document.isDirty;
   if (DirtyFlag) {
-    console.log("Document is Dirty Saving Now");
+    //console.log("Document is Dirty Saving Now");
     let SaveCommand = vscode.window.activeTextEditor.document.save;
     SaveCommand();
   };
@@ -184,7 +184,7 @@ function activeTextEditor(editor) {
   if (editor.document.languageId != 'tbscript') {
       return;
   }
-  console.log("Active Document Changed");
+  //console.log("Active Document Changed");
   
 };
 
