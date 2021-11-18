@@ -170,7 +170,7 @@
 		"keywords.disk2": {
 		"patterns": [{
 			"name": "keyword.disk.tbscript",
-			"match": "\\b(?i)(getdrvltrinfo|gethdinfo|num|bioshdnum|sig|secsize|c|h|s|embr|OutOfSync|gpt|MaxEntries|bus|name|partition|volume|startlba|endlba|id|guid|type|size|fsid|fsidn|fsinfoid|fsname|fsidname|mbrflag|mbrentry|peflag|drvltr|ex|usedsectors|freesectors|lastusedsector|aacount)\\b"
+			"match": "\\b(?i)(getdrvltrinfo|gethdinfo|num|bioshdnum|sig|secsize|c|h|s|embr|OutOfSync|gpt|MaxEntries|bus|name|partition|volume|startlba|endlba|id|guid|type|size|fsid|fsidn|fsinfoid|fsname|fsidname|mbrflag|mbrentry|peflag|drvltr|ex|usedsectors|freesectors|lastusedsector|aacount|value)\\b"
 				}]
 			},
 		"keywords.gui": {

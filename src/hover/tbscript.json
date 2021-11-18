@@ -5,6 +5,90 @@
         "description":"''",
         "example":""
     },
+    "winsetvalue": {
+        "prefix":"winsetvalue",
+        "usage":"r = WINSETVALUE(keynum, \"subkeyname\", \"valuename\", \"valuetype\", \"value\")\n\n",
+        "description":"'Adds or changes a registry value. The value types allowed are SZ, EXPANDSZ, HEX, DWORD,\nMULTISZ, QWORD, and NONE. HEX is equivalent to the binary type. The return value is\n1 or 0 to indicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\twinsetvalue(0, \"\", \"testvalue\", \"dword\", 0x1234)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalueord": {
+        "prefix":"wingetvalueord",
+        "usage":"r = WINGETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains a value based on a zero-base index. The return value is 1 or 0 to indicate\nsuccess or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\") i=0\n\tk=wingetvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=wingetvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalue": {
+        "prefix":"wingetvalue",
+        "usage":"r = WINGETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description":"'Obtains a registry value. The return value is 1 or 0 to indicate success or failure\nrespectively. The return value also contains the following members: NAME, TYPE, and\nVALUE.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tk=wingetvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetkeyord": {
+        "prefix":"wingetkeyord",
+        "usage":"k = WINGETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains the key name based on a zero-based index.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\ti=0\n\tk=wingetkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=wingetkeyord(0, \"\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelvalue": {
+        "prefix":"windelvalue",
+        "usage":"r = WINDELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description":"'Deletes a registry value.  The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelValue(0, \"my key\", \"my value\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelkey": {
+        "prefix":"windelkey",
+        "usage":"r = WINDELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description":"'Deletes the registry key “keyname” under an open key referenced by keynum. The optional\n“all” parameter can be used to delete a key and all subkeys. The return value is 1 or 0\nto indicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelKey(0, \"my key\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "iselevated": {
+        "prefix":"iselevated",
+        "usage":"r = ISELEVATED()\n\n",
+        "description":"'Use this to determine if the currently running program is elevated under Windows.\nThe return values are:\n\t\t-1 = not able to determine or elevation not applicable.\n\t\t 0 = not elevated.\n\t\t 1 = elevated.'",
+        "example":"sub main()\n\tif IsElevated()=0 then\n\t\tExt(\"Elevate ^\"\" # arg(0) # \"^\"\")\n\tend if\nend sub"
+    },
+    "getvalueord": {
+        "prefix":"getvalueord",
+        "usage":"r = GETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains a value based on a zero-base index. The return value is 1 or 0 to\nindicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=getvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "getvalue": {
+        "prefix":"getvalue",
+        "usage":"r = GETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description":"'Obtains a registry value. The return value is 1 or 0 to indicate success or\nfailure respectively. The return value also contains the following members:\nNAME, TYPE, and VALUE.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tk=getvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close reg 0\")\nend sub"
+    },
+    "getkeyord": {
+        "prefix":"getkeyord",
+        "usage":"k = GETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains the key name based on a zero-based index.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=getkeyord(0, \"\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "delvalue": {
+        "prefix":"delvalue",
+        "usage":"r = DELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description":"'Deletes a registry value. The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelValue(0, \"my key\", \"my value\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "delkey": {
+        "prefix":"delkey",
+        "usage":"r = DELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description":"'Deletes the registry key “keyname”. The optional “all” parameter can be used to delete\na key and all subkeys. The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelKey(0, \"my key\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "bcdbootmatch": {
+        "prefix":"bcdbootmatch",
+        "usage":"r = BCDBootMatch(\"path\", search, diskref, partref [, sectorsize])\n\n",
+        "description":"'Checks if a given BCD file at “path” is setup to boot an OS based on the additional\nparameters provided. Set search to a non-zero value to search all displayed boot items or\nzero to only check the first displayed.  For matching to GPT entries, use a GUID as the\ndiskref and partref; for MBR/EMBR type matching use the NT signature as the diskref and\nthe starting lba of the OS partition as the partref along with providing the sector size\nof the drive if it’s not 512 bytes. The return value is 1 or 0 to indicate TRUE or FALSE\nrespectively. Added in version 1.78.'",
+        "example":"sub main()\n\tbcdmatches = BCDBootMatch(\"0:\\boot\\bcd\", 1, 0x11222211, 63)\n\tif bcdmatches<>0 then\n\t\tprintl(\"Match Found\")\n\tend if\nend sub"
+    },
+    "wingetmonitors": {
+        "prefix":"WinGetMonitors",
+        "usage":"info = WinGetMonitors()\n\n",
+        "description":"'Get the Windows screen and monitor information. The return value is set to the number of\nmonitors found and contains the following members:\n\t.x0  - virtual screen left most\n\t.x1  - virtual screen right most\n\t.y0  - virtual screen top most\n\t.y1  - virtual screen bottom most\n\t.monitor[] – 1 based array of monitors\n\t\t.x0  - virtual left of monitor\n\t\t.x1  - virtual right of monitor\n\t\t.y0  - virtual top of monitor\n\t\t.y1  - virtual bottom of monitor\n\t\t.flags  - monitor flags from DISPLAY_DEVICES.StateFlags\n\t\t.name  - monitor name'",
+        "example":"sub main()\n\tm=WinGetMonitors()\n\tprintl(\"virtual screen=\" # m.x0 # \",\" # m.y0 # \",\" # m.x1 # \",\" # m.y1)\n\tfor i=1 to m\n\t\t// split for this example not to wrap\n\t\tprint(\"monitor \" # i # \"=\" # m.monitor[i].x0 # \",\" # m.monitor[i].y0)\n\t\tprintl(\",\" # m.monitor[i].x1 # \",\" # m.monitor[i].y1)\n\tnext\n\tm=0\nend sub"
+    },
     "sleep": {
         "prefix":"sleep",
         "usage":"SLEEP(seconds | -milliseconds)\n\n",
