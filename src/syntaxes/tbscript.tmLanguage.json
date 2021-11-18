@@ -134,13 +134,13 @@
 		"keywords.keyword": {
 		"patterns": [{
 			"name": "keyword.tbscript",
-			"match": "\\b(?i)(main|const|global|include|rand|sub|end +sub|unset|file|cab|key|inf|tbosdt|tbosdt_user|tbosdt_key)\\b"
+			"match": "\\b(?i)(main|const|global|include|rand|sub|end +sub|unset|file|cab|key|inf|tbosdt|tbosdt_user|tbosdt_key|tbsver|tbsenv|tbsenvch|tbsapppath)\\b"
 				}]
 			},
 		"keywords.control": {
 		"patterns": [{
 			"name": "keyword.control.tbscript",
-			"match": "\\b(if|then|elseif|else|end +if|while|wend|for|next|return|goto|break|exitloop)\\b"
+			"match": "\\b(if|then|elseif|else|end +if|while|wend|for|next|to|return|goto|break|exitloop)\\b"
 				}]
 			},
 		"keywords.system": {

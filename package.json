@@ -36,6 +36,9 @@
         "type": "git",
         "url": "https://github.com/willasm/tbscript.git"
       },
+    "capabilities": {
+        "hoverProvider": "true"
+    },
     "contributes": {
         "commands": [
             {
