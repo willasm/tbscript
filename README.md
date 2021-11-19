@@ -17,23 +17,23 @@ Language support for TeraByte's tbscript programming language.
 
 Syntax Highlighting.
 
-![Syntax Highlighting](https://github.com/willasm/tbscript/blob/master/images/syntaxhighlighting.gif)
+![Syntax Highlighting](images/syntaxhighlighting.gif)
 
 Run in Internal TBCMD.
 
-![Run in Internal TBCMD](https://github.com/willasm/tbscript/blob/master/images/runinternal.gif)
+![Run in Internal TBCMD](images/runinternal.gif)
 
 Run in External TBCMD.
 
-![Run in External TBCMD](https://github.com/willasm/tbscript/blob/master/images/runexternal.gif)
+![Run in External TBCMD](images/runexternal.gif)
 
 Snippet Support.
 
-![Snippets](https://github.com/willasm/tbscript/blob/master/images/snippet.gif)
+![Snippets](images/snippet.gif)
 
 Hover Support.
 
-![Snippets](https://github.com/willasm/tbscript/blob/master/images/hover.gif)
+![Snippets](images/hover.gif)
 
 ## Requirements
 [TeraByte OS Deployment Tool Suite](https://www.terabyteunlimited.com/tbosdt/)

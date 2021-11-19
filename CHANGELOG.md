@@ -17,12 +17,13 @@ All notable changes to the "tbscript" extension will be documented in this file.
 
 <!--- next entry here -->
 
+### [1.0.9] 2021-11-18
+- Fixed broken image file links.
 
 ### [1.0.8] 2021-11-18
 - Added [LICENSE.md](https://github.com/willasm/tbscript/blob/master/LICENSE.md)
 - Removed debugging console log code
 - Added Hover Support! About 50% Complete (more to come)
-- Corrected some GitHub file links
 
 ### [1.0.0] 2021-11-15
 
