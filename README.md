@@ -33,7 +33,7 @@ Snippet Support.
 
 Hover Support.
 
-![Snippets](images/hover.gif)
+![Hover](images/hover.gif)
 
 ## Requirements
 [TeraByte OS Deployment Tool Suite](https://www.terabyteunlimited.com/tbosdt/)
