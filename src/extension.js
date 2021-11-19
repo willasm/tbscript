@@ -3,50 +3,100 @@
     Copyright (C) 2018-2021 William McKeever. All rights reserved.
     Licensed under the MIT License. (See LICENSE.md in the project root for license information)
 */
+
 //--- Not sure what this does (Need to Research ---
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
 
+//--------------------------------------
 //--- Define Constants and Variables ---
 const vscode = require("vscode");
 const path = require("path");
 const cp = require("child_process");
-//const { OutgoingMessage } = require("http");
+const tbscripthover = require('./hover/tbscript.json')
 
+//--------------------------
 //--- Configuration Settings
 var settings = vscode.workspace.getConfiguration("tbscript");
 var tbos_exe = settings.get("tbosdt.exe");
 
+//------------------
 //--- Output Channel
 var outputChannel;
 
 //---------------------------------------------------------
 //              --- Function Activate ---
-// (User Entered Run Script Command - Default Hot Key - F6)
 //---------------------------------------------------------
 function activate(context) {
   //- Log Extension Active Message
-  //console.log('Congratulations, your extension "tbscript" is now active!');
+  // console.log('Congratulations, your extension "tbscript" is now active!');
+  const active = vscode.window.activeTextEditor
+  if (!active || !active.document) return
 
+  //-------------------------
+  //- Register Hover Provider
+  registerDocType('tbscript');
+
+  function registerDocType(type) {
+    context.subscriptions.push(vscode.languages.registerHoverProvider(type, {
+      provideHover(document, position) {
+        const range = document.getWordRangeAtPosition(position);
+        const word = document.getText(range);
+        const lowword = word.toLowerCase();     // Make Lowercase for Case Insensitive Comparison
+  
+        for (const snippet in tbscripthover) {
+          if (tbscripthover[snippet].prefix == lowword || tbscripthover[snippet].hover == lowword) {
+            return createHover(tbscripthover[snippet], type)
+          }
+        }
+      }
+    }));
+  }
+
+  //-----------------------
   //- Create Output Channel
   outputChannel = vscode.window.createOutputChannel('TeraByte Script');
 
+  //----------------------------------------------------------
+  //- Command ID's
   //- This must match the command property in the package.json
   const commandID1 = "tbscript.run.internal";
   const commandID2 = "tbscript.run.external";
 
+  //---------------
   //- Subscriptions
   context = context;
   context.subscriptions.push(vscode.commands.registerCommand(commandID1, RunScriptInternal));
   context.subscriptions.push(vscode.commands.registerCommand(commandID2, RunScriptExternal));
+//  context.subscriptions.push(vscode.languages.registerHoverProvider('tbs', new GoHoverProvider()));
 //  context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(fileChanged));
 //  context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(activeTextEditor));
 };
 
-//--- Exports ---
-module.exports = {
-  activate,
-  deactivate,
+  //---------------
+  //--- Exports ---
+  module.exports = {
+    activate,
+    deactivate,
+  };
+
+  //--------------
+  //- Create Hover
+  function createHover(snippet, type) {
+  const usage = typeof snippet.usage == 'undefined' ? '' : snippet.usage;
+  const description = typeof snippet.description == 'undefined' ? '' : snippet.description;
+  const example = typeof snippet.example == 'undefined' ? '' : snippet.example;
+
+  var retval = "";
+  if (usage) retval = retval+'Usage: '+usage;
+  if (description) retval = retval+'Description:\n'+description;
+  if (example) retval = retval+'\n\n'+'Example:\n'+example;
+//  console.log('nnn',retval);
+  return new vscode.Hover({
+      language: type,
+      value: retval
+//      value: 'Usage: ' + usage + '\n\n' + 'Description:\n' + description + '\n\n' + 'Example:\n' + example
+  });
 };
 
 //---------------------------------------
@@ -148,13 +198,6 @@ function RunScriptExternal() {
   //   encoding: 'utf-8'
   //   }]);
 
-
-  // console.log('Result: ',result);
-  // console.log('Status: ', result.status)
-  // console.log('Output: ', result.output)
-  // console.log('Error: ', result.error);
-  // console.log('Stdout: ', result.stdout);
-  // console.log('Stderr: ', result.stderr);
 
   //--- this works when run from cmd.exe as administrator
   // C:\c64\code\my_code\testtbscript>tbosdtw64.exe >err1.txt displayhdinfo.tbs

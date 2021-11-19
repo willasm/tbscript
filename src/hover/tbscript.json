@@ -1,0 +1,524 @@
+{
+    "keyword": {
+        "prefix":"",
+        "usage":"",
+        "description":"''",
+        "example":""
+    },
+    "txwherey": {
+        "prefix":"txwherey",
+        "usage":"y=TXWHEREY(s)\n\n",
+        "description":"'Returns the Y location of the text cursor. The top most position is 1.'",
+        "example":""
+    },
+    "txwherex": {
+        "prefix":"txwherex",
+        "usage":"x =TXWHEREX ()\n\n",
+        "description":"'Returns the X location of the text cursor. The left most position is 1.'",
+        "example":""
+    },
+    "txterm": {
+        "prefix":"txterm",
+        "usage":"TXTERM()\n\n",
+        "description":"'Terminates the use of the various text console subroutines. This should be called before\nending the script if TXINIT() was used.'",
+        "example":""
+    },
+    "txsetattr": {
+        "prefix":"txsetattr",
+        "usage":"TXSETATTR (attribute)\n\n",
+        "description":"'Sets the current text attribute to use on the next TX output subroutine.\nIt is common to use a hexadecimal number when specifying attributes due to\nthe clarity it provides. For example, white text on a blue background would\nbe specified as 0x1F (1 being blue andF (15) being white).\n\n      Text Attribute 8-Bit Encoding\n-----------------------------------------\nBits          Usage\n----          -----\n0-3           foreground color (0 to 15)\n4-6           background color (0 to 7)\n 7            blink-enable bit\n\n\n             Standard Colors\n-----------------------------------------\nValue          Description\n-----          -----------\n  0            Black\n  1            Blue\n  2            Green\n  3            Cyan\n  4            Red\n  5            Magenta\n  6            Brown\n  7            Light Gray\n  8            Dark Gray\n  9            Light Blue\n 10            Light Green\n 11            Light Cyan\n 12            Light Red\n 13            Light Magenta\n 14            Yellow \n 15            White'",
+        "example":"sub main()\n\ttxinit()\n\ttxsetattr(0x1F) // set white text on blue background\n\tprintl(\"This prints in color\")\n\ttxterm()\nend sub"
+    },
+    "txputblock": {
+        "prefix":"txputblock",
+        "usage":"r = TXPUTBLOCK(b [,x [,y]])\n\n",
+        "description":"'Write a blocked of saved text back to the console. If x or y are provided the text is\nplaced at those coordinates otherwise the original location is used. The returned value\nindicates 0 or 1 to indicate failure or success. The block (b) stays allocated until\ncleared by assigning another value to it (e.g. b=\"\")'",
+        "example":""
+    },
+    "txoutch": {
+        "prefix":"txoutch",
+        "usage":"TXOUTCH(c [,repeat])\n\n",
+        "description":"'Outputs a character to the current cursor location and optionally repeats it.'",
+        "example":""
+    },
+    "txmode": {
+        "prefix":"txmode",
+        "usage":"TXMODE (m)\n\n",
+        "description":"'Sets the video text mode. Setting the video mode is only relevant when used in the DOS\nenvironment.\n\t0  = Black and White 40 columns\n\t1  = Color 40 columns\n\t2  = Black and White 80 columns\n\t3  = Color 80 columns\n\t7  = Monochrome 80 columns\n\t64 = EGA/VGA 43/50 lines.'",
+        "example":""
+    },
+    "txinit": {
+        "prefix":"txinit",
+        "usage":"TXINIT()\n\n",
+        "description":"'Initialize TBScript to use the various text mode subroutines. This must be called at\nleast once before calling any of the other TX based subroutines.\n\nOnce this mode is enabled there are some differences that you should note:\n\n1 – GetStr will not output a newline after input (expect under Windows).\n    You must manually do it.\n2 – Using a newline (^n) character for output will not include the carriage\n    return under DOS.\n3 – Outputting a newline under Linux will clear (using current color) text\n    to the end of the current line.\n\nIf these differences are problematic then you will need to design your own GetStr type\nsubroutine using GetKey(). You can use the TBSENV variable to determine the environment\nthe script is running in.'",
+        "example":""
+    },
+    "txgotoxy": {
+        "prefix":"txgotoxy",
+        "usage":"TXGOTOXY(x,y)\n\n",
+        "description":"'Moves the text cursor to the coordinates x and y.\n(1,1) is the upper-left most position.'",
+        "example":""
+    },
+    "txgetinfo": {
+        "prefix":"txgetinfo",
+        "usage":"ti = TXGETINFO()\n\n",
+        "description":"'Returns information about the current text console.\nThe variable contains the following members:\n\t\tViewLeft – X location of the current screen view. 1 = left most position.\n\t\tViewTop – Y location of the current screen view. 1 = top most position.\n\t\tViewWidth – Width of the current screen view.\n\t\tViewHeight – Height of the current screen view.\n\t\tWidth – Width of the entire available text console.\n\t\tHeight – Height of the entire available text console.\n\t\tAttr – Current text attribute.\n\t\tCurMode – Current text mode.'",
+        "example":""
+    },
+    "txgetblock": {
+        "prefix":"txgetblock",
+        "usage":"b = TXGETBLOCK(x1, y1, x2, y2)\n\n",
+        "description":"'Returns a reference to a saved area of the text console. The variable value returns\n0 or 1 to indicate failure or success.'",
+        "example":""
+    },
+    "txcursortype": {
+        "prefix":"txcursortype",
+        "usage":"TXCURSORTYPE(0|1|2)\n\n",
+        "description":"'Sets the shape of the text cursor. 0=None, 1=Block, 2=Underline.'",
+        "example":""
+    },
+    "txascii": {
+        "prefix":"txascii",
+        "usage":"TXASCII(0|1)\n\n",
+        "description":"'Enables output of ASCII characters under Windows.'",
+        "example":""
+    },
+    "setcp": {
+        "prefix":"setcp",
+        "usage":"r=SETCP(whichcp, cpvalue)\n\n",
+        "description":"'Changes the code page for a given item. The values for whichcp are: 0=Get Code Page,\n1=Console Code Page, 2=Conversion Code Page. When whichcp is zero the cpvalue indicates\nwhich code page to return, either 1 (console) or 2 (conversion). The console values are\nonly accurate under Windows. It’s not recommended to change the conversion code page to a\nvalue other than 65001 (UTF8) or -1 (Auto Determine) or problems can arise from foreign\ncharacters.'",
+        "example":""
+    },
+    "printl": {
+        "prefix":"printl",
+        "usage":"(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description":"'Use these subroutines to print text to the screen. The difference between PRINT and\nPRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the\nstart of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example":"sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "print": {
+        "prefix":"print",
+        "usage":"(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description":"'Use these subroutines to print text to the screen. The difference between PRINT and\nPRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the\nstart of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example":"sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "conctl": {
+        "prefix":"conctl",
+        "usage":"r = CONCTL(\"command\")\n\n",
+        "description":"'Allows moving, hiding, and getting the position of the console window.\nCommand can be one of the following:\n\nshow=n      – Hide/show console window. Values for n are: 0=hide, 1=show\npos=x,y,w,h – Position console window at x, y with width w and height h.\nquery       – Get position, size, and visible state of console window.\n              Returns the following members:\n\t\t\t\t.x      – horizontal position\n\t\t\t\t.y      – vertical position\n\t\t\t\t.width  – width of window\n\t\t\t\t.height – height of window\n\t\t\t\t.shown  – visible state (0=hidden, 1=visible)\n\nNote that the size and/or position of the console window may be adjusted to keep the\nwindow inside the screen area when it’s positioned. If necessary, use the WinGetMonitors\nsubroutine to get the screen area for the monitor(s).\n\nReturn value is true/false (1/0) for success/failure of specified command.'",
+        "example":"sub main()\n\tconctl(\"show=0\") // hide console window\n\tconctl(\"pos=100,10,1000,550\") // move and resize console window\n\tcon = conctl(\"query\") // get console info\n\tprintl(\"Console position: \" # con.x # \", \" # con.y)\n\tprintl(\"Console size: \" # con.width # \" x \" # con.height)\n\tprintl(\"Console visible: \" # con.shown)\nend sub"
+    },
+    "cls": {
+        "prefix":"cls",
+        "usage":"CLS()\n\n",
+        "description":"'Clears the screen and positions the text cursor at the top, left corner of the screen.'",
+        "example":""
+    },
+    "ucase": {
+        "prefix":"ucase",
+        "usage":"s = UCASE(s)\n\n",
+        "description":"'Returns an upper case version of a string.'",
+        "example":""
+    },
+    "right": {
+        "prefix":"right",
+        "usage":"s = RIGHT(s, n [,codepage])\n\n",
+        "description":"'Returns a string with the right-most characters of s. The number of characters to return\nis indicated by n. If n is greater than or equal to the length of the string, then the\nentire string is returned. For example, RIGHT(“Test”, 2) returns “st”. “codepage”, added\nin version 10, can be a specific code page or 0 for current output code page\n(only accurate in Windows version).'",
+        "example":""
+    },
+    "pad": {
+        "prefix":"pad",
+        "usage":"s = PAD(s, n [,0|1|2 [, codepage]] )\n\n",
+        "description":"'Returns a string that contains at least n characters. When the input string is less than\nn characters it can be justified left (default) (0), middle (1), or right (2) by\nproviding a third parameter. If the input string length is greater than or equal to n\nthen the input string is simply returned. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example":"sub main()\n\t// Print [   test   ]\n\tprintl(\"[\", PAD(\"test\", 10, 1), \"]\")\nend sub"
+    },
+    "oct": {
+        "prefix":"oct",
+        "usage":"s = OCT(n)\n\n",
+        "description":"'The OCT subroutine returns a string octal representation of the number n.'",
+        "example":"sub main()\n\t// Print 17\n\tprintl(OCT(15))\nend sub"
+    },
+    "mid": {
+        "prefix":"mid",
+        "usage":"s = MID(s, pos [, len [, codepage]])\n\n",
+        "description":"'Returns a substring of a string. pos specifies the 1-based index of the start of the\nsubstring. len specifies the number of characters to return. If len is omitted, the rest\nof the string is returned. “codepage”, added in version 10, can be a specific code page\nor 0 for current output code page (only accurate in Windows version).\n\nFor example, MID(“Test string”, 6, 3) returns “str”, and MID(“Test string”, 6) returns\n“string”.'",
+        "example":""
+    },
+    "len": {
+        "prefix":"len",
+        "usage":"n = LEN(s [, codepage])\n\n",
+        "description":"'Returns the number of characters in a string. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example":""
+    },
+    "left": {
+        "prefix":"left",
+        "usage":"s = LEFT(s, n [, codepage])\n\n",
+        "description":"'Returns a string with the left-most characters of s. The number of characters to return\nis indicated by n. If n is greater than or equal to the length of the string, then the\nentire string is returned. For example, LEFT(“Test”, 2) returns “Te”. “codepage”, added\nin version 10, can be a specific code page or 0 for current output code page\n(only accurate in Windows version).'",
+        "example":""
+    },
+    "lcase": {
+        "prefix":"lcase",
+        "usage":"s = LCASE(s)\n\n",
+        "description":"'Returns a lower case version of a string.'",
+        "example":""
+    },
+    "isstrtype": {
+        "prefix":"isstrtype",
+        "usage":"n = ISSTRTYPE(s, t)\n\n",
+        "description":"'ISSTRTYPE returns 1 if the string type matches the type (t) requested. Use 0 for integer\ncheck, 1 for decimal, 2 for alphabetic, 3 for alpha-numeric.'",
+        "example":"sub main()\n\ts[1] = \"1234\"\n\ts[2] = \"23.4\"\n\ts[3] = \"abc\"\n\ts[4] = \"123abc\"\n\n\tfor i = 1 to 4\n\t\tprintl(\"String ^\"\", s[i],\"^\"\")\n\t\tprintl(\"  IsInt: \", IsStrType(s[i],0)\n\t\tprintl(\"  IsDec: \", IsStrType(s[i],1)\n\t\tprintl(\"  IsAlpha: \", IsStrType(s[i],2)\n\t\tprintl(\"  IsAlphaNum: \", IsStrType(s[i],3)\n\t\tprintl(\"\")\n\tnext\nend sub"
+    },
+    "instr": {
+        "prefix":"instr",
+        "usage":"n = INSTR(s1, s2 [, codepage])\n\n",
+        "description":"'Use INSTR to find a substring within a string. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).\n\nINSTR returns the 1-based index of the start of s2 within s1. For example,\nINSTR(“find”, “in”) returns 2. INSTR returns 0 if the substring was not found.\n\nNOTE: The comparison is case sensitive, which means that INSTR(“find”, “IN”) returns 0.'",
+        "example":""
+    },
+    "hex": {
+        "prefix":"hex",
+        "usage":"s = HEX(n)\n\n",
+        "description":"'The HEX subroutine returns a string hexadecimal representation of the number n.'",
+        "example":"sub main()\n\t// Print F printl(HEX(15))\nend sub"
+    },
+    "chr": {
+        "prefix":"chr",
+        "usage":"s = CHR(n)\n\n",
+        "description":"'The CHR subroutine returns a string with a single character, which has the ASCII value\nof the number n.'",
+        "example":"sub main()\n\t// Print \"A\"\n\tprintl(CHR(65))\nend sub"
+    },
+    "binary": {
+        "prefix":"binary",
+        "usage":"newvariant = BINARY(variant [[[[, type], startoffset], length], binvartoupdate])\n\n",
+        "description":"'This subroutine sets or extracts binary data types (used for binary file operations or\nuefi variables). When variant is a binary data type and binvartoupdate is not provided\nthen this subroutine extracts data from variant to create a new variable of type. When\nvariant is not a binary data type or binvartoupdate is provided then this subroutine\nreturns a new binary data type. When not provided, optional parameters are assumed to be\nzero. The values for type are as follows: 0=String, 1=Hex String, 2=Wide String,\n3=Numeric, 4=Binary, 5=Narrow String. The startoffset is the zero based starting offset\nto the data to extract from or set in newvariant. The length specifies the number of\nbytes of data to extract from or set in newvariant. When the length is zero it is assumed\nto be the same length as variant. When binvartoupdate is provided it will be used as the\nbasis of newvariant to allow updating an existing binary variable. This subroutine was\nadded in TBSVER 3 and enhanced with type, startoffset, length, and binvartoupdate in\nTBSVER 9, Narrow String in TBSVER 14.'",
+        "example":"sub main()\n\t// Note: It’s recommended to use type 2 or 5 to know the string type.\n\t// non-Unicode versions return narrow strings\n\tbindata=BINARY(\"STRING\")       // 53 54 52 49 4E 47\n\t// Unicode versions return wide strings\n\tbindata=BINARY(\"STRING\")       // 53 00 54 00 52 00 49 00 4E 00 47 00\n\tbindata=BINARY(0, 3, 0, 1)     // 00\n\tbindata=bindata # bindata      // 00 00\n\tbindata=BINARY(\"3031323334\", 1)   // 30 31 32 33 34\n\tbindata=BINARY(\"353637\", 1, 5, 0, bindata) // 30 31 32 33 34 35 36 37\n\tword=BINARY(bindata, 3, 0, 2)      // 0x3130\n\tbindata=BINARY(\"55AA\", 1, 1, 3)  // 00 55 AA 00\n\tprintl(len(bindata))      // 4\nend sub"
+    },
+    "asc": {
+        "prefix":"asc",
+        "usage":"n = ASC(s)\n\n",
+        "description":"'The ASC subroutine returns the ASCII value of the first character in the string s.'",
+        "example":"sub main()\n\t// Print ASCII value of \"A\"\n\tprintl(ASC(\"A\"))\nend sub"
+    },
+    "winsetvalue": {
+        "prefix":"winsetvalue",
+        "usage":"r = WINSETVALUE(keynum, \"subkeyname\", \"valuename\", \"valuetype\", \"value\")\n\n",
+        "description":"'Adds or changes a registry value. The value types allowed are SZ, EXPANDSZ, HEX, DWORD,\nMULTISZ, QWORD, and NONE. HEX is equivalent to the binary type. The return value is\n1 or 0 to indicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\twinsetvalue(0, \"\", \"testvalue\", \"dword\", 0x1234)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalueord": {
+        "prefix":"wingetvalueord",
+        "usage":"r = WINGETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains a value based on a zero-base index. The return value is 1 or 0 to indicate\nsuccess or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\") i=0\n\tk=wingetvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=wingetvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalue": {
+        "prefix":"wingetvalue",
+        "usage":"r = WINGETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description":"'Obtains a registry value. The return value is 1 or 0 to indicate success or failure\nrespectively. The return value also contains the following members: NAME, TYPE, and\nVALUE.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tk=wingetvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetkeyord": {
+        "prefix":"wingetkeyord",
+        "usage":"k = WINGETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains the key name based on a zero-based index.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\ti=0\n\tk=wingetkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=wingetkeyord(0, \"\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelvalue": {
+        "prefix":"windelvalue",
+        "usage":"r = WINDELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description":"'Deletes a registry value.  The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelValue(0, \"my key\", \"my value\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelkey": {
+        "prefix":"windelkey",
+        "usage":"r = WINDELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description":"'Deletes the registry key “keyname” under an open key referenced by keynum. The optional\n“all” parameter can be used to delete a key and all subkeys. The return value is 1 or 0\nto indicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelKey(0, \"my key\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "iselevated": {
+        "prefix":"iselevated",
+        "usage":"r = ISELEVATED()\n\n",
+        "description":"'Use this to determine if the currently running program is elevated under Windows.\nThe return values are:\n\t\t-1 = not able to determine or elevation not applicable.\n\t\t 0 = not elevated.\n\t\t 1 = elevated.'",
+        "example":"sub main()\n\tif IsElevated()=0 then\n\t\tExt(\"Elevate ^\"\" # arg(0) # \"^\"\")\n\tend if\nend sub"
+    },
+    "getvalueord": {
+        "prefix":"getvalueord",
+        "usage":"r = GETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains a value based on a zero-base index. The return value is 1 or 0 to\nindicate success or failure respectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=getvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "getvalue": {
+        "prefix":"getvalue",
+        "usage":"r = GETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description":"'Obtains a registry value. The return value is 1 or 0 to indicate success or\nfailure respectively. The return value also contains the following members:\nNAME, TYPE, and VALUE.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tk=getvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close reg 0\")\nend sub"
+    },
+    "getkeyord": {
+        "prefix":"getkeyord",
+        "usage":"k = GETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description":"'Obtains the key name based on a zero-based index.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=getkeyord(0, \"\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "delvalue": {
+        "prefix":"delvalue",
+        "usage":"r = DELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description":"'Deletes a registry value. The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelValue(0, \"my key\", \"my value\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "delkey": {
+        "prefix":"delkey",
+        "usage":"r = DELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description":"'Deletes the registry key “keyname”. The optional “all” parameter can be used to delete\na key and all subkeys. The return value is 1 or 0 to indicate success or failure\nrespectively.'",
+        "example":"sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelKey(0, \"my key\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "bcdbootmatch": {
+        "prefix":"bcdbootmatch",
+        "usage":"r = BCDBootMatch(\"path\", search, diskref, partref [, sectorsize])\n\n",
+        "description":"'Checks if a given BCD file at “path” is setup to boot an OS based on the additional\nparameters provided. Set search to a non-zero value to search all displayed boot items or\nzero to only check the first displayed.  For matching to GPT entries, use a GUID as the\ndiskref and partref; for MBR/EMBR type matching use the NT signature as the diskref and\nthe starting lba of the OS partition as the partref along with providing the sector size\nof the drive if it’s not 512 bytes. The return value is 1 or 0 to indicate TRUE or FALSE\nrespectively. Added in version 1.78.'",
+        "example":"sub main()\n\tbcdmatches = BCDBootMatch(\"0:\\boot\\bcd\", 1, 0x11222211, 63)\n\tif bcdmatches<>0 then\n\t\tprintl(\"Match Found\")\n\tend if\nend sub"
+    },
+    "wingetmonitors": {
+        "prefix":"wingetmonitors",
+        "usage":"info = WinGetMonitors()\n\n",
+        "description":"'Get the Windows screen and monitor information. The return value is set to the number of\nmonitors found and contains the following members:\n\t.x0  - virtual screen left most\n\t.x1  - virtual screen right most\n\t.y0  - virtual screen top most\n\t.y1  - virtual screen bottom most\n\t.monitor[] – 1 based array of monitors\n\t\t.x0  - virtual left of monitor\n\t\t.x1  - virtual right of monitor\n\t\t.y0  - virtual top of monitor\n\t\t.y1  - virtual bottom of monitor\n\t\t.flags  - monitor flags from DISPLAY_DEVICES.StateFlags\n\t\t.name  - monitor name'",
+        "example":"sub main()\n\tm=WinGetMonitors()\n\tprintl(\"virtual screen=\" # m.x0 # \",\" # m.y0 # \",\" # m.x1 # \",\" # m.y1)\n\tfor i=1 to m\n\t\t// split for this example not to wrap\n\t\tprint(\"monitor \" # i # \"=\" # m.monitor[i].x0 # \",\" # m.monitor[i].y0)\n\t\tprintl(\",\" # m.monitor[i].x1 # \",\" # m.monitor[i].y1)\n\tnext\n\tm=0\nend sub"
+    },
+    "sleep": {
+        "prefix":"sleep",
+        "usage":"SLEEP(seconds | -milliseconds)\n\n",
+        "description":"'Use the SLEEP subroutine to pause for the specified number of seconds. SLEEP returns\nafter the specified number of seconds has passed. Starting in version 15 you can use a\nnegative value to delay in milliseconds.'",
+        "example":""
+    },
+    "setuefivar": {
+        "prefix":"setuefivar",
+        "usage":"r =UEFISETVAR(varname, namespaceguid[, bindata, attributes])\n\n",
+        "description":"'Set a UEFI firmware variable (variable names are case sensitive). This subroutine is\nonly available when the system booted using UEFI. In linux, the efivarfs must be mounted\nat /sys/firmware/efi/efivars. The linux command to mount is:\n\tmount -t efivarfs none /sys/firmware/efi/efivars.\nWhen bindata is not provided the variable is deleted. The return value is zero on success\notherwise an error code is returned.\n\nWARNING: This function does not prevent you from deleting variables or setting invalid\ndata. Using invalid data or deleing the wrong variables can prevent your system from\nbooting until the firmware is reset to factory defaults. Contact the system manufacturer\nfor instructions on resetting factory defaults.'",
+        "example":"const UEFI_VAR_NV = 1\nconst UEFI_VAR_BS = 2\nconst UEFI_VAR_RT = 4\n\nsub main()\n\ta = UEFI_VAR_NV+UEFI_VAR_BS+UEFI_VAR_RT // attributes\n\tt = binary(2, 3, 0, 2)                  // 16-bit value for number 2\n\te = setuefivar(\"Timeout\",\"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}\", t, a)\n\tif (e = 0) then\n\t\tprintl(\"Boot Timeout Set to\", binary(t, 3))\n\telse\n\t\tprintl(\"Unable to set Boot Timeout.  Error:\", e)\n\tend if\nend sub"
+    },
+    "setlocale": {
+        "prefix":"setlocale",
+        "usage":"SETLOCALE(locale)\n\n",
+        "description":"'Use this subroutine to set the current locale. This setting affects the format of date\nand time strings created by other subroutines. Note that even with locale set, decimal\nnumbers will continue to accept use of ‘.’.\n\nThe locale argument may be any of the following values:\n\n\t0  Date and time strings will be created using the default format.\n\t   Locale set to default (Ver 10+).\n\t1  Default date and time strings will be created using the ISO 8601 format.\n\t2  Default date and time without zero prefix (Ver 10+).\n\t3  Default time removing space between time and AM/PM  (Ver 10+).\n\t4  Default time to use lower case AM/PM (Ver 10+).\n\t5  Locale pulled in from environment (not related to date/time strings) (Ver 10+).\n\t6  Use OS locale for Date/Time (Ver 10+).'",
+        "example":""
+    },
+    "setenv": {
+        "prefix":"setenv",
+        "usage":"SETENV(env, val)\n\n",
+        "description":"'Use SETENV to set an environment variable. If the environment variable already exists,\nthe existing variable is modified. Otherwise, it is created.'",
+        "example":"sub main()\n\tsetenv(\"path\", \"C:\\\")\n\tprintl(getenv(\"path\"))\nend sub"
+    },
+    "getuefivar": {
+        "prefix":"getuefivar",
+        "usage":"binvar=UEFIGETVAR(varname, namespaceguid)\n\n",
+        "description":"'Retrieve a UEFI firmware variable (variables are case sensitive) and its attributes in\nbinvar.attributes. This subroutine is only available when the system booted using UEFI.\nIn linux, the efivarfs must be mounted at /sys/firmware/efi/efivars. The linux command to\nmount is: mount -t efivarfs none /sys/firmware/efi/efivars. On failure the returned\nbinvar is zero bytes in length and contains a member binvar.errno to indicate the error\ncode.'",
+        "example":"sub main()\n\tt = getuefivar(\"Timeout\", \"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}\")\n\tif (len(t) > 0) then\n\t\tprintl(\"Boot Timeout = \", t)\n\telse\n\t\tprintl(\"Unable to retrieve Boot Timeout. Error:\", t.errno)\n\t\tt = \"\"   // remove variable\n\tend if\nend sub"
+    },
+    "getsysino": {
+        "prefix":"getsysino",
+        "usage":"si = GETSYSINFO()\n\n",
+        "description":"'Returns information about the current system. The variable contains the following\nmembers: BIOSDate, BIOSVendor, BIOSVersion, SysFamily, SysManufacturer, SysProductName,\nSysSKU, SysVersion, SysUUID. TBSVER 6 adds two additional members: BIOSFeatures1,\nBIOSFeatures2.  TBSVER 7 adds CPUCount. For each CPUCount an array (1 based) is provided\nas CPU[n] with the following members: ID, Cores, CoresEnabled, Threads, and Features.\nNote that the Core and Feature information may not be reported by the system; however the\nThreads member is valid if Cores is non-zero.  The ID contains the contents of\ncpuid leaf 1 EAX (low) and EDX (high) values.'",
+        "example":"sub main()\n\tsi=getsysinfo()\n\tif (si) then\n\t\tprintl(\"BIOS Date: \", si.biosdate)\n\t\tprintl(\"BIOS Vendor: \", si.biosvendor)\n\t\tprintl(\"BIOS Version: \", si.biosversion)\n\t\tprintl(\"System Family: \", si.sysfamily)\n\t\tprintl(\"System Manufacturer: \", si.sysmanufacturer)\n\t\tprintl(\"System Product Name: \", si.sysproductname)\n\t\tprintl(\"System SKU: \", si.syssku)\n\t\tprintl(\"System Version: \", si.sysversion)\n\t\tprintl(\"System UUID: \", si.sysuuid)\n\telse\n\t\tprintl(\"Unable to obtain the system information\")\n\tend if\nend sub"
+    },
+    "gettime": {
+        "prefix":"gettime",
+        "usage":"s = GETTIME()\n\n",
+        "description":"'The GETTIME subroutine returns the current time as a string.'",
+        "example":"sub main()\n\t// Extract components of current time\n\ttime = gettime()\n\thour = mid(time, 1, 2)\n\tmin = mid(time, 4, 2)\n\tsec = mid(time, 7, 2)\nend sub"
+    },
+    "getstr": {
+        "prefix":"getstr",
+        "usage":"s = GETSTR([prompt [, maxchars]])\n\n",
+        "description":"'Returns a string entered by the user. prompt is an optional prompt that is displayed\nbefore waiting for the user to enter a string. In addition, maxchars is an optional\nnumber that specifies the maximum length of the string that the user can enter.\n\nNOTE: If maxchars is specified, the prompt argument must be included. If TXINIT is active\nthen a newline is not automatically output after pressing enter (except under Windows\nwhich always outputs a newline).'",
+        "example":""
+    },
+    "getkey": {
+        "prefix":"getkey",
+        "usage":"n = GETKEY([prompt [, timeout]])\n\n",
+        "description":"'The GETKEY subroutine returns the value of the next key pressed by the user. Prompt is\nan optional prompt string that is displayed before waiting for the key press.\n\nTimeout is an optional argument that specifies a timeout period, in seconds. If the user\ndoes not press any key within the specified number of seconds, the GETKEY subroutine\nreturns a value of 0 without waiting for a keystroke. If the timeout argument is omitted\nor is 0, the GETKEY subroutine waits for the next keystroke regardless of how long it\ntakes. Note that the timeout argument can be specified only if the prompt argument is\nspecified; however, prompt may be an empty string (“”).'",
+        "example":""
+    },
+    "getenv": {
+        "prefix":"getenv",
+        "usage":"s = GETENV(s)\n\n",
+        "description":"'Returns the value of the specified environment variable.'",
+        "example":""
+    },
+    "getdatetime": {
+        "prefix":"getdatetime",
+        "usage":"s = GETDATETIME([datetimevalue])\n\n",
+        "description":"'The GETDATETIME subroutine returns a date and time string value based on the current\nlocale setting. If datetimevalue is not provided then the current date and time are used.\nThe datetimevalue parameter is a numeric value based on either Unix time or Windows file\ntime. Large values are assumed to be Windows file time, smaller values Unix time.\nNOTE: The Right(TBSVER,3)=”x16” version of TBScript does not support the datetimevalue\nparameter and will return an empty string.'",
+        "example":"sub main()\n\t// Extract components of current date/time\n\tdatetime = getdatetime()\n\tmonth = mid(datetime, 1, 2)\n\tday = mid(datetime, 4,2)\n\tyear = mid(datetime, 7, 4)\n\thour = mid(datetime, 12, 2)\n\tmin = mid(datetime, 15, 2)\n\tsec = mid(datetime, 18, 2)\nend sub"
+    },
+    "getdate": {
+        "prefix":"getdate",
+        "usage":"s = GETDATE()\n\n",
+        "description":"'The GETDATE subroutine returns the current date as a string.'",
+        "example":"sub main()\n\t// Extract components of current date\n\tdate = getdate()\n\tmonth = mid(date, 1, 2)\n\tday = mid(date, 4, 2)\n\tyear = mid(date, 7, 4)\nend sub"
+    },
+    "ext": {
+        "prefix":"ext",
+        "usage":"r = EXT(s [, capture])\n\n",
+        "description":"'Executes script extensions that may exist in a product. An error code is returned if\nthere is one. The optional capture parameter (true or false) can be used to have the\nfunction return the output from the command. The return variable has the captured output\nin the .extcap member (there is a 64K character limit). If a “pause” option is used the\noutput won’t be captured because the command will be interactive\n(e.g. “dir /p”, “type filename /p”, etc.).'",
+        "example":"sub main()\n\text(\"extcmd param1 param2\")\n\n\t// read value from INI file\n\tr = ext(\"list ini settings.ini options username\", 1)\n\tp = instr(r.extcap, \"^n\")\n\tif (p>1) then\n\t\tval = left(r.extcap, p-1)\n\telse\n\t\tval = r.extcap\n\tend if\nend sub"
+    },
+    "exec": {
+        "prefix":"exec",
+        "usage":"EXEC(s[,f])\n\n",
+        "description":"'Executes a shell command. The string s can be any valid shell command. Returns the\nreturn code (errorlevel) of the command.  The optional f parameter determines the format\nused to pass the parameters to external programs. It was added to maintain backwards\ncompatibility.  By default (or zero) the parameters are parsed by exec and then passed to\nthe program, otherwise if set to one (1) the raw non-parsed parameters are passed.'",
+        "example":"sub main()\n\texec(\"program ^\"^\"param one^\"^\"\" ---param2) // old format\n\texec(\"program ^\"param one^\" --param2\", 1)   // new format is easier\n\texec(\"script.tbs\")\n\texec(\"shellcommand\")\nend sub"
+    },
+    "directvideo": {
+        "prefix":"directvideo",
+        "usage":"DIRECTVIDEO([n])\n\n",
+        "description":"'This subroutine is used to set the DOS environment to either write directly to video\nmemory or to use the BIOS. By default direct video mode is enabled as it’s much faster.\nIf you have a need to use BIOS video then use this subroutine to turn off direct video\nmode.  This subroutine was added in TBSVER 4.'",
+        "example":"sub main()\n\tdirectvideo(0) // turn off\n\tdirectvideo()  // turn on\n\tdirectvideo(1) // turn on\nend sub"
+    },
+    "argc": {
+        "prefix":"argc",
+        "usage":"(ARG, ARGC) Subroutines\n\na = ARG(n)\nn = ARGC()\n\n",
+        "description":"'The ARG and ARGC subroutine are used to access any arguments that were passed on the\ncommand line (when the script was started). ARGC returns the number of arguments. ARG()\nreturns the argument indicated by n, which can be in the range 1 through the value\nreturned by ARGC.\n\nIn addition to the arguments described above, the ARG subroutine returns the fully\nqualified path of the script file when n = 0.'",
+        "example":"sub main()\n\tprintl(\"Script name = \", arg(0))\n\tfor i = 1 to argc()\n\t\tprintl(\"Arg \", i, \" = \", arg(i))\n\tnext\nend sub"
+    },
+    "arg": {
+        "prefix":"arg",
+        "usage":"(ARG, ARGC) Subroutines\n\na = ARG(n)\nn = ARGC()\n\n",
+        "description":"'The ARG and ARGC subroutine are used to access any arguments that were passed on the\ncommand line (when the script was started). ARGC returns the number of arguments. ARG()\nreturns the argument indicated by n, which can be in the range 1 through the value\nreturned by ARGC.\n\nIn addition to the arguments described above, the ARG subroutine returns the fully\nqualified path of the script file when n = 0.'",
+        "example":"sub main()\n\tprintl(\"Script name = \", arg(0))\n\tfor i = 1 to argc()\n\t\tprintl(\"Arg \", i, \" = \", arg(i))\n\tnext\nend sub"
+    },
+    "exitloop": {
+        "prefix":"exitloop",
+        "usage":"ExitLoop",
+        "description":"'Exits out of a While/Wend or For/Next loop.'",
+        "example":"sub main()\n\t// similar to a repeat/until loop\n\twhile 1\n\t\tkeyval=GetKey()\n\t\tprintl(\"You entered key code \", keyval)\n\t\tif keyval=asc(\"q\") then\n\t\t\texitloop\n\t\tend if\n\twend\nend sub"
+    },
+    "break": {
+        "prefix":"break",
+        "usage":"n = BREAK(n)\n\n",
+        "description":"'Enable (n=1) or disable (n=0) the ability to break out of the running of the script by\nuse of the CTRL-C or CTRL-BREAK key on the keyboard. The return value is the break value\nprior to setting the new value.'",
+        "example":"sub main()\n\t// Disable CTRL-C and CTRL-Break\n\tBREAK(0)\nend sub"
+    },
+    "goto": {
+        "prefix":"goto",
+        "usage":"GOTO label\n\n",
+        "description":"'Use the GOTO keyword to jump to another line in the current script. A GOTO line is\nidentified by a symbol followed by a colon (:). The GOTO statement and the label being\njumped to must be within the same subroutine.\n\nNOTE: Caution must be taken when jumping into or out of a loop such as a FOR..NEXT\nor WHILE..WEND loop. For example, if you jumped into a FOR..NEXT loop, execution would\ncontinue until the NEXT is encountered, which would produce a “NEXT without FOR” error\nbecause the FOR keyword was skipped.'",
+        "example":"sub main()\n\tprintl(\"This line gets executed\")\n\tgoto jump\n\tprintl(\"This line does not get executed\")\njump:\n\tprintl(\"This line also gets executed\")\nend sub"
+    },
+    "return": {
+        "prefix":"return",
+        "usage":"RETURN [v]\n\n",
+        "description":"'Use the RETURN keyword to exit the current subroutine and return to the subroutine\nthat called it. A RETURN statement has the same effect as encountering an END SUB.\n\nIf an expression is included after the RETURN keyword, the value of that expression is\nreturned to the calling subroutine. If a value is returned from the MAIN subroutine,\nthat value sets the script return code (errorlevel).'",
+        "example":""
+    },
+    "for": {
+        "prefix":"for",
+        "usage":"(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description":"'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution\ncontinues on the next statement after the NEXT keyword. If end is less than start,\nthe block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are\ncached. So, for example, if the loop modifies values used in the end expression, this\nwill not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed\nafter the NEXT statement.'",
+        "example":"sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "next": {
+        "prefix":"next",
+        "usage":"(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description":"'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution\ncontinues on the next statement after the NEXT keyword. If end is less than start,\nthe block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are\ncached. So, for example, if the loop modifies values used in the end expression, this\nwill not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed\nafter the NEXT statement.'",
+        "example":"sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "to": {
+        "prefix":"to",
+        "usage":"(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description":"'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution\ncontinues on the next statement after the NEXT keyword. If end is less than start,\nthe block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are\ncached. So, for example, if the loop modifies values used in the end expression, this\nwill not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed\nafter the NEXT statement.'",
+        "example":"sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "while": {
+        "prefix":"while",
+        "usage":"(WHILE..WEND) Keywords\n\nWHILE expression\n\tstatements\nWEND\n\n",
+        "description":"'Use a WHILE loop to execute a block of statements as long as an expression is true.'",
+        "example":"sub main()\n\ta = 1\n\twhile a <= 25\n\t\tprintl(\"This is test line \", a)\n\t\ta = a + 1\n\twend\nend sub"
+    },
+    "wend": {
+        "prefix":"wend",
+        "usage":"(WHILE..WEND) Keywords\n\nWHILE expression\n\tstatements\nWEND\n\n",
+        "description":"'Use a WHILE loop to execute a block of statements as long as an expression is true.'",
+        "example":"sub main()\n\ta = 1\n\twhile a <= 25\n\t\tprintl(\"This is test line \", a)\n\t\ta = a + 1\n\twend\nend sub"
+    },
+    "then": {
+        "prefix":"then",
+        "usage":"(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description":"'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only\nif the previous conditions are false and a new condition is true (ELSEIF),\nor that are executed only if all other blocks are false (ELSE).'",
+        "example":"sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "elseif": {
+        "prefix":"elseif",
+        "usage":"(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description":"'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only\nif the previous conditions are false and a new condition is true (ELSEIF),\nor that are executed only if all other blocks are false (ELSE).'",
+        "example":"sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "else": {
+        "prefix":"else",
+        "usage":"(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description":"'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only\nif the previous conditions are false and a new condition is true (ELSEIF),\nor that are executed only if all other blocks are false (ELSE).'",
+        "example":"sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "if": {
+        "prefix":"if",
+        "usage":"(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description":"'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only\nif the previous conditions are false and a new condition is true (ELSEIF),\nor that are executed only if all other blocks are false (ELSE).'",
+        "example":"sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "tbosdt_key": {
+        "prefix":"tbosdt_key",
+        "usage":"(Global Variable)\n\n",
+        "description":"'This global variable indicates the license key running TBOSDT.'",
+        "example":"sub main()\n\tprintl(\"Key: \", tbosdt_key)\nend sub"
+    },
+    "tbosdt_user": {
+        "prefix":"tbosdt_user",
+        "usage":"(Global Variable)\n\n",
+        "description":"'This global variable indicates the licensed user running TBOSDT.'",
+        "example":"sub main()\n\tprintl(\"User: \", tbosdt_user)\nend sub"
+    },
+    "tbosdt": {
+        "prefix":"tbosdt",
+        "usage":"(Global Variable)\n\n",
+        "description":"'This global variable indicates the version of TBOSDT being used.\nThe format of this string variable is:\n\nV.vv – L\n\nWhere V.vv is the version number and L is the level.\nLevel A indicates TBOSDT Professional,\nLevel B indicates TBOSDT Professional for BootIt.'",
+        "example":"sub main()\n\tprintl(\"Version: \", tbosdt) // outputs Version: 1.29 - A\nend sub"
+    },
+    "unset": {
+        "prefix":"unset",
+        "usage":"UNSET v\n\n",
+        "description":"'Use to clear a variable.\nUsage is recommended to clear GUI dialog and control variables when no longer needed.'",
+        "example":""
+    },
+    "rand": {
+        "prefix":"rand",
+        "usage":"r = RAND([seed])\n\n",
+        "description":"'Returns a pseudo-random number from 0 to 32767.\nYou can optionally provide a seed to generate a new sequence.\nThe pseudo-random numbers generated are NOT cryptographically strong.'",
+        "example":""
+    },
+    "include": {
+        "prefix":"include",
+        "usage":"INCLUDE \"filename\"\n\n",
+        "description":"'Use this keyword to reference another file in your script.\nThe include keyword was added in TBSVER 7 and must be used outside of any subroutines.'",
+        "example":"include \"my_common_subroutines.inc\" // includes my_sqrt subroutine\n\nsub main()\n\tprintl(\"The square root of 81 is \", my_sqrt(81))\nend sub"
+    },
+    "global": {
+        "prefix":"global",
+        "usage":"GLOBAL name = value\n\n",
+        "description":"'Defines a global variable.\n\nGlobal variables are similar to regular variables\nexcept they are defined in your script outside of any subroutines.'",
+        "example":"global A = 100\n\nsub main()\n\tprintl(\"The value of A is \", A)\n\tChangeA()\n\tprintl(\"The value of A is \", A)\nend sub\n\nsub ChangeA()\n\tA=200\nEnd sub"
+    },
+    "const": {
+        "prefix":"const",
+        "usage":"CONST name = value\n\n",
+        "description":"'Defines a constant symbol.\n\nConstants are similar to variables except\na) They are defined in your script outside of any subroutines, and\nb) Their value cannot be changed. Constants are useful, for example,\nwhen you write a script that uses a value in several places,\n but you want to be able to easily change that value at one location.\n\nThere are also default constants: TBSVER contains the version string\nof the script engine TBSENV contains \"DOS\", \"LINUX\", \"WINDOWS\",\nor \"UEFI\" depending on which type of environment the script is running on;\nTBSENVCH contains \"UNICODE\" if Windows Unicode version; TBSAPPPATH contains\nthe path name to the folder containing the main application.'",
+        "example":"const A = 100\n\nsub main()\n\tprintl(\"The value of A is \", A)\nend sub"
+    },
+    "sub": {
+        "prefix":"sub",
+        "usage":"",
+        "description":"'A TBScript file consists of one or more subroutines.\nAll scripts must define one subroutine called MAIN.\nExecution starts at this subroutine.\nAny subroutine can return a value using the RETURN keyword.'",
+        "example": "\/\/ Here is a sample script.\n\/\/ Text that follows \/\/ or ; are comments and\n\/\/ are ignored by the interpreter.\n\/\/ Execution begins at the following subroutine\nsub main()\n\tprintl(double(5))\nend sub\n\n\/\/ Here's another subroutine. It returns the\n\/\/ argument value times two\nsub double(val)\n\treturn val * 2;\nend sub"
+    },
+    "main": {
+        "prefix":"main",
+        "usage":"",
+        "description":"'A TBScript file consists of one or more subroutines.\nAll scripts must define one subroutine called MAIN.\nExecution starts at this subroutine.\nAny subroutine can return a value using the RETURN keyword.'",
+        "example":"\/\/ Here is a sample script.\n\/\/ Text that follows \/\/ or ; are comments and\n\/\/ are ignored by the interpreter.\n\/\/ Execution begins at the following subroutine\nsub main()\n\tprintl(double(5))\nend sub\n\n\/\/ Here's another subroutine. It returns the\n\/\/ argument value times two\nsub double(val)\n\treturn val * 2;\nend sub"
+    }
+}
