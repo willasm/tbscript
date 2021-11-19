@@ -42,9 +42,10 @@ function activate(context) {
       provideHover(document, position) {
         const range = document.getWordRangeAtPosition(position);
         const word = document.getText(range);
+        const lowword = word.toLowerCase();     // Make Lowercase for Case Insensitive Comparison
   
         for (const snippet in tbscripthover) {
-          if (tbscripthover[snippet].prefix == word || tbscripthover[snippet].hover == word) {
+          if (tbscripthover[snippet].prefix == lowword || tbscripthover[snippet].hover == lowword) {
             return createHover(tbscripthover[snippet], type)
           }
         }

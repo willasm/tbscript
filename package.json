@@ -6,21 +6,24 @@
     "author": {
         "name": "William McKeever"
     },
-	"license": "MIT View LICENSE.md",
-    "version": "1.0.0",
+	"license": "MIT - SEE LICENSE IN LICENSE.md",
+    "version": "1.0.8",
     "engines": {
         "vscode": "^1.61.0"
     },
     "categories": [
         "Programming Languages", "Snippets"
     ],
-    "icon": "images/icon.png",
+    "icon": "https://github.com/willasm/tbscript/blob/master/images/icon.png",
     "keywords": [
 		"tbscript",
 		"tbosdt",
 		"tbos",
 		"tbcmd",
-		"terabyte"
+		"terabyte",
+        "tbosdtw",
+        "tbosdtw64",
+        "script"
 	],
     "main": "./src/extension.js",
     "activationEvents": [
@@ -32,6 +35,7 @@
       "url": "https://github.com/willasm/tbscript/issues",
       "email": "willmck63@gmail.com"
     },
+    "homepage": "https://github.com/willasm/tbscript/blob/master/README.md",
     "repository": {
         "type": "git",
         "url": "https://github.com/willasm/tbscript.git"

@@ -3,7 +3,7 @@
 ![](https://vsmarketplacebadge.apphb.com/downloads-short/willasm.tbscript-vscode-ext.svg)
 ![](https://vsmarketplacebadge.apphb.com/rating/willasm.tbscript-vscode-ext.svg)
 
-# tbscript README
+# tbscript ReadMe
 
 Language support for TeraByte's tbscript programming language.
 
@@ -11,24 +11,29 @@ Language support for TeraByte's tbscript programming language.
 - Syntax Highlighting
 - Run your scripts from within VSCode
 - Snippet Support
+- Hover Support
 
 ## Screenshots
 
 Syntax Highlighting.
 
-![Syntax Highlighting](./images/syntaxhighlighting.gif)
+![Syntax Highlighting](https://github.com/willasm/tbscript/blob/master/images/syntaxhighlighting.gif)
 
 Run in Internal TBCMD.
 
-![Run in Internal TBCMD](./images/runinternal.gif)
+![Run in Internal TBCMD](https://github.com/willasm/tbscript/blob/master/images/runinternal.gif)
 
 Run in External TBCMD.
 
-![Run in External TBCMD](./images/runexternal.gif)
+![Run in External TBCMD](https://github.com/willasm/tbscript/blob/master/images/runexternal.gif)
 
 Snippet Support.
 
-![Snippets](./images/snippet.gif)
+![Snippets](https://github.com/willasm/tbscript/blob/master/images/snippet.gif)
+
+Hover Support.
+
+![Snippets](https://github.com/willasm/tbscript/blob/master/images/hover.gif)
 
 ## Requirements
 [TeraByte OS Deployment Tool Suite](https://www.terabyteunlimited.com/tbosdt/)
@@ -58,7 +63,8 @@ Read the comments in the [tbscript.json](./src/snippets/tbscript.json) snippet f
 Feel free to delete, or modify these as you desire...
 
 ## To Do
-I would like to add `intellisense` and `hover` support eventually.
+Add auto completion `intellisense` support eventually.
+Add more language specific snippets.
 
 ## Known Issues
 [TeraByte OS Deployment Tool Suite](https://www.terabyteunlimited.com/tbosdt/) only supports Windows, Linux, and DOS.

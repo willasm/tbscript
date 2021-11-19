@@ -5,6 +5,198 @@
         "description":"''",
         "example":""
     },
+    "txwherey": {
+        "prefix":"txwherey",
+        "usage":"y=TXWHEREY(s)\n\n",
+        "description":"'Returns the Y location of the text cursor. The top most position is 1.'",
+        "example":""
+    },
+    "txwherex": {
+        "prefix":"txwherex",
+        "usage":"x =TXWHEREX ()\n\n",
+        "description":"'Returns the X location of the text cursor. The left most position is 1.'",
+        "example":""
+    },
+    "txterm": {
+        "prefix":"txterm",
+        "usage":"TXTERM()\n\n",
+        "description":"'Terminates the use of the various text console subroutines. This should be called before\nending the script if TXINIT() was used.'",
+        "example":""
+    },
+    "txsetattr": {
+        "prefix":"txsetattr",
+        "usage":"TXSETATTR (attribute)\n\n",
+        "description":"'Sets the current text attribute to use on the next TX output subroutine.\nIt is common to use a hexadecimal number when specifying attributes due to\nthe clarity it provides. For example, white text on a blue background would\nbe specified as 0x1F (1 being blue andF (15) being white).\n\n      Text Attribute 8-Bit Encoding\n-----------------------------------------\nBits          Usage\n----          -----\n0-3           foreground color (0 to 15)\n4-6           background color (0 to 7)\n 7            blink-enable bit\n\n\n             Standard Colors\n-----------------------------------------\nValue          Description\n-----          -----------\n  0            Black\n  1            Blue\n  2            Green\n  3            Cyan\n  4            Red\n  5            Magenta\n  6            Brown\n  7            Light Gray\n  8            Dark Gray\n  9            Light Blue\n 10            Light Green\n 11            Light Cyan\n 12            Light Red\n 13            Light Magenta\n 14            Yellow \n 15            White'",
+        "example":"sub main()\n\ttxinit()\n\ttxsetattr(0x1F) // set white text on blue background\n\tprintl(\"This prints in color\")\n\ttxterm()\nend sub"
+    },
+    "txputblock": {
+        "prefix":"txputblock",
+        "usage":"r = TXPUTBLOCK(b [,x [,y]])\n\n",
+        "description":"'Write a blocked of saved text back to the console. If x or y are provided the text is\nplaced at those coordinates otherwise the original location is used. The returned value\nindicates 0 or 1 to indicate failure or success. The block (b) stays allocated until\ncleared by assigning another value to it (e.g. b=\"\")'",
+        "example":""
+    },
+    "txoutch": {
+        "prefix":"txoutch",
+        "usage":"TXOUTCH(c [,repeat])\n\n",
+        "description":"'Outputs a character to the current cursor location and optionally repeats it.'",
+        "example":""
+    },
+    "txmode": {
+        "prefix":"txmode",
+        "usage":"TXMODE (m)\n\n",
+        "description":"'Sets the video text mode. Setting the video mode is only relevant when used in the DOS\nenvironment.\n\t0  = Black and White 40 columns\n\t1  = Color 40 columns\n\t2  = Black and White 80 columns\n\t3  = Color 80 columns\n\t7  = Monochrome 80 columns\n\t64 = EGA/VGA 43/50 lines.'",
+        "example":""
+    },
+    "txinit": {
+        "prefix":"txinit",
+        "usage":"TXINIT()\n\n",
+        "description":"'Initialize TBScript to use the various text mode subroutines. This must be called at\nleast once before calling any of the other TX based subroutines.\n\nOnce this mode is enabled there are some differences that you should note:\n\n1 – GetStr will not output a newline after input (expect under Windows).\n    You must manually do it.\n2 – Using a newline (^n) character for output will not include the carriage\n    return under DOS.\n3 – Outputting a newline under Linux will clear (using current color) text\n    to the end of the current line.\n\nIf these differences are problematic then you will need to design your own GetStr type\nsubroutine using GetKey(). You can use the TBSENV variable to determine the environment\nthe script is running in.'",
+        "example":""
+    },
+    "txgotoxy": {
+        "prefix":"txgotoxy",
+        "usage":"TXGOTOXY(x,y)\n\n",
+        "description":"'Moves the text cursor to the coordinates x and y.\n(1,1) is the upper-left most position.'",
+        "example":""
+    },
+    "txgetinfo": {
+        "prefix":"txgetinfo",
+        "usage":"ti = TXGETINFO()\n\n",
+        "description":"'Returns information about the current text console.\nThe variable contains the following members:\n\t\tViewLeft – X location of the current screen view. 1 = left most position.\n\t\tViewTop – Y location of the current screen view. 1 = top most position.\n\t\tViewWidth – Width of the current screen view.\n\t\tViewHeight – Height of the current screen view.\n\t\tWidth – Width of the entire available text console.\n\t\tHeight – Height of the entire available text console.\n\t\tAttr – Current text attribute.\n\t\tCurMode – Current text mode.'",
+        "example":""
+    },
+    "txgetblock": {
+        "prefix":"txgetblock",
+        "usage":"b = TXGETBLOCK(x1, y1, x2, y2)\n\n",
+        "description":"'Returns a reference to a saved area of the text console. The variable value returns\n0 or 1 to indicate failure or success.'",
+        "example":""
+    },
+    "txcursortype": {
+        "prefix":"txcursortype",
+        "usage":"TXCURSORTYPE(0|1|2)\n\n",
+        "description":"'Sets the shape of the text cursor. 0=None, 1=Block, 2=Underline.'",
+        "example":""
+    },
+    "txascii": {
+        "prefix":"txascii",
+        "usage":"TXASCII(0|1)\n\n",
+        "description":"'Enables output of ASCII characters under Windows.'",
+        "example":""
+    },
+    "setcp": {
+        "prefix":"setcp",
+        "usage":"r=SETCP(whichcp, cpvalue)\n\n",
+        "description":"'Changes the code page for a given item. The values for whichcp are: 0=Get Code Page,\n1=Console Code Page, 2=Conversion Code Page. When whichcp is zero the cpvalue indicates\nwhich code page to return, either 1 (console) or 2 (conversion). The console values are\nonly accurate under Windows. It’s not recommended to change the conversion code page to a\nvalue other than 65001 (UTF8) or -1 (Auto Determine) or problems can arise from foreign\ncharacters.'",
+        "example":""
+    },
+    "printl": {
+        "prefix":"printl",
+        "usage":"(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description":"'Use these subroutines to print text to the screen. The difference between PRINT and\nPRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the\nstart of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example":"sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "print": {
+        "prefix":"print",
+        "usage":"(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description":"'Use these subroutines to print text to the screen. The difference between PRINT and\nPRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the\nstart of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example":"sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "conctl": {
+        "prefix":"conctl",
+        "usage":"r = CONCTL(\"command\")\n\n",
+        "description":"'Allows moving, hiding, and getting the position of the console window.\nCommand can be one of the following:\n\nshow=n      – Hide/show console window. Values for n are: 0=hide, 1=show\npos=x,y,w,h – Position console window at x, y with width w and height h.\nquery       – Get position, size, and visible state of console window.\n              Returns the following members:\n\t\t\t\t.x      – horizontal position\n\t\t\t\t.y      – vertical position\n\t\t\t\t.width  – width of window\n\t\t\t\t.height – height of window\n\t\t\t\t.shown  – visible state (0=hidden, 1=visible)\n\nNote that the size and/or position of the console window may be adjusted to keep the\nwindow inside the screen area when it’s positioned. If necessary, use the WinGetMonitors\nsubroutine to get the screen area for the monitor(s).\n\nReturn value is true/false (1/0) for success/failure of specified command.'",
+        "example":"sub main()\n\tconctl(\"show=0\") // hide console window\n\tconctl(\"pos=100,10,1000,550\") // move and resize console window\n\tcon = conctl(\"query\") // get console info\n\tprintl(\"Console position: \" # con.x # \", \" # con.y)\n\tprintl(\"Console size: \" # con.width # \" x \" # con.height)\n\tprintl(\"Console visible: \" # con.shown)\nend sub"
+    },
+    "cls": {
+        "prefix":"cls",
+        "usage":"CLS()\n\n",
+        "description":"'Clears the screen and positions the text cursor at the top, left corner of the screen.'",
+        "example":""
+    },
+    "ucase": {
+        "prefix":"ucase",
+        "usage":"s = UCASE(s)\n\n",
+        "description":"'Returns an upper case version of a string.'",
+        "example":""
+    },
+    "right": {
+        "prefix":"right",
+        "usage":"s = RIGHT(s, n [,codepage])\n\n",
+        "description":"'Returns a string with the right-most characters of s. The number of characters to return\nis indicated by n. If n is greater than or equal to the length of the string, then the\nentire string is returned. For example, RIGHT(“Test”, 2) returns “st”. “codepage”, added\nin version 10, can be a specific code page or 0 for current output code page\n(only accurate in Windows version).'",
+        "example":""
+    },
+    "pad": {
+        "prefix":"pad",
+        "usage":"s = PAD(s, n [,0|1|2 [, codepage]] )\n\n",
+        "description":"'Returns a string that contains at least n characters. When the input string is less than\nn characters it can be justified left (default) (0), middle (1), or right (2) by\nproviding a third parameter. If the input string length is greater than or equal to n\nthen the input string is simply returned. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example":"sub main()\n\t// Print [   test   ]\n\tprintl(\"[\", PAD(\"test\", 10, 1), \"]\")\nend sub"
+    },
+    "oct": {
+        "prefix":"oct",
+        "usage":"s = OCT(n)\n\n",
+        "description":"'The OCT subroutine returns a string octal representation of the number n.'",
+        "example":"sub main()\n\t// Print 17\n\tprintl(OCT(15))\nend sub"
+    },
+    "mid": {
+        "prefix":"mid",
+        "usage":"s = MID(s, pos [, len [, codepage]])\n\n",
+        "description":"'Returns a substring of a string. pos specifies the 1-based index of the start of the\nsubstring. len specifies the number of characters to return. If len is omitted, the rest\nof the string is returned. “codepage”, added in version 10, can be a specific code page\nor 0 for current output code page (only accurate in Windows version).\n\nFor example, MID(“Test string”, 6, 3) returns “str”, and MID(“Test string”, 6) returns\n“string”.'",
+        "example":""
+    },
+    "len": {
+        "prefix":"len",
+        "usage":"n = LEN(s [, codepage])\n\n",
+        "description":"'Returns the number of characters in a string. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example":""
+    },
+    "left": {
+        "prefix":"left",
+        "usage":"s = LEFT(s, n [, codepage])\n\n",
+        "description":"'Returns a string with the left-most characters of s. The number of characters to return\nis indicated by n. If n is greater than or equal to the length of the string, then the\nentire string is returned. For example, LEFT(“Test”, 2) returns “Te”. “codepage”, added\nin version 10, can be a specific code page or 0 for current output code page\n(only accurate in Windows version).'",
+        "example":""
+    },
+    "lcase": {
+        "prefix":"lcase",
+        "usage":"s = LCASE(s)\n\n",
+        "description":"'Returns a lower case version of a string.'",
+        "example":""
+    },
+    "isstrtype": {
+        "prefix":"isstrtype",
+        "usage":"n = ISSTRTYPE(s, t)\n\n",
+        "description":"'ISSTRTYPE returns 1 if the string type matches the type (t) requested. Use 0 for integer\ncheck, 1 for decimal, 2 for alphabetic, 3 for alpha-numeric.'",
+        "example":"sub main()\n\ts[1] = \"1234\"\n\ts[2] = \"23.4\"\n\ts[3] = \"abc\"\n\ts[4] = \"123abc\"\n\n\tfor i = 1 to 4\n\t\tprintl(\"String ^\"\", s[i],\"^\"\")\n\t\tprintl(\"  IsInt: \", IsStrType(s[i],0)\n\t\tprintl(\"  IsDec: \", IsStrType(s[i],1)\n\t\tprintl(\"  IsAlpha: \", IsStrType(s[i],2)\n\t\tprintl(\"  IsAlphaNum: \", IsStrType(s[i],3)\n\t\tprintl(\"\")\n\tnext\nend sub"
+    },
+    "instr": {
+        "prefix":"instr",
+        "usage":"n = INSTR(s1, s2 [, codepage])\n\n",
+        "description":"'Use INSTR to find a substring within a string. “codepage”, added in version 10, can be a\nspecific code page or 0 for current output code page (only accurate in Windows version).\n\nINSTR returns the 1-based index of the start of s2 within s1. For example,\nINSTR(“find”, “in”) returns 2. INSTR returns 0 if the substring was not found.\n\nNOTE: The comparison is case sensitive, which means that INSTR(“find”, “IN”) returns 0.'",
+        "example":""
+    },
+    "hex": {
+        "prefix":"hex",
+        "usage":"s = HEX(n)\n\n",
+        "description":"'The HEX subroutine returns a string hexadecimal representation of the number n.'",
+        "example":"sub main()\n\t// Print F printl(HEX(15))\nend sub"
+    },
+    "chr": {
+        "prefix":"chr",
+        "usage":"s = CHR(n)\n\n",
+        "description":"'The CHR subroutine returns a string with a single character, which has the ASCII value\nof the number n.'",
+        "example":"sub main()\n\t// Print \"A\"\n\tprintl(CHR(65))\nend sub"
+    },
+    "binary": {
+        "prefix":"binary",
+        "usage":"newvariant = BINARY(variant [[[[, type], startoffset], length], binvartoupdate])\n\n",
+        "description":"'This subroutine sets or extracts binary data types (used for binary file operations or\nuefi variables). When variant is a binary data type and binvartoupdate is not provided\nthen this subroutine extracts data from variant to create a new variable of type. When\nvariant is not a binary data type or binvartoupdate is provided then this subroutine\nreturns a new binary data type. When not provided, optional parameters are assumed to be\nzero. The values for type are as follows: 0=String, 1=Hex String, 2=Wide String,\n3=Numeric, 4=Binary, 5=Narrow String. The startoffset is the zero based starting offset\nto the data to extract from or set in newvariant. The length specifies the number of\nbytes of data to extract from or set in newvariant. When the length is zero it is assumed\nto be the same length as variant. When binvartoupdate is provided it will be used as the\nbasis of newvariant to allow updating an existing binary variable. This subroutine was\nadded in TBSVER 3 and enhanced with type, startoffset, length, and binvartoupdate in\nTBSVER 9, Narrow String in TBSVER 14.'",
+        "example":"sub main()\n\t// Note: It’s recommended to use type 2 or 5 to know the string type.\n\t// non-Unicode versions return narrow strings\n\tbindata=BINARY(\"STRING\")       // 53 54 52 49 4E 47\n\t// Unicode versions return wide strings\n\tbindata=BINARY(\"STRING\")       // 53 00 54 00 52 00 49 00 4E 00 47 00\n\tbindata=BINARY(0, 3, 0, 1)     // 00\n\tbindata=bindata # bindata      // 00 00\n\tbindata=BINARY(\"3031323334\", 1)   // 30 31 32 33 34\n\tbindata=BINARY(\"353637\", 1, 5, 0, bindata) // 30 31 32 33 34 35 36 37\n\tword=BINARY(bindata, 3, 0, 2)      // 0x3130\n\tbindata=BINARY(\"55AA\", 1, 1, 3)  // 00 55 AA 00\n\tprintl(len(bindata))      // 4\nend sub"
+    },
+    "asc": {
+        "prefix":"asc",
+        "usage":"n = ASC(s)\n\n",
+        "description":"'The ASC subroutine returns the ASCII value of the first character in the string s.'",
+        "example":"sub main()\n\t// Print ASCII value of \"A\"\n\tprintl(ASC(\"A\"))\nend sub"
+    },
     "winsetvalue": {
         "prefix":"winsetvalue",
         "usage":"r = WINSETVALUE(keynum, \"subkeyname\", \"valuename\", \"valuetype\", \"value\")\n\n",
@@ -84,7 +276,7 @@
         "example":"sub main()\n\tbcdmatches = BCDBootMatch(\"0:\\boot\\bcd\", 1, 0x11222211, 63)\n\tif bcdmatches<>0 then\n\t\tprintl(\"Match Found\")\n\tend if\nend sub"
     },
     "wingetmonitors": {
-        "prefix":"WinGetMonitors",
+        "prefix":"wingetmonitors",
         "usage":"info = WinGetMonitors()\n\n",
         "description":"'Get the Windows screen and monitor information. The return value is set to the number of\nmonitors found and contains the following members:\n\t.x0  - virtual screen left most\n\t.x1  - virtual screen right most\n\t.y0  - virtual screen top most\n\t.y1  - virtual screen bottom most\n\t.monitor[] – 1 based array of monitors\n\t\t.x0  - virtual left of monitor\n\t\t.x1  - virtual right of monitor\n\t\t.y0  - virtual top of monitor\n\t\t.y1  - virtual bottom of monitor\n\t\t.flags  - monitor flags from DISPLAY_DEVICES.StateFlags\n\t\t.name  - monitor name'",
         "example":"sub main()\n\tm=WinGetMonitors()\n\tprintl(\"virtual screen=\" # m.x0 # \",\" # m.y0 # \",\" # m.x1 # \",\" # m.y1)\n\tfor i=1 to m\n\t\t// split for this example not to wrap\n\t\tprint(\"monitor \" # i # \"=\" # m.monitor[i].x0 # \",\" # m.monitor[i].y0)\n\t\tprintl(\",\" # m.monitor[i].x1 # \",\" # m.monitor[i].y1)\n\tnext\n\tm=0\nend sub"
