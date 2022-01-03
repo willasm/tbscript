@@ -1,0 +1,72 @@
+{
+    "keyword Keyword": {
+        "prefix":"",
+        "body":"",
+        "description":""
+    },
+    "Exitloop Keyword": {
+        "prefix":"exitloop",
+        "body":"exitloop",
+        "description":"Exits out of a While/Wend or For/Next loop."
+    },
+    "Goto Keyword": {
+        "prefix":"goto",
+        "body":"goto ",
+        "description":"Jump to another line in the current script."
+    },
+    "Return Keyword": {
+        "prefix":"return",
+        "body":"return",
+        "description":"Exit the current subroutine."
+    },
+    "For - To - Next Keywords": {
+        "prefix":"for",
+        "body":"for ${1:var} = ${2:start} TO ${3:end}\n\t${4:statements}\nnext\n",
+        "description":"Use a FOR loop to execute a block of statements a specified number of times."
+    },
+    "While - Wend Keywords": {
+        "prefix":"while",
+        "body":"while ${1:expression}\n\t${2:statements}\nwend\n",
+        "description":"Use a WHILE loop to execute a block of statements as long as an expression is true."
+    },
+    "If - Else If - Else - End If Keywords": {
+        "prefix":"if",
+        "body":"if ${1:expression} then\n\t${2:statements}\nelseif ${3:expression} then\n\t${4:statements}\nelse\n\t${5:statements}\nend if\n$0",
+        "description":"Use the IF keyword to execute a block of statements only if a condition is true."
+    },
+    "If - End If keywords": {
+        "prefix":"if",
+        "body":"if ${1:expression} then\n\t${2:statements}\nend if\n$0",
+        "description":"Use the IF keyword to execute a block of statements only if a condition is true."
+    },
+    "Unset Keyword": {
+        "prefix":"unset",
+        "body":"unset ",
+        "description":"Use to clear a variable."
+    },
+    "Include Keyword": {
+        "prefix":"include",
+        "body":"INCLUDE \"${1:filename}\"",
+        "description":"Use to reference another file in your script."
+    },
+    "Const Keyword": {
+        "prefix":"const",
+        "body":"CONST ${1:name} = ${2:value}",
+        "description":"Defines a constant symbol."
+    },
+    "Global Keyword": {
+        "prefix":"global",
+        "body":"GLOBAL ${1:name} = ${2:value}",
+        "description":"Defines a global variable."
+    },
+    "Sub New Keyword": {
+        "prefix":"sub",
+        "body":"sub ${1:subname}()\n\t$0\nend sub",
+        "description":"A TBScript file consists of one or more subroutines. All scripts must define one subroutine called MAIN. Execution starts at this subroutine. Any subroutine can return a value using the RETURN keyword."
+    },
+    "Sub Main Keyword": {
+        "prefix":"sub",
+        "body":"sub main()\n\t$0\nend sub",
+        "description":"A TBScript file consists of one or more subroutines. All scripts must define one subroutine called MAIN. Execution starts at this subroutine. Any subroutine can return a value using the RETURN keyword."
+    }
+}

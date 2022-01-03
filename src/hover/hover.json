@@ -1,0 +1,1034 @@
+{
+    "keyword": {
+        "prefix": "",
+        "usage": "",
+        "description": "''",
+        "example": ""
+    },
+    "guivertbarsep": {
+        "prefix": "guivertbarsep",
+        "usage": "GUIVertBarSep(true_false)\n\n",
+        "description": "'Enable or disable the ability to use the vertical bar (|) as the separator for the GUI based subroutines in addition to the newline character (^n).'",
+        "example": "sub main()\n\t...\n\tGUIVertBarSep(1)\n\t...\nend sub"
+    },
+    "guitree": {
+        "prefix": "guitree",
+        "usage": "s = GUITree(dialog, x, y, width, height, title, images, ...)\n\n",
+        "description": "'Add a tree control to a dialog. The images follow the format of the ImageList found in Windows GUI Controls: Styles & Images Reference. The GUITree variadic (...) parameters are listed below for quick reference.\n\nButtons, Lines, CheckBoxes, Edit, FullRow, LinesAtRoot, RToL, AlwaysSel, SelExpand'",
+        "example": "sub main()\n\t...\n\tGUIVertBarSep(1)\n\til=\"{16}icon0.ico|icon1.ico|icon2.ico\"\n\ttree=GUITree(dialog, 10, 10, 300, 200, \"\", il, \"buttons\", \"checkboxes\")\n\tGUIInsertItem(tree, \"Root Item\", 1, 0)\n\tGUIInsertItem(tree, \"Root Child\", 2, 1, 0, 1)\n\t...\nend sub"
+    },
+    "guitimedate": {
+        "prefix": "guitimedate",
+        "usage": "s = GUITimeDate(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a date and time picker to a dialog. The GUITimeDate variadic (...) parameters are listed below for quick reference.\n\nLongDate, ShortDate, ShortDate4, ShowNone, Time, RightAlign, UpDown, TimeDate, ShortTime'",
+        "example": "sub main()\n\t...\n\tdate=GUITimeDate(dialog, 10, 10, 120, 24, \"\")\n\t...\nend sub"
+    },
+    "guistatic": {
+        "prefix": "guistatic",
+        "usage": "s = GUIStatic(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add text or an image to a dialog box. When \"Image\" is provided the title is the image file to load. The GUIStatic variadic (...) parameters are listed below for quick reference.\n\nWhiteFrame, WhiteRect, BlackFrame, BlackRect, GrayFrame, GrayRect, Center, Right, RightJust, Simple, Sunken, WordEllipsis, EndEllipsis, PathEllipsis, NoPrefix, NoWrap, Etched, EtchedHor, EtchedVert, EMF, SizeToControl, SizeToImage, CenterImage, Image'",
+        "example": "sub main()\n\t...\n\tstatic1 = GUIStatic(dialog, 10, 10, 100, 40, \"myimage.bmp\", \"image\")\n\tstatic2 = GUIStatic(dialog, 10, 60, 100, 40, \"My Image\", \"fontsize=15\")\n\t...\nend sub"
+    },
+    "guishow": {
+        "prefix": "guishow",
+        "usage": "GUIShow(dialog_or_control, value)\n\n",
+        "description": "'Sets the show state of the specified dialog or control. value can be any of the SW_ values from the Win32 ShowWindow() function. Note that some states may not be applicable.\n\n\t0 - SW_HIDE\n\t1 - SW_NORMAL\n\t2 - SW_SHOWMINIMIZED\n\t3 - SW_MAXIMIZE\n\t4 - SW_SHOWNOACTIVATE\n\t5 - SW_SHOW\n\t6 - SW_MINIMIZE\n\t7 - SW_SHOWMINNOACTIVE\n\t8 - SW_SHOWNA\n\t9 - SW_RESTORE\n\t10 - SW_SHOWDEFAULT\n\t11 - SW_FORCEMINIMIZE'",
+        "example": "sub main()\n\t...\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"OK\", \"default\")\n\tGUIShow(button, 0) // hide button\n\t...\nend sub"
+    },
+    "guisetvalue": {
+        "prefix": "guisetvalue",
+        "usage": "GUISetValue(control, value, ...)\n\n",
+        "description": "'Set the value of a control. The value depends on the control type as follows:\n\n   DateTime: FILETIME value (64-bit number)\n      Input: Max characters allowed.\n   Checkbox: -1=Indeterminate, 0=Not Checked, 1=Checked\nRadioButton:  -1=Indeterminate, 0=Not Checked, 1=Checked\n   Progress: Value (0-100)\n      Combo: The index of the currently selected item or -1 if custom data entered.\n List /Tree: List of identifiers separated by a newline (^n) character or\n\t\t\t vertical bar (|), if enabled, to set the state of the items.\n\nFor the List/Tree state to change is controlled by the variadic (...) parameters:\n\n    \"Reset\" - Reset the state of all items to opposite of the state to set/clear.\n    \"Check\" - Check item(s).\n\"Unchecked\" - Uncheck item(s).\n  \"State=n\" - Where n is the desired state value. The range of n depends on how many states\n\t\t\t  were configured (max. 15). The \"Reset\" parameter is not supported when setting\n\t\t\t  states. You will need to set each items state to an appropriate value.\n   \"Select\" - Select item(s).\n \"Unselect\" - Unselect item(s).\n    \"Focus\" - Set focus to item within the control.'",
+        "example": "sub main()\n\t...\n\tGUISetValue(list, \"1^n2\", \"Check\", \"Reset\")\n\tGUISetValue(checkbox, 1)\n\t...\n\tGUISetValue(statelist, \"1^n3^n5\", \"state=3\")\n\tGUISetValue(statelist, \"2^n4\", \"state=1\")\n\t...\nend sub"
+    },
+    "guisettext": {
+        "prefix": "guisettext",
+        "usage": "GUISetText(dialog_or_control, text)\n\n",
+        "description": "'Set the text for a dialog or control that supports text. To set the date and time for a DateTime control the format used is “YYYY-MM-DD hh:mm:ss” (when only needing to set the time you must still include a valid date). To set the view style for a List control you can specify one of the following: icon, smallicon, list, details.'",
+        "example": "sub main()\n\t...\n\t// set text for an Input control\n\tGUISetText(input, \"New Text\")\n\t// set view style for List control\n\tGUISetText(mylist, \"details\")\n\t...\nend sub"
+    },
+    "guisetfocus": {
+        "prefix": "guisetfocus",
+        "usage": "GUISetFocus(dialog_or_control)\n\n",
+        "description": "'Sets the keyboard focus to the specified dialog or control.'",
+        "example": "sub main()\n\t...\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"Start\")\n\tGUISetFocus(button)\n\t...\nend sub"
+    },
+    "guiremoveitem": {
+        "prefix": "guiremoveitem",
+        "usage": "GUIRemoveItem(control, identifier)\n\n",
+        "description": "'Remove an item from a List, Tree or Combo control. Specifying an identifier of 0 (zero) for a List/Tree control will remove all items in the control. The identifier for a Combo is the zero-based index.'",
+        "example": "sub main()\n\t...\n\tGUIRemoveItem(list, 2)\n\t...\nend sub"
+    },
+    "guiradiobutton": {
+        "prefix": "guiradiobutton",
+        "usage": "s = GUIRadioButton(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a radio button to a dialog. The GUIRadioButton variadic (...) parameters are listed below for quick reference.\n\nGroup'",
+        "example": "sub main()\n\t...\n\tradio1=GUIRadioButton(dialog, 20, 20, 80, 24, \"Radio 1\", \"group\")\n\tradio2=GUIRadioButton(dialog, 20, 40, 80, 24, \"Radio 2\")\n\t...\nend sub"
+    },
+    "guiprogress": {
+        "prefix": "guiprogress",
+        "usage": "s = GUIProgress(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a progress indicator to a dialog. The GUIProgress variadic (...) parameters are listed below for quick reference.\n\nMarquee, Smooth, SmoothReverse, Vertical'",
+        "example": "sub main()\n\t...\n\tprogress=GUIProgress(dialog, 10, 10, 100, 25, \"\", \"smooth\")\n\tGUISetValue(progress, 32) // set position to 32%\n\t...\nend sub"
+    },
+    "guipos": {
+        "prefix": "guipos",
+        "usage": "p = GUIPos(dialog_or_control)\n       GUIPos(dialog_or_control, new_x [, new_y [, new_width [, new_height]]])\n\n",
+        "description": "'When specifying just the dialog or control the current position and size is returned (.x, .y, .width, .height). Otherwise, specify the new position and size to move or resize the dialog or control.'",
+        "example": "sub main()\n\t...\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"OK\", \"default\")\n\tp = GUIPos(button) // get button position and size\n\tprintl(\"button (X,Y WxH): \" # p.x # \",\" # p.y # \" \" # p.width # \"x\" # p.height)\n\tGUIPos(button, p.x+10, p.y+10) // reposition button\n\t...\nend sub"
+    },
+    "guimenu": {
+        "prefix": "guimenu",
+        "usage": "GUIMenu(dialog, x, y, menuflag, \"menu_items\")\n\n",
+        "description": "'Displays a popup/context menu in the specified dialog. x and y specify the location of the menu (use -1 for both to have the program determine the location). menuflag specifies the Windows TrackPopupMenu() flags to use for the menu (if necessary, refer to https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-trackpopupmenu for details). The metadata format for the menu items is {item_id_and_options} and precedes the menu item text. Separate menu items in the string with a newline character (^n) or vertical bar (|), if enabled. The following options are available:\n\n\t_  Separator line (underscore character)\n\t*  Default\n\t+  Checked\n\t()  Radio button (left & right parenthesis)\n\t-  Disabled (hyphen character)\n\t>  Start sub-menu\n\t<  Return from sub-menu (previous menu)\n\t[  Right-to-left text (for right-to-left languages)\n\nIf no menu item ID is specified, the ID is the position starting at 1 (a return value of 0 from the menu means no selection was made); for each sub-menu, the starting number is a multiple of the next 100 (e.g., item 1 of a second menu is 101).\n\nTo set a hotkey for the menu item precede the character with & (to use the & character in the menu text use &&).\n\nSeveral example menus are shown below. For an example showing handling menu events see the GUIGetEvent subroutine.'",
+        "example": "sub main()\n\t...\n\tGUIVertBarSep(1)\n\t// simple menu with position set, separator and checked item\n\tGUIMenu(dialog, 25, 100, 0, \"Item &A|Item &B|{_}|{+}&Checked item\")\n\t// ID values set, simple sub-menu\n\tGUIMenu(dialog, -1, -1, 0, \"{10}Item A|{>}Sub-menu|{12}Sub-menu item\")\n\t// shows default, radiobutton, checked, and disabled items\n\tGUIMenu(dialog, -1, -1, 0, \"{*}Default|{()+}Radiobutton|{+}Checked|{-}Disabled\")\n\t// more complicated example using multiple options (should all be on one line)\n\tGUIMenu(dlg, -1, -1, 0, \"{1024}Test Item &1|{>}Test Item &2|{*+0x22}On SubMenu 1^ttab|On SubMenu 2|{>}Next|On Next 1|{-}On Next 2|{<>}Another submenu|Item 1|{<}|{<}Test Item &3\")\n\t...\nend sub"
+    },
+    "guilist": {
+        "prefix": "guilist",
+        "usage": "s = GUIList(dialog, x, y, width, height, title, headers, images, ...)\n\n",
+        "description": "'Add a list control to a dialog. Columns can be created by passing the headers string with optional metadata prefix. The metadata format is {column_width specifiers}. The specifiers control the column’s alignment, data type for sorting, and default sort. The alignment options available are L to left justify, R to right justify, or C to center. The data type options are U for unsigned integer, I for a signed integer. The sort options are > to sort from A to Z or < to sort from Z to A. Separate multiple headers in the string with a newline character (^n). The images follow the format of the ImageList found in Windows GUI Controls: Styles & Images Reference. The GUIList variadic (...) parameters are listed below for quick reference.\n\nList View styles: Icon, SmallIcon, List, Details\n\nLeft, Top, AutoArrange, Sort, SortRev, SingleSel, KeepSel, NoSortHeader, NoHeader, AutoAutoArrange, AutoCheckSelect, AutoSizeColumns, BorderSelect, CheckBoxes, ColumnSnapPoints, DoubleBuffer, FlatSB, FullRowSelect, GridLines, HideLabels, LabelTip, SimpleSelect, SnapToGrid, SubItemImages, TransparentBkgnd, TransparentShadow\n\nTBScript specific: filliconbg, filliconselbg, fillsubitemiconbg, fillsubitemiconselbg\n\nIf the style is not specified, Icon is used. The style can be changed after creating the control by using the GUISetText subroutine.\n\nNote: In addition to the newline character (^n), a vertical bar (|) can be used as the separator for the GUI based subroutines if enabled with the GUIVertBarSep subroutine.'",
+        "example": "sub main()\n\t...\n\til=\"{16~small}iconstrip.bmp^ncustom.ico\"\n\tlist=GUIList(dialog,10,10,200,150,\"\",\"{99<}ColA^n{95r}ColB\",il,\"details\",\"SubItemImages\")\n\tGUIInsertItem(list, \"Item1 A|Item1 B\", 1, \"1^n5\")\n\t...\n\t// list using 4 states\n\tGUIVertBarSep(1)\n\til=\"{state}iconstates4.png\" // strip of 4 images\n\tstlist=GUIList(dialog,10,10,200,150,\"\",\"\",il,\"list\",\"checkboxes\",\"singlesel\")\n\tGUIInsertItem(stlist, \"Item A\", 1)\n\tGUIInsertItem(stlist, \"Item B\", 2)\n\tGUISetValue(stlist, \"1\", \"state=3\") // set item ID 1 to state 3\n\tGUISetValue(stlist, \"2\", \"state=2\") // set item ID 2 to state 2\n\t...\nend sub"
+    },
+    "guiinsertitem": {
+        "prefix": "guiinsertitem",
+        "usage": "GUIInsertItem(control, text, identifier [, iconidx [, after_identifier [, parent_identifier]]])\n\n",
+        "description": "'Insert an item into a List, Tree or Combo control.\n\nFor a List in detail mode, the text parameter can specify multiple column’s text separated by a newline character (^n). The iconidx parameter can specify multiple column icon indexes separated by a newline character (^n). To skip an icon for a column (first column cannot be skipped), use a space between the separators (e.g., to skip the second column: \"1^n ^n3\" or \"1| |3\").\n\nFor Tree, the iconidx parameter can have two values separated by a newline character (^n) to indicate the image and selected image respectively.\n\nFor List/Tree controls the identifier must be 1 or greater; for a Combo control the identifier is the zero-based index to insert at (-1 to add to end).\n\nNote: In addition to the newline character (^n), a vertical bar (|) can be used as the separator for the GUI based subroutines if enabled with the GUIVertBarSep subroutine.'",
+        "example": "sub main()\n\t...\n\tGUIVertBarSep(1)\n\tGUIInsertItem(list, \"Item1_A|Item1_B\", 1)\n\tGUIInsertItem(list, \"Item3_A|Item3_B\", 3, 1)\n\tGUIInsertItem(list, \"Item2_A|Item2_B\", 2, \"2|2\", 1)\n\n\tGUIInsertItem(tree, \"Root Item\", 1, 0)\n\tGUIInsertItem(tree, \"Root Child\", 2, \"1|0\", 0, 1)\n\tGUIInsertItem(tree, \"Child Child\", 3, 1, 0, 2)\n\t...\nend sub"
+    },
+    "guiinput": {
+        "prefix": "guiinput",
+        "usage": "s = GUIInput(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add an input box (edit control) to a dialog. The GUIInput variadic (...) parameters are listed below for quick reference.\n\nReadOnly, Password, Multiline, Lower, Upper, Number, TxLeft, TxCenter, TxRight'",
+        "example": "sub main()\n\t...\n\tinput=GUIInput(dialog,10,10,200,20,\"Text\",\"bgcolor=0\",\"fgcolor=0xFFFFFF\")\n\t...\nend sub"
+    },
+    "guigroupbox": {
+        "prefix": "guigroupbox",
+        "usage": "s = GUIGroupBox(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a group box to a dialog. GUIGroupBox does not have any control-specific variadic (...) parameters.'",
+        "example": "sub main()\n\t...\n\tgroupbox=GUIGroupBox(dialog, 10, 10, 100, 80, \"Group Box\")\n\t...\nend sub"
+    },
+    "guigetvalue": {
+        "prefix": "guigetvalue",
+        "usage": "value = GUIGetValue(dialog_or_control [, which])\n\n",
+        "description": "'Returns the values for a dialog or control that supports values. The which parameter is used for a List or Tree control to indicate which data to return (“checked”, “selected”, or “state=n” items). The value returned depends on the control type as follows:\n\nDialog: Return value depends on last event:\n\t    Menu selection returns ID of menu item selected.\n\t    Context menu requested returns the ID of the dialog or control requesting the menu.\n\n   DateTime: FILETIME value (64-bit number).\n      Input: Max characters allowed.\n   Checkbox: -1=Indeterminate, 0=Not Checked, 1=Checked\nRadioButton: -1=Indeterminate, 0=Not Checked, 1=Checked\n   Progress: Current value (0-100).\n      Combo: The index of the currently selected item.\n  List/Tree: The number of member array items returned.\n\t\t\t The individual values for a List/Tree are returned in a member array.\n\t\t\t For example, if it returns 2 then there will be a value.[1] and value.[2]\n\t\t\t to indicate which item values are checked, selected, or match the state.'",
+        "example": "sub main()\n\t...\n\tr=GUIGetValue(checklist, \"checked\")\n\tprintl(\"Checked Identifiers:\")\n\tfor i=1 to r\n\t\tprintl(r.[i])\n\tnext\n\t...\n\tr=GUIGetValue(statelist, \"state=4\")\n\tprintl(\"Items set to state 4:\")\n\tfor i=1 to r\n\t\tprintl(r.[i])\n\tnext\n\t...\nend sub"
+    },
+    "guigettext": {
+        "prefix": "guigettext",
+        "usage": "GUIGetText(dialog_or_control)\n\n",
+        "description": "'Retrieve the text for a dialog or control that supports text. For DateTime the format used is “YYYY-MM-DD hh:mm:ss”. For List control, returns view style (icon, smallicon, list, details).'",
+        "example": "sub main()\n\t...\n\ttext=GUIGetText(input)\n\tprintl(\"You entered:\" # text)\n\t...\nend sub"
+    },
+    "guigetevent": {
+        "prefix": "guigetevent",
+        "usage": "bits = GUIGetEvent(dialog_or_control)\n\n",
+        "description": "'Returns events that have occurred for a given dialog or control since the last time the subroutine was called on it. The return value is bit oriented and consists of:\n\n\t0x0001 - Clicked\n\t0x0002 - Double Clicked\n\t0x0004 - Changed (not sent for checkbox and radiobutton controls)\n\t0x0008 - Pushed\n\t0x0010 - Unpushed\n\t0x0020 - Got Focus\n\t0x0040 - Lost Focus\n\t0x0080 - Dropdown selected (e.g., on split button)\n\t0x0100 - Dialog: Menu item selected\n\t0x4000 - Dialog: Context menu requested\n\t0x8000 - Dialog: Close request\n\nNote that events may come in together (e.g., 0x21 - Got Focus & Clicked) or separately (e.g., 0x1 Clicked followed by 0x2 Double-clicked).'",
+        "example": "sub main()\n\t// inside event loop\n\t...\n\tevent=GUIGetEvent(dialog)\n\tif (event & 0x8000) then\n\t\tprintl(\"Close Requested\")\n\tend if\n\n\t// context menu requested\n\tif (event & 0x4000) then\n\t\tctrlid = GUIGetValue(dialog) // get ID of control requesting menu\n\t\tif (ctrlid = mylistview) then\n\t\t\tGUIMenu(dialog, -1, -1, 0, \"{10}Item A|{11}Item B|{12}Item C\")\n\t\tend if\n\tend if\n\n\t// process menu items\n\tif (event & 0x100) then\n\t\tmenuid = GUIGetValue(dialog) // get ID value of selected menu item\n\t\tif (menuid = 20) then\n\t\t\t// process \"Item A\" from split button menu\n\t\tend if\n\tend if\n\n\t// regular button\n\tif (GUIGetEvent(button) & 1) then\n\t\tprintl(\"Button Clicked\")\n\tend if\n\n\t// split button\n\tev = GUIGetEvent(sbutton)\n\tif (ev & 1) then\n\t\tprintl(\"Button part of split button clicked\")\n\telseif (ev & 0x80) then\n\t\tprintl(\"Dropdown part of split button clicked\")\n\t\t// display context menu\n\t\tp=GUIPos(sbutton)\n\t\tGUIMenu(dialog, p.x+p.width-10, p.y+p.height-10, 0,\"{20}Item A|{21}Item B\")\n\tend if\n\t...\nend sub"
+    },
+    "guieventwait": {
+        "prefix": "guieventwait",
+        "usage": "r = GUIEventWait(dialog [, milliseconds])\n\n",
+        "description": "'Wait for an event from the dialog or any of its controls. Optionally, specify a timeout period in milliseconds for the subroutine to return if no event has occurred.\n\nReturn values: -1 = error, 0 = timeout, 1 = event occurred.'",
+        "example": "sub main()\n\tdialog=GUIDialog(10, 10, 600, 400, \"My Dialog\", \"align-center\")\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"OK\", \"default\")\n\n\t// event loop\n\twhile 1\n\t\tevent=GUIEventWait(dialog, 5000)\n\t\tif event=0 then\n\t\t\tprintl(\"timed out\")\n\t\telseif event=1 then\n\t\t\t// process dialog events\n\t\t\tdlgevent=GUIGetEvent(dialog)\n\t\t\tif (dlgevent & 0x8000) then\n\t\t\t\texitloop // close requested\n\t\t\tend if\n\t\t\t// process control events\n\t\t\tif (GUIGetEvent(button) & 1) then\n\t\t\t\texitloop\n\t\t\tend if\n\t\telse\n\t\t\tprintl(\"error on wait\")\n\t\t\texitloop\n\t\tend if\n\twend\n\n\tunset dialog\n\tunset button\n\nend sub"
+    },
+    "guienable": {
+        "prefix": "guienable",
+        "usage": "GUIEnable(dialog_or_control, true_false)\n\n",
+        "description": "'Enables or disables the specified dialog or control (0=disable, 1=enable).'",
+        "example": "sub main()\n\t...\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"OK\", \"default\")\n\tGUIEnable(button, 0) // disable button\n\t...\nend sub"
+    },
+    "guidialog": {
+        "prefix": "guidialog",
+        "usage": "s = GUIDialog(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Create a dialog on which to place controls. The GUIDialog variadic (...) parameters are listed below for quick reference.\n\nAlign-Center\n\nThe tab order of the controls in the dialog is the order in which they were created. Each control created for a dialog must be assigned to a variable (will be ignored, otherwise). While dialog and control variables are cleaned up when they go out of scope, it is recommended to use the unset keyword to clear the variables when no longer needed. There is a maximum of 10 dialogs at one time, each with a maximum of 200 controls.\n\nMultiple dialog windows can be created and controlled either in the main event loop or their own event loop. Note that you will need to disable the \"parent\" dialog (or certain controls in it) if you do not want them active when a \"child\" dialog is open and then re-enable the \"parent\" dialog (or disabled controls) when the \"child\" dialog closes.\n\nSee the GUIEventWait and GUIGetEvent subroutines for additional examples.'",
+        "example": "sub main()\n\t...\n\t// create dialog\n\tdialog=GUIDialog(10, 10, 600, 400, \"My Dialog\", \"align-center\")\n\t...\n\t// event loop\n\t...\n\t// done with controls, clear them\n\tunset dialog\n\t...\nend sub"
+    },
+    "guicombo": {
+        "prefix": "guicombo",
+        "usage": "s = GUICombo(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a combo control (List and Input combined or dropdown list) to a dialog. The height value is used to determine the size of the dropdown menu when open. The GUICombo variadic (...) parameters are listed below for quick reference.\n\nSimple, Sort, Upper, Lower, Dropdown, DropdownList'",
+        "example": "sub main()\n\t...\n\tcombo=GUICombo(dialog, 10, 10, 200, 150, \"Combo\", \"dropdown\")\n\tGUIInsertItem(combo, \"Item 1\", 0)\n\tGUIInsertItem(combo, \"Item 2\", 1)\n\t...\nend sub"
+    },
+    "guibutton": {
+        "prefix": "guibutton",
+        "usage": "s = GUIButton(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a button to a dialog. The GUIButton variadic (...) parameters are listed below for quick reference.\n\nDefault, CmdLink, DefCmdLink, Split, DefSplit, Flat, Multiline, Push, TxLeft, TxCenter, TxRight, TxBottom, TxTop, TxVCenter, Right, Image, SetImage={metadata}image_file'",
+        "example": "sub main()\n\t...\n\tbutton=GUIButton(dialog, 10, 10, 60, 24, \"OK\", \"SetImage={16}myicon.ico\")\n\t...\nend sub"
+    },
+    "guicheckbox": {
+        "prefix": "guicheckbox",
+        "usage": "s = GUICheckBox(dialog, x, y, width, height, title, ...)\n\n",
+        "description": "'Add a checkbox to a dialog. The GUICheckBox variadic (...) parameters are listed below for quick reference.\n\n3State'",
+        "example": "sub main()\n\t...\n\tcheckbox=GUICheckBox(dialog, 10, 10, 150, 24, \"CheckBox1\")\n\tGUISetValue(checkbox, 1) // check\n\t...\nend sub"
+    },
+    "gethdinfo": {
+        "prefix": "gethdinfo",
+        "usage": "h = GETHDINFO(num [,1|-1])\n\n",
+        "description": "'Obtains information about a hard drive and its partitions for the given hard drive number (zero-based). The return value of 1 or 0 indicates success or failure respectively. In addition, the return value contains several members that provide information about the drive and partitions. Version 1.32 added the optional second parameter; when the second parameter is non-zero, extended information is also returned. Version 1.66 supports the second parameter being less than zero to include unpartitioned space. Version 1.51 adds a zero index to the Partition[] array member if the drive is not partitioned. The member names are:\n\nNUM        - Hard Drive Number as provided on input (num).\nBIOSHDNUM  - BIOS Hard Drive Number (starting at 0x80)\nSIG        - Disk NT Signature\nGUID       - Disk GUID if GPT.\nSECSIZE    - Sector Size\nSIZE       - Size of Drive in Sectors\nC          - Last BIOS Cylinder (Total Cylinders - 1)\nH          - Last BIOS Head (Total Heads - 1)\nS          - Number BIOS Sectors Per Track\nEMBR       - Indicator if EMBR exists (1) or not (0)\nOutOfSync  - Indicator if EMBR exists but MBR partitions are different (1)\nGPT        - Indicator if GPT exists (1) or not (0)\nMaxEntries - Maximum number of primary partitions allowed (added in 1.76)\nBUS        - Bus type (SCSI,PATA,USB,ASPI,1394,SPTI,SG,SATA,VIRT,SAA,Fibre,RAID,ISCSI,SAS,SD)\nNAME       - Name of Device.\nPARTITION[] - Array (1 based) of partition entries or Partition[0] if drive is not partitioned\nPARTITION[].VOLUME[] - Array (1 based) of volume entries for a given Extended Partition\n\nFor each PARTITION or VOLUME member the following member names exist:\n\nNAME     - Name or Volume Label\nSTARTLBA - Starting LBA\nENDLBA   - Ending LBA\nID       - ID of partition as used by TeraByte products\nGUID     - GPT entry GUID\nTYPE     - Type of GPT entry\nSIZE     - Total Sectors\nFSID     - File System ID (as in partition table)\nFSIDN    - File System ID (for partition table based on known file systems)\nFSINFOID - File System ID (specific to known file systems)\nFSNAME   - Friendly name of File System ID\nFSIDNAME - Friendly name of File System ID (as in partition table)\nMBRFLAG  - MBR Bootable Flag\nMBRENTRY - Entry in MBR (or EBR) Partition Table (0-3 or 255 if not in MBR)\nPEFLAG   - Partition Flag (EMBR/GPT and Partition Only)\nDRVLTR   - Drive letter assigned to partition (Windows Version Only)\n\nFor each PARTITION or VOLUME member, extended information is returned under a member named EX. The following extended members are available:\n\nUSEDSECTORS    - Number of used sectors in the file system.\nFREESECTORS    - Number of free sectors in the file system.\nLASTUSEDSECTOR - Last used sector (starting at zero) in the file system.\nAACOUNT        - Number of allocated areas found in the file system.\n\nNote that USEDSECTORS+FREESECTORS may not equal the size of the partition when the file system area does not match the partition boundaries. The LASTUSEDSECTOR value is the last sector within the file system that is in use (the required number of sectors for restoring as reported in the TeraByte imaging utilities is LASTUSEDSECTOR+1). The AACOUNT represent the number areas within the file system that consist of some number of consecutive in-use sectors.'",
+        "example": "sub main()\n\n\tgetdrvltrinfo()\n\tn=0\n\th=gethdinfo(n)\n\n\twhile h\n\t\tprintl(\"HDNum:\", h.num)\n\t\tprintl(\"DiskID:0x\", hex(h.sig))\n\t\tprintl(\"secsize:\", h.secsize)\n\t\tprintl(\"size:\", h.size)\n\t\tprintl(\"embr:\", h.embr)\n\t\tprintl(\"gpt:\", h.gpt)\n\t\tprintl(\"guid:\", h.guid)\n\t\tprintl(\"bus:\", h.bus)\n\t\tprintl(\"c:\", h.c)\n\t\tprintl(\"h:\", h.h)\n\t\tprintl(\"s:\", h.s)\n\n\t\tpn=1\n\t\twhile h.partition[pn]\n\t\t\tprintl(\"start lba:\", h.partition[pn].startlba)\n\t\t\tprintl(\"end lba:\", h.partition[pn].endlba)\n\t\t\tprintl(\"fs:\", h.partition[pn].fsid)\n\t\t\tprintl(\"name:\", h.partition[pn].name)\n\t\t\tprintl(\"fsname:\", h.partition[pn].fsname)\n\t\t\tprintl(\"size:\", h.partition[pn].size)\n\t\t\tprintl(\"id:\", hex(h.partition[pn].id))\n\t\t\tprintl(\"mbrflag:\", hex(h.partition[pn].mbrflag))\n\t\t\tprintl(\"mbrentry:\", h.partition[pn].mbrentry)\n\t\t\tprintl(\"drvltr:\", h.partition[pn].drvltr)\n\t\t\tvn=1\n\t\t\twhile h.partition[pn].volume[vn]\n\t\t\t\tprintl(\"  start lba:\", h.partition[pn].volume[vn].startlba)\n\t\t\t\tprintl(\"  end lba:\", h.partition[pn].volume[vn].endlba)\n\t\t\t\tprintl(\"  fs:\", h.partition[pn].volume[vn].fsid)\n\t\t\t\tprintl(\"  name:\", h.partition[pn].volume[vn].name)\n\t\t\t\tprintl(\"  fsname:\", h.partition[pn].volume[vn].fsname)\n\t\t\t\tprintl(\"  size:\", h.partition[pn].volume[vn].size)\n\t\t\t\tprintl(\"  id:\", hex(h.partition[pn].volume[vn].id))\n\t\t\t\tprintl(\"  drvltr:\", h.partition[pn].volume[vn].drvltr)\n\t\t\t\tvn=vn+1\n\t\t\twend\n\t\t\tpn=pn+1\n\t\twend\n\n\t\tprintl(\"\")\n\t\tn=n+1\n\t\th=gethdinfo(n)\n\twend\n\tgetdrvltrinfo(0)\n\nend sub"
+    },
+    "getdrvltrinfo": {
+        "prefix": "getdrvltrinfo",
+        "usage": "GETDRVLTRINFO([0|1])\n\n",
+        "description": "'Queries the system for drive letters and uses them for the GETHDINFO subroutine. The queried drive letters remain in system memory (including across scripts) until GETDRVLTRINFO is called again with a parameter of zero. This only has any affect when running the Windows version.'",
+        "example": "sub main()\n\tGetDrvLtrInfo() // same as GetDrvLtrInfo(1)\n\tGetHDInfo(0)\n\tGetDrvLtrInfo(0)\nend sub"
+    },
+    "sha256": {
+        "prefix": "sha256",
+        "usage": "hash = SHA256(file_or_data [, option_flags])\n\n",
+        "description": "'Returns a SHA256 hash (or empty string on error) of a file or data provided to the subroutine. The optional option_flags parameter determines what to hash as well as how to return the hash value. The option flags are set using bits 0 and 1 as follows:\n\n\tBit 0  Clear  = file_or_data contains the name of a file to hash.\n\t\t\tSet   = file_or_data contains the (string or binary) data to hash.\n\n\tBit 1  Clear  = return the hash as a string value.\n\t\t\tSet   = return the hash as a binary value.'",
+        "example": "sub main()\n\t// note: to set bit 0 we use the value 1 and to set bit 1\n\t// we use the value 2.  To set both bits we simply add the\n\t// values together 1+2=3.\n\n\tprintl(\"The SHA256 hash of string ABC is: \" # SHA256(\"ABC\", 1))\n\tprintl(\"The SHA256 hash of FILE.EXT is: \" # SHA256(\"FILE.EXT\"))\n\n\tbinary_data_hash=SHA256(\"string\", 3)\n\tbinary_file_hash=SHA256(\"d:\\path\\file\\\", 2)\n\n\tend sub"
+    },
+    "osstat": {
+        "prefix": "osstat",
+        "usage": "r = OSSTAT(\"filename\")\n\n",
+        "description": "'This subroutine is used to obtain information on files and folders directly available to the OS. It is mainly useful under Linux when you want to obtain information about special files (device, symlink, etc.). The return value of 1 or 0 indicates success or failure respectively. The return value contains several members that provide information about the file. The member names are:\n\n\tST_DEV    - The ID of the device containing the file.\n\tST_INO    - The inode number of the file.\n\tST_MODE   - The files attributes and permissions.\n\tST_NLINK  - The number of hard links to this file.\n\tST_UID    - The owners user ID.\n\tST_GID    - The owners group ID.\n\tST_RDEV   - The device ID (special files)\n\tST_SIZE   - The total file size in bytes.\n\tST_ATIME  - Last access time (number of seconds since Jan 1, 1970).\n\tST_MTIME  - Last modified time (number of seconds since Jan 1, 1970).\n\tST_CTIME  - Last status change time (number of seconds since Jan 1, 1970).'",
+        "example": "sub main()\n\tstat=osstat(\"testfile.txt\")\n\n\tif stat then\n\t\tprintl(\"ST_DEV:\", stat.st_dev)\n\t\tprintl(\"ST_INO:\", stat.st_ino)\n\t\tprintl(\"ST_MODE:\", hex(stat.st_mode))\n\t\tprintl(\"ST_NLINK:\", stat.st_nlink)\n\t\tprintl(\"ST_UID:\", hex(stat.st_uid))\n\t\tprintl(\"ST_GID:\", hex(stat.st_gid))\n\t\tprintl(\"ST_RDEV:\", stat.st_rdev)\n\t\tprintl(\"ST_SIZE:\", stat.st_size)\n\t\tprintl(\"ST_ATIME:\", stat.st_atime)\n\t\tprintl(\"ST_MTIME:\", stat.st_mtime)\n\t\tprintl(\"ST_CTIME:\", stat.st_ctime)\n\telse\n\t\tprintl(\"OSSTAT Failed\")\n\tend if\n\nend sub"
+    },
+    "md5": {
+        "prefix": "md5",
+        "usage": "hash = MD5(file_or_data [, option_flags])\n\n",
+        "description": "'Returns a MD5 hash (or empty string on error) of a file or data provided to the subroutine. The optional option_flags parameter determines what to hash as well as how to return the hash value.  The option flags are set using bits 0 and 1 as follows:\n\n\tBit 0  Clear  = file_or_data contains the name of a file to hash.\n\t\t\tSet   = file_or_data contains the (string or binary) data to hash.\n\n\tBit 1  Clear  = return the hash as a string value.\n\t\t\tSet   = return the hash as a binary value.'",
+        "example": "sub main()\n\t// note: to set bit 0 we use the value 1 and to set bit 1\n\t// we use the value 2.  To set both bits we simply add the\n\t// values together 1+2=3.\n\n\tprintl(\"The MD5 hash of string ABC is: \" # MD5(\"ABC\", 1))\n\tprintl(\"The MD5 hash of file FILE.EXT is: \" # MD5(\"FILE.EXT\"))\n\n\tbinary_data_hash = MD5(\"string\", 3)\n\tbinary_file_hash = MD5(\"d:\\path\\file\\\", 2)\n\nend sub"
+    },
+    "hdcacheinfo": {
+        "prefix": "hdcacheinfo",
+        "usage": "info = HDCACHEINFO(num)\n\n",
+        "description": "'Obtains information about a given hard drives (zero-based) cache that was opened by OPEN CACHE. A non-zero return value indicates a cache was found. The return value contains several members that provide the information. The member names are:\n\n\tSIZE         - Size of the cache in bytes.\n\tMAXIOREQ     - Largest I/O request (in bytes) to cache.\n\tFLAGS        - Cache flags (Bit 0=Lazy Write, Bit 1=Partial Lazy Write).\n\tREADHIT      - Number of cache read hits.\n\tREADMISS     - Number of cache read misses.\n\tWRITEHIT     - Number of cache write hits.\n\tWRITEMISS    - Number of cache write misses.\n\tERRORS       - Number of cache aborts (memory or lazy write failure)\n\tWRITEERRORS  - Number of lazy write failures.'",
+        "example": "sub main()\n\text(\"mount 0: 0 0x01\")\n\text(\"open cache 0\")\n\n\tinfo=hdcacheinfo(0)\n\n\tif info then\n\t\tprintl(\"Size:\", info.size)\n\t\tprintl(\"Max IO Request Cached:\", info.maxioreq)\n\t\tprintl(\"Flags:0x\", hex(info.flags))\n\t\tprintl(\"Read Hits:\", info.readhit)\n\t\tprintl(\"Read Misses:\", info.readmiss)\n\t\tprintl(\"Write Hits:\", info.writehit)\n\t\tprintl(\"Write Misses:\", info.writemiss)\n\t\tprintl(\"Errors:\", info.errors)\n\t\tprintl(\"Lazy Write Errors:\", info.writeerrors)\n\t\tprintl(\"\")\n\telse\n\t\tprintl(\"No cache found\")\n\tend if\n\n\text(\"close cache 0\")\n\text(\"umount 0:\")\nend sub"
+    },
+    "fsinfo": {
+        "prefix": "fsinfo",
+        "usage": "r = FSINFO(\"path\")\n\n",
+        "description": "'Use this this subroutine to obtain information about a file system. The return value of 1 or 0 indicates success or failure respectively. The return value contains several members that provide information about the file system. Added in version 1.79. The member names are:\n\n\tFS_SN       - Serial number of file system (may be different than expected).\n\tFS_VOLNAME  - The volume name of the file system.\n\tFS_NAME     - The name of the file system (may vary by environment).\n\tFS_CSIZE    - The number of bytes in an allocation unit (cluster).\n\tFS_SSIZE    - The number of bytes in a sector.'",
+        "example": "sub main()\n\tfsi=fsinfo(\"0:\\\")\n\n\tif fsi then\n\t\tprintl(\"FS_SN:\", hex(fsi.fs_sn))\n\t\tprintl(\"FS_VOLNAME:\", fsi.fs_volname)\n\t\tprintl(\"FS_NAME:\", fsi.fs_name)\n\t\tprintl(\"FS_CSIZE:\", fsi.fs_csize)\n\t\tprintl(\"FS_SSIZE:\", fsi.fs_ssize)\n\telse\n\t\tprintl(\"FSINFO Failed\")\n\tend if\n\nend sub"
+    },
+    "writel": {
+        "prefix": "writel",
+        "usage": "WRITEL(n [, s])\n\n",
+        "description": "'Writes a line of text to an open file. n is the value returned by OPEN. s is the line of text to write to the file. If s is omitted, a blank line is written to the file. This subroutine returns zero on success or a non-zero failure code.'",
+        "example": ""
+    },
+    "setdrive": {
+        "prefix": "setdrive",
+        "usage": "r=SETDRIVE(drvltr)\n\n",
+        "description": "'Changes the current drive to drvltr. Only the first character is used so \"A:\" is the same as \"A\" or \"Apple\". This subroutine returns zero (FALSE) on error or non-zero (TRUE) on success.'",
+        "example": ""
+    },
+    "setattr": {
+        "prefix": "setattr",
+        "usage": "r=SETATTR(filepath, attribute)\n\n",
+        "description": "'Changes the attributes of a file to match attribute. This subroutine returns non-zero on success or zero on failure.'",
+        "example": ""
+    },
+    "seek": {
+        "prefix": "seek",
+        "usage": "SEEK(n, offset)\n\n",
+        "description": "'Jumps to a position within an open file. So that the new position will be used for reading or writing. n is the value returned by OPEN. offset is the location to jump to.\n\nNOTE: Be aware that the file routines translate newline characters to carriage return, line feeds pairs. This means that an offset may not work as expected under some circumstances. SEEK is mostly useful for doing things like moving to the beginning or end of a file.'",
+        "example": ""
+    },
+    "rmfile": {
+        "prefix": "rmfile",
+        "usage": "r=RMFILE(filepath)\n\n",
+        "description": "'Deletes a file. This subroutine returns zero on success or a non-zero failure code.'",
+        "example": ""
+    },
+    "rmdir": {
+        "prefix": "rmdir",
+        "usage": "r=RMDIR(path)\n\n",
+        "description": "'Removes an empty directory. This subroutine returns zero on success or a non-zero failure code.'",
+        "example": ""
+    },
+    "rename": {
+        "prefix": "rename",
+        "usage": "s = RENAME(oldname, newname)\n\n",
+        "description": "'Renames a file. This subroutine returns zero on success or a non-zero failure code.'",
+        "example": ""
+    },
+    "readl": {
+        "prefix": "readl",
+        "usage": "s = READL(n [,size])\n\n",
+        "description": "'Reads a line of text (or data) from an open file. n must be a value returned by the OPEN subroutine. The optional size value is available in TBSVER 2 or later and limits the amount of data read. On failure this subroutine returns an empty string and sets member .errno containing the failure code to differentiate from a blank line being read.'",
+        "example": ""
+    },
+    "close": {
+        "prefix": "close",
+        "usage": "n = OPEN(name [,\"in\" | \"in-out\" | \"in-out-trunc\" | \"uin\" | \"uin-out\" | \"uin-out-trunc\" [, \"binary\"]])\n\nCLOSE(n)\n\n",
+        "description": "'The OPEN and CLOSE subroutines are used to open a file for access and then close it. The optional open methods specify how the file should be opened. The \"in\" option opens an existing file as read-only; \"in-out\" (default) opens or creates a file that can be read or written; \"in-out-trunc\" will truncate an existing file to zero or create a new file that can be read or written. The \"uin\" variety of open methods in non-binary mode will look for a Unicode BOM at the beginning of the file and automatically translate the data as needed. The optional \"binary\" parameter is available in TBSVER 2 or later and treats the data to read/write as binary data (not text strings). Starting in TBSVER 11 sharing options -denynone, -denyall, -denyread, -denywrite can be appended to the methods. The sharing options only take effect in Windows, DOS and any environment under a TBOSDT directly mounted drive (0: - 9:). Example: \"uin-out-denywrite\"'",
+        "example": "sub main()\n\t// Open a file\n\tf = open(\"file1.txt\", \"uin-out\")\n\n\t// Move to the end of any existing text\n\tseek(f, lof(f))\n\n\t// Write 50 lines of text\n\tfor i = 1 to 50\n\t\ts = \"This is test line \" # i # \"!!!\"\n\t\twritel(f, s)\n\tnext\n\n\t// Write one blank line\n\twritel(f)\n\n\t// Close file\n\tclose(f)\nend sub"
+    },
+    "open": {
+        "prefix": "open",
+        "usage": "n = OPEN(name [,\"in\" | \"in-out\" | \"in-out-trunc\" | \"uin\" | \"uin-out\" | \"uin-out-trunc\" [, \"binary\"]])\n\nCLOSE(n)\n\n",
+        "description": "'The OPEN and CLOSE subroutines are used to open a file for access and then close it. The optional open methods specify how the file should be opened. The \"in\" option opens an existing file as read-only; \"in-out\" (default) opens or creates a file that can be read or written; \"in-out-trunc\" will truncate an existing file to zero or create a new file that can be read or written. The \"uin\" variety of open methods in non-binary mode will look for a Unicode BOM at the beginning of the file and automatically translate the data as needed. The optional \"binary\" parameter is available in TBSVER 2 or later and treats the data to read/write as binary data (not text strings). Starting in TBSVER 11 sharing options -denynone, -denyall, -denyread, -denywrite can be appended to the methods. The sharing options only take effect in Windows, DOS and any environment under a TBOSDT directly mounted drive (0: - 9:). Example: \"uin-out-denywrite\"'",
+        "example": "sub main()\n\t// Open a file\n\tf = open(\"file1.txt\", \"uin-out\")\n\n\t// Move to the end of any existing text\n\tseek(f, lof(f))\n\n\t// Write 50 lines of text\n\tfor i = 1 to 50\n\t\ts = \"This is test line \" # i # \"!!!\"\n\t\twritel(f, s)\n\tnext\n\n\t// Write one blank line\n\twritel(f)\n\n\t// Close file\n\tclose(f)\nend sub"
+    },
+    "mkdir": {
+        "prefix": "mkdir",
+        "usage": "r=MKDIR(path)\n\n",
+        "description": "'Creates a new directory. This subroutine returns zero on success or a non-zero failure code.'",
+        "example": ""
+    },
+    "lof": {
+        "prefix": "lof",
+        "usage": "n = LOF(n)\n\n",
+        "description": "'Returns the length of an open file. n is a number returned by OPEN.'",
+        "example": ""
+    },
+    "isdrive": {
+        "prefix": "isdrive",
+        "usage": "n = ISDRIVE(s)\n\n",
+        "description": "'ISDRIVE returns 1 if the drive indicated by s is a valid disk drive. Otherwise, 0 is returned. Only the first character in s is examined so strings like \"c\", \"C:\", and \"c:\\temp\" all produce the same result.\n\nNOTE: If the specified drive is an existing drive but is not ready (for example, if a floppy drive has no disk in it), ISDRIVE returns 0.'",
+        "example": "sub main()\n\tfor i = 1 to 26\n\t\ts = chr(asc(\"@\") + i)\n\t\tif isdrive(s) then\n\t\t\tprintl(\"Drive \", s, \":\")\n\t\tend if\n\tnext\nend sub"
+    },
+    "getdrive": {
+        "prefix": "getdrive",
+        "usage": "d=GETDRIVE()\n\n",
+        "description": "'Returns the current drive letter followed by a colon (e.g. \"A:\") or empty string if no current drive.'",
+        "example": ""
+    },
+    "getcwd": {
+        "prefix": "getcwd",
+        "usage": "d=GETCWD([d:path])\n\n",
+        "description": "'Gets the current working directory of the given drive in path or the current drive if no drive letter provided. This function returns an empty string on error.'",
+        "example": ""
+    },
+    "findnext": {
+        "prefix": "findnext",
+        "usage": "(Findfirst..Findnext Subroutines)\n\nf = FINDFIRST([filespec])\nf = FINDNEXT(findhandle)\n\n",
+        "description": "'Use these subroutines to iterate through system files.\nThe optional argument to FINDFIRST indicates the filespec used to filter the files returned. If the argument is omitted, \"*.*\" is used.\n\nThe value returned by FINDFIRST can then be passed to FINDNEXT repeatedly to iterate through all the files matching the filespec.\n\nThe value returned is the name of the file. Both subroutines return an empty filename (\"\") when there are no more matching files. The returned value has several members that contain additional information about the current file. These members are NAME, DATE, TIME, SIZE, ATTRIB, CDATE, CTIME, ADATE, ATIME, MODE and SFN (if different than NAME). TBSVER 5 adds sortable date and time values of DATETIME, CDATETIME, ADATETIME.\n\nIn order to close the internal find handle you should empty the variable holding the returned value when you abort the find operation before an empty filename(\"\") is obtained.  (e.g. f=\" \")'",
+        "example": "sub main()\n\tf = findfirst(\"*.*\")\n\twhile len(f) > 0\n\t\tc = c + 1\n\t\tprint(\" \", f.date)\n\t\tprint(\" \", f.time)\n\t\tprint(\" \", f.size)\n\t\tprint(\" \", f.attrib)\n\t\tprintl(f.name)\n\t\tf = findnext(f)\n\twend\n\tprintl(c, \" file(s)\")\nend sub"
+    },
+    "findfirst": {
+        "prefix": "findfirst",
+        "usage": "(Findfirst..Findnext Subroutines)\n\nf = FINDFIRST([filespec])\nf = FINDNEXT(findhandle)\n\n",
+        "description": "'Use these subroutines to iterate through system files.\nThe optional argument to FINDFIRST indicates the filespec used to filter the files returned. If the argument is omitted, \"*.*\" is used.\n\nThe value returned by FINDFIRST can then be passed to FINDNEXT repeatedly to iterate through all the files matching the filespec.\n\nThe value returned is the name of the file. Both subroutines return an empty filename (\"\") when there are no more matching files. The returned value has several members that contain additional information about the current file. These members are NAME, DATE, TIME, SIZE, ATTRIB, CDATE, CTIME, ADATE, ATIME, MODE and SFN (if different than NAME). TBSVER 5 adds sortable date and time values of DATETIME, CDATETIME, ADATETIME.\n\nIn order to close the internal find handle you should empty the variable holding the returned value when you abort the find operation before an empty filename(\"\") is obtained.  (e.g. f=\" \")'",
+        "example": "sub main()\n\tf = findfirst(\"*.*\")\n\twhile len(f) > 0\n\t\tc = c + 1\n\t\tprint(\" \", f.date)\n\t\tprint(\" \", f.time)\n\t\tprint(\" \", f.size)\n\t\tprint(\" \", f.attrib)\n\t\tprintl(f.name)\n\t\tf = findnext(f)\n\twend\n\tprintl(c, \" file(s)\")\nend sub"
+    },
+    "chdir": {
+        "prefix": "chdir",
+        "usage": "chdir(path [, changedrive])\n\n",
+        "description": "'Changes the current directory to the given path.'",
+        "example": ""
+    },
+    "regimport": {
+        "prefix": "regimport",
+        "usage": "regimport\n\n",
+        "description": "'Import registry key branch.'",
+        "example": ""
+    },
+    "regexport": {
+        "prefix": "regexport",
+        "usage": "regexport\n\n",
+        "description": "'Export registry key branch.'",
+        "example": ""
+    },
+    "umount": {
+        "prefix": "umount",
+        "usage": "umount\n\n",
+        "description": "'Remove file system association with a drive.'",
+        "example": ""
+    },
+    "mount": {
+        "prefix": "mount",
+        "usage": "mount\n\n",
+        "description": "'Associate a file system with a drive.'",
+        "example": ""
+    },
+    "slide": {
+        "prefix": "slide",
+        "usage": "slide\n\n",
+        "description": "'Slide command (Pro for BootIt version only).'",
+        "example": ""
+    },
+    "runtbs": {
+        "prefix": "runtbs",
+        "usage": "runtbs\n\n",
+        "description": "'Run a TBScript program (Pro version only).'",
+        "example": ""
+    },
+    "run": {
+        "prefix": "run",
+        "usage": "run\n\n",
+        "description": "'Run a TBOSDT script (or TBScript if extension is .TBS).'",
+        "example": ""
+    },
+    "reboot": {
+        "prefix": "reboot",
+        "usage": "reboot\n\n",
+        "description": "'Reboot or shutdown system.'",
+        "example": ""
+    },
+    "ver": {
+        "prefix": "ver",
+        "usage": "ver\n\n",
+        "description": "'Program version.'",
+        "example": ""
+    },
+    "set": {
+        "prefix": "set",
+        "usage": "set\n\n",
+        "description": "'Set command.'",
+        "example": ""
+    },
+    "resize": {
+        "prefix": "resize",
+        "usage": "resize\n\n",
+        "description": "'Resize command (Pro for BootIt version only).'",
+        "example": ""
+    },
+    "ren": {
+        "prefix": "ren",
+        "usage": "ren\n\n",
+        "description": "'Rename command.'",
+        "example": ""
+    },
+    "del": {
+        "prefix": "del",
+        "usage": "del\n\n",
+        "description": "'Delete command.'",
+        "example": ""
+    },
+    "add": {
+        "prefix": "add",
+        "usage": "add\n\n",
+        "description": "'Add command.'",
+        "example": ""
+    },
+    "list": {
+        "prefix": "list",
+        "usage": "list\n\n",
+        "description": "'List command.'",
+        "example": ""
+    },
+    "copy": {
+        "prefix": "copy",
+        "usage": "copy\n\n",
+        "description": "'Copy command.'",
+        "example": ""
+    },
+    "extract": {
+        "prefix": "extract",
+        "usage": "extract\n\n",
+        "description": "'Extract a file or files from a cab archive.'",
+        "example": ""
+    },
+    "ls": {
+        "prefix": "ls",
+        "usage": "ls\n\n",
+        "description": "'List files.'",
+        "example": ""
+    },
+    "dir": {
+        "prefix": "dir",
+        "usage": "dir\n\n",
+        "description": "'List files.'",
+        "example": ""
+    },
+    "stats": {
+        "prefix": "stats",
+        "usage": "stats\n\n",
+        "description": "'Display stats of a file system.'",
+        "example": ""
+    },
+    "pwd": {
+        "prefix": "pwd",
+        "usage": "pwd\n\n",
+        "description": "'Print working folder.'",
+        "example": ""
+    },
+    "type": {
+        "prefix": "type",
+        "usage": "type\n\n",
+        "description": "'List contents of a file.'",
+        "example": ""
+    },
+    "vol": {
+        "prefix": "vol",
+        "usage": "vol\n\n",
+        "description": "'List volume.'",
+        "example": ""
+    },
+    "rd": {
+        "prefix": "rd",
+        "usage": "rd\n\n",
+        "description": "'Remove a folder.'",
+        "example": ""
+    },
+    "cd": {
+        "prefix": "cd",
+        "usage": "cd\n\n",
+        "description": "'Change current folder.'",
+        "example": ""
+    },
+    "md": {
+        "prefix": "md",
+        "usage": "md\n\n",
+        "description": "'Create a folder.'",
+        "example": ""
+    },
+    "exit": {
+        "prefix": "exit",
+        "usage": "exit\n\n",
+        "description": "'Use the EXIT command to terminate the shell.'",
+        "example": ""
+    },
+    "txwherey": {
+        "prefix": "txwherey",
+        "usage": "y=TXWHEREY(s)\n\n",
+        "description": "'Returns the Y location of the text cursor. The top most position is 1.'",
+        "example": ""
+    },
+    "txwherex": {
+        "prefix": "txwherex",
+        "usage": "x =TXWHEREX ()\n\n",
+        "description": "'Returns the X location of the text cursor. The left most position is 1.'",
+        "example": ""
+    },
+    "txterm": {
+        "prefix": "txterm",
+        "usage": "TXTERM()\n\n",
+        "description": "'Terminates the use of the various text console subroutines. This should be called before ending the script if TXINIT() was used.'",
+        "example": ""
+    },
+    "txsetattr": {
+        "prefix": "txsetattr",
+        "usage": "TXSETATTR (attribute)\n\n",
+        "description": "'Sets the current text attribute to use on the next TX output subroutine. It is common to use a hexadecimal number when specifying attributes due to the clarity it provides. For example, white text on a blue background would be specified as 0x1F (1 being blue andF (15) being white).\n\n      Text Attribute 8-Bit Encoding\n-----------------------------------------\nBits          Usage\n----          -----\n0-3           foreground color (0 to 15)\n4-6           background color (0 to 7)\n 7            blink-enable bit\n\n\n             Standard Colors\n-----------------------------------------\nValue          Description\n-----          -----------\n  0            Black\n  1            Blue\n  2            Green\n  3            Cyan\n  4            Red\n  5            Magenta\n  6            Brown\n  7            Light Gray\n  8            Dark Gray\n  9            Light Blue\n 10            Light Green\n 11            Light Cyan\n 12            Light Red\n 13            Light Magenta\n 14            Yellow \n 15            White'",
+        "example": "sub main()\n\ttxinit()\n\ttxsetattr(0x1F) // set white text on blue background\n\tprintl(\"This prints in color\")\n\ttxterm()\nend sub"
+    },
+    "txputblock": {
+        "prefix": "txputblock",
+        "usage": "r = TXPUTBLOCK(b [,x [,y]])\n\n",
+        "description": "'Write a blocked of saved text back to the console. If x or y are provided the text is placed at those coordinates otherwise the original location is used. The returned value indicates 0 or 1 to indicate failure or success. The block (b) stays allocated until cleared by assigning another value to it (e.g. b=\"\")'",
+        "example": ""
+    },
+    "txoutch": {
+        "prefix": "txoutch",
+        "usage": "TXOUTCH(c [,repeat])\n\n",
+        "description": "'Outputs a character to the current cursor location and optionally repeats it.'",
+        "example": ""
+    },
+    "txmode": {
+        "prefix": "txmode",
+        "usage": "TXMODE (m)\n\n",
+        "description": "'Sets the video text mode. Setting the video mode is only relevant when used in the DOS environment.\n\t0  = Black and White 40 columns\n\t1  = Color 40 columns\n\t2  = Black and White 80 columns\n\t3  = Color 80 columns\n\t7  = Monochrome 80 columns\n\t64 = EGA/VGA 43/50 lines.'",
+        "example": ""
+    },
+    "txinit": {
+        "prefix": "txinit",
+        "usage": "TXINIT()\n\n",
+        "description": "'Initialize TBScript to use the various text mode subroutines. This must be called at least once before calling any of the other TX based subroutines.\n\nOnce this mode is enabled there are some differences that you should note:\n\n1 – GetStr will not output a newline after input (expect under Windows). You must manually do it.\n\n2 – Using a newline (^n) character for output will not include the carriage return under DOS.\n\n3 – Outputting a newline under Linux will clear (using current color) text to the end of the current line.\n\nIf these differences are problematic then you will need to design your own GetStr type subroutine using GetKey(). You can use the TBSENV variable to determine the environment the script is running in.'",
+        "example": ""
+    },
+    "txgotoxy": {
+        "prefix": "txgotoxy",
+        "usage": "TXGOTOXY(x,y)\n\n",
+        "description": "'Moves the text cursor to the coordinates x and y. (1,1) is the upper-left most position.'",
+        "example": ""
+    },
+    "txgetinfo": {
+        "prefix": "txgetinfo",
+        "usage": "ti = TXGETINFO()\n\n",
+        "description": "'Returns information about the current text console.\n The variable contains the following members:\n\tViewLeft – X location of the current screen view. 1 = left most position.\n\tViewTop – Y location of the current screen view. 1 = top most position.\n\tViewWidth – Width of the current screen view.\n\tViewHeight – Height of the current screen view.\n\tWidth – Width of the entire available text console.\n\tHeight – Height of the entire available text console.\n\tAttr – Current text attribute.\n\tCurMode – Current text mode.'",
+        "example": ""
+    },
+    "txgetblock": {
+        "prefix": "txgetblock",
+        "usage": "b = TXGETBLOCK(x1, y1, x2, y2)\n\n",
+        "description": "'Returns a reference to a saved area of the text console. The variable value returns 0 or 1 to indicate failure or success.'",
+        "example": ""
+    },
+    "txcursortype": {
+        "prefix": "txcursortype",
+        "usage": "TXCURSORTYPE(0|1|2)\n\n",
+        "description": "'Sets the shape of the text cursor. 0=None, 1=Block, 2=Underline.'",
+        "example": ""
+    },
+    "txascii": {
+        "prefix": "txascii",
+        "usage": "TXASCII(0|1)\n\n",
+        "description": "'Enables output of ASCII characters under Windows.'",
+        "example": ""
+    },
+    "setcp": {
+        "prefix": "setcp",
+        "usage": "r=SETCP(whichcp, cpvalue)\n\n",
+        "description": "'Changes the code page for a given item. The values for whichcp are:\n  0=Get Code Page,\n  1=Console Code Page,\n  2=Conversion Code Page.\n\nWhen whichcp is zero the cpvalue indicates which code page to return, either 1 (console) or 2 (conversion). The console values are only accurate under Windows. It’s not recommended to change the conversion code page to a value other than 65001 (UTF8) or -1 (Auto Determine) or problems can arise from foreign characters.'",
+        "example": ""
+    },
+    "printl": {
+        "prefix": "printl",
+        "usage": "(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description": "'Use these subroutines to print text to the screen. The difference between PRINT and PRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the start of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example": "sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "print": {
+        "prefix": "print",
+        "usage": "(PRINT, PRINTL Subroutines)\n\nPRINT(s [, …])\nPRINTL(s [, …])\n\n",
+        "description": "'Use these subroutines to print text to the screen. The difference between PRINT and PRINTL is that PRINTL prints a new line after all text (it moves the text cursor to the start of the next line).\n\nBoth subroutines take any number and type of arguments.'",
+        "example": "sub main()\n\ta = 5\n\tb = \"Test\"\n\tc = 52.9\n\tprintl(\"a = \", a, \", b = \", b, \", c = \", c)\nend sub"
+    },
+    "conctl": {
+        "prefix": "conctl",
+        "usage": "r = CONCTL(\"command\")\n\n",
+        "description": "'Allows moving, hiding, and getting the position of the console window. Command can be one of the following:\n\nshow=n – Hide/show console window. Values for n are: 0=hide, 1=show\n\npos=x,y,w,h – Position console window at x, y with width w and height h.\n\nquery – Get position, size, and visible state of console window. Returns the following members:\n\t.x      – horizontal position\n\t.y      – vertical position\n\t.width  – width of window\n\t.height – height of window\n\t.shown  – visible state (0=hidden, 1=visible)\n\nNote that the size and/or position of the console window may be adjusted to keep the window inside the screen area when it’s positioned. If necessary, use the WinGetMonitors subroutine to get the screen area for the monitor(s).\n\nReturn value is true/false (1/0) for success/failure of specified command.'",
+        "example": "sub main()\n\tconctl(\"show=0\") // hide console window\n\tconctl(\"pos=100,10,1000,550\") // move and resize console window\n\tcon = conctl(\"query\") // get console info\n\tprintl(\"Console position: \" # con.x # \", \" # con.y)\n\tprintl(\"Console size: \" # con.width # \" x \" # con.height)\n\tprintl(\"Console visible: \" # con.shown)\nend sub"
+    },
+    "cls": {
+        "prefix": "cls",
+        "usage": "CLS()\n\n",
+        "description": "'Clears the screen and positions the text cursor at the top, left corner of the screen.'",
+        "example": ""
+    },
+    "boot": {
+        "prefix": "boot",
+        "usage": "boot loadername.efi\n\n",
+        "description": "'Boot a UEFI Kernel Loader. (UEFI Version Only).'",
+        "example": ""
+    },
+    "elevate": {
+        "prefix": "elevate",
+        "usage": "ELEVATE Params\n\n",
+        "description": "'Elevate TBOSDT in windows.'",
+        "example": ""
+    },
+    "ucase": {
+        "prefix": "ucase",
+        "usage": "s = UCASE(s)\n\n",
+        "description": "'Returns an upper case version of a string.'",
+        "example": ""
+    },
+    "right": {
+        "prefix": "right",
+        "usage": "s = RIGHT(s, n [,codepage])\n\n",
+        "description": "'Returns a string with the right-most characters of s. The number of characters to return is indicated by n. If n is greater than or equal to the length of the string, then the entire string is returned. For example, RIGHT(“Test”, 2) returns “st”. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example": ""
+    },
+    "pad": {
+        "prefix": "pad",
+        "usage": "s = PAD(s, n [,0|1|2 [, codepage]] )\n\n",
+        "description": "'Returns a string that contains at least n characters. When the input string is less than n characters it can be justified left (default) (0), middle (1), or right (2) by providing a third parameter. If the input string length is greater than or equal to n then the input string is simply returned. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example": "sub main()\n\t// Print [   test   ]\n\tprintl(\"[\", PAD(\"test\", 10, 1), \"]\")\nend sub"
+    },
+    "oct": {
+        "prefix": "oct",
+        "usage": "s = OCT(n)\n\n",
+        "description": "'The OCT subroutine returns a string octal representation of the number n.'",
+        "example": "sub main()\n\t// Print 17\n\tprintl(OCT(15))\nend sub"
+    },
+    "mid": {
+        "prefix": "mid",
+        "usage": "s = MID(s, pos [, len [, codepage]])\n\n",
+        "description": "'Returns a substring of a string. pos specifies the 1-based index of the start of the substring. len specifies the number of characters to return. If len is omitted, the rest of the string is returned. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).\n\nFor example, MID(“Test string”, 6, 3) returns “str”, and MID(“Test string”, 6) returns “string”.'",
+        "example": ""
+    },
+    "len": {
+        "prefix": "len",
+        "usage": "n = LEN(s [, codepage])\n\n",
+        "description": "'Returns the number of characters in a string. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example": ""
+    },
+    "left": {
+        "prefix": "left",
+        "usage": "s = LEFT(s, n [, codepage])\n\n",
+        "description": "'Returns a string with the left-most characters of s. The number of characters to return is indicated by n. If n is greater than or equal to the length of the string, then the entire string is returned. For example, LEFT(“Test”, 2) returns “Te”. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).'",
+        "example": ""
+    },
+    "lcase": {
+        "prefix": "lcase",
+        "usage": "s = LCASE(s)\n\n",
+        "description": "'Returns a lower case version of a string.'",
+        "example": ""
+    },
+    "isstrtype": {
+        "prefix": "isstrtype",
+        "usage": "n = ISSTRTYPE(s, t)\n\n",
+        "description": "'ISSTRTYPE returns 1 if the string type matches the type (t) requested. Use 0 for integer check, 1 for decimal, 2 for alphabetic, 3 for alpha-numeric.'",
+        "example": "sub main()\n\ts[1] = \"1234\"\n\ts[2] = \"23.4\"\n\ts[3] = \"abc\"\n\ts[4] = \"123abc\"\n\n\tfor i = 1 to 4\n\t\tprintl(\"String ^\"\", s[i],\"^\"\")\n\t\tprintl(\"  IsInt: \", IsStrType(s[i],0)\n\t\tprintl(\"  IsDec: \", IsStrType(s[i],1)\n\t\tprintl(\"  IsAlpha: \", IsStrType(s[i],2)\n\t\tprintl(\"  IsAlphaNum: \", IsStrType(s[i],3)\n\t\tprintl(\"\")\n\tnext\nend sub"
+    },
+    "instr": {
+        "prefix": "instr",
+        "usage": "n = INSTR(s1, s2 [, codepage])\n\n",
+        "description": "'Use INSTR to find a substring within a string. “codepage”, added in version 10, can be a specific code page or 0 for current output code page (only accurate in Windows version).\n\nINSTR returns the 1-based index of the start of s2 within s1. For example, INSTR(“find”, “in”) returns 2. INSTR returns 0 if the substring was not found.\n\nNOTE: The comparison is case sensitive, which means that INSTR(“find”, “IN”) returns 0.'",
+        "example": ""
+    },
+    "hex": {
+        "prefix": "hex",
+        "usage": "s = HEX(n)\n\n",
+        "description": "'The HEX subroutine returns a string hexadecimal representation of the number n.'",
+        "example": "sub main()\n\t// Print F printl(HEX(15))\nend sub"
+    },
+    "chr": {
+        "prefix": "chr",
+        "usage": "s = CHR(n)\n\n",
+        "description": "'The CHR subroutine returns a string with a single character, which has the ASCII value of the number n.'",
+        "example": "sub main()\n\t// Print \"A\"\n\tprintl(CHR(65))\nend sub"
+    },
+    "binary": {
+        "prefix": "binary",
+        "usage": "newvariant = BINARY(variant [[[[, type], startoffset], length], binvartoupdate])\n\n",
+        "description": "'This subroutine sets or extracts binary data types (used for binary file operations or uefi variables). When variant is a binary data type and binvartoupdate is not provided then this subroutine extracts data from variant to create a new variable of type. When variant is not a binary data type or binvartoupdate is provided then this subroutine returns a new binary data type. When not provided, optional parameters are assumed to be zero. The values for type are as follows: 0=String, 1=Hex String, 2=Wide String, 3=Numeric, 4=Binary, 5=Narrow String. The startoffset is the zero based starting offset to the data to extract from or set in newvariant. The length specifies the number of bytes of data to extract from or set in newvariant. When the length is zero it is assumed to be the same length as variant. When binvartoupdate is provided it will be used as the basis of newvariant to allow updating an existing binary variable. This subroutine was added in TBSVER 3 and enhanced with type, startoffset, length, and binvartoupdate in TBSVER 9, Narrow String in TBSVER 14.'",
+        "example": "sub main()\n\t// Note: It’s recommended to use type 2 or 5 to know the string type.\n\t// non-Unicode versions return narrow strings\n\tbindata=BINARY(\"STRING\")       // 53 54 52 49 4E 47\n\t// Unicode versions return wide strings\n\tbindata=BINARY(\"STRING\")       // 53 00 54 00 52 00 49 00 4E 00 47 00\n\tbindata=BINARY(0, 3, 0, 1)     // 00\n\tbindata=bindata # bindata      // 00 00\n\tbindata=BINARY(\"3031323334\", 1)   // 30 31 32 33 34\n\tbindata=BINARY(\"353637\", 1, 5, 0, bindata) // 30 31 32 33 34 35 36 37\n\tword=BINARY(bindata, 3, 0, 2)      // 0x3130\n\tbindata=BINARY(\"55AA\", 1, 1, 3)  // 00 55 AA 00\n\tprintl(len(bindata))      // 4\nend sub"
+    },
+    "asc": {
+        "prefix": "asc",
+        "usage": "n = ASC(s)\n\n",
+        "description": "'The ASC subroutine returns the ASCII value of the first character in the string s.'",
+        "example": "sub main()\n\t// Print ASCII value of \"A\"\n\tprintl(ASC(\"A\"))\nend sub"
+    },
+    "winsetvalue": {
+        "prefix": "winsetvalue",
+        "usage": "r = WINSETVALUE(keynum, \"subkeyname\", \"valuename\", \"valuetype\", \"value\")\n\n",
+        "description": "'Adds or changes a registry value. The value types allowed are SZ, EXPANDSZ, HEX, DWORD, MULTISZ, QWORD, and NONE. HEX is equivalent to the binary type. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\twinsetvalue(0, \"\", \"testvalue\", \"dword\", 0x1234)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalueord": {
+        "prefix": "wingetvalueord",
+        "usage": "r = WINGETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description": "'Obtains a value based on a zero-base index. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\") i=0\n\tk=wingetvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=wingetvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetvalue": {
+        "prefix": "wingetvalue",
+        "usage": "r = WINGETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description": "'Obtains a registry value. The return value is 1 or 0 to indicate success or failure respectively. The return value also contains the following members: NAME, TYPE, and VALUE.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tk=wingetvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close winkey 0\")\nend sub"
+    },
+    "wingetkeyord": {
+        "prefix": "wingetkeyord",
+        "usage": "k = WINGETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description": "'Obtains the key name based on a zero-based index.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\ti=0\n\tk=wingetkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=wingetkeyord(0, \"\", i)\n\twend\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelvalue": {
+        "prefix": "windelvalue",
+        "usage": "r = WINDELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description": "'Deletes a registry value.  The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelValue(0, \"my key\", \"my value\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "windelkey": {
+        "prefix": "windelkey",
+        "usage": "r = WINDELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description": "'Deletes the registry key “keyname” under an open key referenced by keynum. The optional “all” parameter can be used to delete a key and all subkeys. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open winkey ^\"^\" hkcu\")\n\tWinDelKey(0, \"my key\")\n\text(\"close winkey 0\")\nend sub"
+    },
+    "iselevated": {
+        "prefix": "iselevated",
+        "usage": "r = ISELEVATED()\n\n",
+        "description": "'Use this to determine if the currently running program is elevated under Windows. The return values are:\n\t\t-1 = not able to determine or elevation not applicable.\n\t\t 0 = not elevated.\n\t\t 1 = elevated.'",
+        "example": "sub main()\n\tif IsElevated()=0 then\n\t\tExt(\"Elevate ^\"\" # arg(0) # \"^\"\")\n\tend if\nend sub"
+    },
+    "getvalueord": {
+        "prefix": "getvalueord",
+        "usage": "r = GETVALUEORD(keynum, \"subkeyname\", index)\n\n",
+        "description": "'Obtains a value based on a zero-base index. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getvalueord(0, \"target\\key\", i)\n\twhile k=1\n\t\tprintl(k.name)\n\t\tprintl(k.type)\n\t\tprintl(k.value)\n\t\tprintl(\"\")\n\t\ti=i+1\n\t\tk=getvalueord(0, \"target\\key\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "getvalue": {
+        "prefix": "getvalue",
+        "usage": "r = GETVALUE(keynum, \"subkeyname\" \"valuename\")\n\n",
+        "description": "'Obtains a registry value. The return value is 1 or 0 to indicate success or failure respectively. The return value also contains the following members: NAME, TYPE, and VALUE.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tk=getvalue(0, \"Software\\MyApp\", \"MyValue\")\n\tprintl(k)\n\tprintl(k.value)\n\tprintl(k.name)\n\tprintl(k.type)\n\text(\"close reg 0\")\nend sub"
+    },
+    "setvalue": {
+        "prefix": "setvalue",
+        "usage": "r = SETVALUE(keynum, \"subkeyname\", \"valuename\", \"valuetype\", \"value\")\n\n",
+        "description": "'Adds or changes a registry value. The value types allowed are SZ, EXPANDSZ, HEX, DWORD, MULTISZ, QWORD, and NONE. HEX is equivalent to the binary type. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tsetvalue(0, \"\", \"testvalue\", \"dword\", 0x1234)\n\text(\"close reg 0\")\nend sub"
+    },
+    "getkeyord": {
+        "prefix": "getkeyord",
+        "usage": "k = GETKEYORD(keynum, \"subkeyname\", index)\n\n",
+        "description": "'Obtains the key name based on a zero-based index.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\ti=0\n\tk=getkeyord(0, \"\", i)\n\twhile LEN(k)\n\t\tprintl(k)\n\t\ti=i+1\n\t\tk=getkeyord(0, \"\", i)\n\twend\n\text(\"close reg 0\")\nend sub"
+    },
+    "delvalue": {
+        "prefix": "delvalue",
+        "usage": "r = DELVALUE(keynum, \"subkeyname\", \"valuename\")\n\n",
+        "description": "'Deletes a registry value. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelValue(0, \"my key\", \"my value\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "delkey": {
+        "prefix": "delkey",
+        "usage": "r = DELKEY(keynum, \"keyname\" [, \"all\"])\n\n",
+        "description": "'Deletes the registry key “keyname”. The optional “all” parameter can be used to delete a key and all subkeys. The return value is 1 or 0 to indicate success or failure respectively.'",
+        "example": "sub main()\n\text(\"open reg 0 test.hiv\")\n\text(\"open key 0 ^\"^\" 0\")\n\tDelKey(0, \"my key\")\n\text(\"close reg 0\")\nend sub"
+    },
+    "bcdbootmatch": {
+        "prefix": "bcdbootmatch",
+        "usage": "r = BCDBootMatch(\"path\", search, diskref, partref [, sectorsize])\n\n",
+        "description": "'Checks if a given BCD file at “path” is setup to boot an OS based on the additional parameters provided. Set search to a non-zero value to search all displayed boot items or zero to only check the first displayed. For matching to GPT entries, use a GUID as the diskref and partref; for MBR/EMBR type matching use the NT signature as the diskref and the starting lba of the OS partition as the partref along with providing the sector size of the drive if it’s not 512 bytes. The return value is 1 or 0 to indicate TRUE or FALSE respectively. Added in version 1.78.'",
+        "example": "sub main()\n\tbcdmatches = BCDBootMatch(\"0:\\boot\\bcd\", 1, 0x11222211, 63)\n\tif bcdmatches<>0 then\n\t\tprintl(\"Match Found\")\n\tend if\nend sub"
+    },
+    "wingetmonitors": {
+        "prefix": "wingetmonitors",
+        "usage": "info = WinGetMonitors()\n\n",
+        "description": "'Get the Windows screen and monitor information. The return value is set to the number of monitors found and contains the following members:\n\t.x0  - virtual screen left most\n\t.x1  - virtual screen right most\n\t.y0  - virtual screen top most\n\t.y1  - virtual screen bottom most\n\t.monitor[] – 1 based array of monitors\n\t\t.x0  - virtual left of monitor\n\t\t.x1  - virtual right of monitor\n\t\t.y0  - virtual top of monitor\n\t\t.y1  - virtual bottom of monitor\n\t\t.flags  - monitor flags from DISPLAY_DEVICES.StateFlags\n\t\t.name  - monitor name'",
+        "example": "sub main()\n\tm=WinGetMonitors()\n\tprintl(\"virtual screen=\" # m.x0 # \",\" # m.y0 # \",\" # m.x1 # \",\" # m.y1)\n\tfor i=1 to m\n\t\t// split for this example not to wrap\n\t\tprint(\"monitor \" # i # \"=\" # m.monitor[i].x0 # \",\" # m.monitor[i].y0)\n\t\tprintl(\",\" # m.monitor[i].x1 # \",\" # m.monitor[i].y1)\n\tnext\n\tm=0\nend sub"
+    },
+    "sleep": {
+        "prefix": "sleep",
+        "usage": "SLEEP(seconds | -milliseconds)\n\n",
+        "description": "'Use the SLEEP subroutine to pause for the specified number of seconds. SLEEP returns after the specified number of seconds has passed. Starting in version 15 you can use a negative value to delay in milliseconds.'",
+        "example": ""
+    },
+    "setuefivar": {
+        "prefix": "setuefivar",
+        "usage": "r =UEFISETVAR(varname, namespaceguid[, bindata, attributes])\n\n",
+        "description": "'Set a UEFI firmware variable (variable names are case sensitive). This subroutine is only available when the system booted using UEFI. In linux, the efivarfs must be mounted at /sys/firmware/efi/efivars. The linux command to mount is:\n\tmount -t efivarfs none /sys/firmware/efi/efivars.\nWhen bindata is not provided the variable is deleted. The return value is zero on success otherwise an error code is returned.\n\nWARNING: This function does not prevent you from deleting variables or setting invalid data. Using invalid data or deleing the wrong variables can prevent your system from booting until the firmware is reset to factory defaults. Contact the system manufacturer for instructions on resetting factory defaults.'",
+        "example": "const UEFI_VAR_NV = 1\nconst UEFI_VAR_BS = 2\nconst UEFI_VAR_RT = 4\n\nsub main()\n\ta = UEFI_VAR_NV+UEFI_VAR_BS+UEFI_VAR_RT // attributes\n\tt = binary(2, 3, 0, 2)                  // 16-bit value for number 2\n\te = setuefivar(\"Timeout\",\"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}\", t, a)\n\tif (e = 0) then\n\t\tprintl(\"Boot Timeout Set to\", binary(t, 3))\n\telse\n\t\tprintl(\"Unable to set Boot Timeout.  Error:\", e)\n\tend if\nend sub"
+    },
+    "setlocale": {
+        "prefix": "setlocale",
+        "usage": "SETLOCALE(locale)\n\n",
+        "description": "'Use this subroutine to set the current locale. This setting affects the format of date and time strings created by other subroutines. Note that even with locale set, decimal numbers will continue to accept use of ‘.’.\n\nThe locale argument may be any of the following values:\n\n\t0  Date and time strings will be created using the default format.\n\t   Locale set to default (Ver 10+).\n\t1  Default date and time strings will be created using the ISO 8601 format.\n\t2  Default date and time without zero prefix (Ver 10+).\n\t3  Default time removing space between time and AM/PM  (Ver 10+).\n\t4  Default time to use lower case AM/PM (Ver 10+).\n\t5  Locale pulled in from environment (not related to date/time strings) (Ver 10+).\n\t6  Use OS locale for Date/Time (Ver 10+).'",
+        "example": ""
+    },
+    "setenv": {
+        "prefix": "setenv",
+        "usage": "SETENV(env, val)\n\n",
+        "description": "'Use SETENV to set an environment variable. If the environment variable already exists, the existing variable is modified. Otherwise, it is created.'",
+        "example": "sub main()\n\tsetenv(\"path\", \"C:\\\")\n\tprintl(getenv(\"path\"))\nend sub"
+    },
+    "getuefivar": {
+        "prefix": "getuefivar",
+        "usage": "binvar=UEFIGETVAR(varname, namespaceguid)\n\n",
+        "description": "'Retrieve a UEFI firmware variable (variables are case sensitive) and its attributes in binvar.attributes. This subroutine is only available when the system booted using UEFI. In linux, the efivarfs must be mounted at /sys/firmware/efi/efivars. The linux command to mount is: mount -t efivarfs none /sys/firmware/efi/efivars. On failure the returned binvar is zero bytes in length and contains a member binvar.errno to indicate the error code.'",
+        "example": "sub main()\n\tt = getuefivar(\"Timeout\", \"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}\")\n\tif (len(t) > 0) then\n\t\tprintl(\"Boot Timeout = \", t)\n\telse\n\t\tprintl(\"Unable to retrieve Boot Timeout. Error:\", t.errno)\n\t\tt = \"\"   // remove variable\n\tend if\nend sub"
+    },
+    "getsysinfo": {
+        "prefix": "getsysinfo",
+        "usage": "si = GETSYSINFO()\n\n",
+        "description": "'Returns information about the current system. The variable contains the following members: BIOSDate, BIOSVendor, BIOSVersion, SysFamily, SysManufacturer, SysProductName, SysSKU, SysVersion, SysUUID. TBSVER 6 adds two additional members: BIOSFeatures1, BIOSFeatures2.  TBSVER 7 adds CPUCount. For each CPUCount an array (1 based) is provided as CPU[n] with the following members: ID, Cores, CoresEnabled, Threads, and Features. Note that the Core and Feature information may not be reported by the system; however the Threads member is valid if Cores is non-zero.  The ID contains the contents of cpuid leaf 1 EAX (low) and EDX (high) values.'",
+        "example": "sub main()\n\tsi=getsysinfo()\n\tif (si) then\n\t\tprintl(\"BIOS Date: \", si.biosdate)\n\t\tprintl(\"BIOS Vendor: \", si.biosvendor)\n\t\tprintl(\"BIOS Version: \", si.biosversion)\n\t\tprintl(\"System Family: \", si.sysfamily)\n\t\tprintl(\"System Manufacturer: \", si.sysmanufacturer)\n\t\tprintl(\"System Product Name: \", si.sysproductname)\n\t\tprintl(\"System SKU: \", si.syssku)\n\t\tprintl(\"System Version: \", si.sysversion)\n\t\tprintl(\"System UUID: \", si.sysuuid)\n\telse\n\t\tprintl(\"Unable to obtain the system information\")\n\tend if\nend sub"
+    },
+    "gettime": {
+        "prefix": "gettime",
+        "usage": "s = GETTIME()\n\n",
+        "description": "'The GETTIME subroutine returns the current time as a string.'",
+        "example": "sub main()\n\t// Extract components of current time\n\ttime = gettime()\n\thour = mid(time, 1, 2)\n\tmin = mid(time, 4, 2)\n\tsec = mid(time, 7, 2)\nend sub"
+    },
+    "getstr": {
+        "prefix": "getstr",
+        "usage": "s = GETSTR([prompt [, maxchars]])\n\n",
+        "description": "'Returns a string entered by the user. prompt is an optional prompt that is displayed before waiting for the user to enter a string. In addition, maxchars is an optional number that specifies the maximum length of the string that the user can enter.\n\nNOTE: If maxchars is specified, the prompt argument must be included. If TXINIT is active then a newline is not automatically output after pressing enter (except under Windows which always outputs a newline).'",
+        "example": ""
+    },
+    "getkey": {
+        "prefix": "getkey",
+        "usage": "n = GETKEY([prompt [, timeout]])\n\n",
+        "description": "'The GETKEY subroutine returns the value of the next key pressed by the user. Prompt is an optional prompt string that is displayed before waiting for the key press.\n\nTimeout is an optional argument that specifies a timeout period, in seconds. If the user does not press any key within the specified number of seconds, the GETKEY subroutine returns a value of 0 without waiting for a keystroke. If the timeout argument is omitted or is 0, the GETKEY subroutine waits for the next keystroke regardless of how long it takes. Note that the timeout argument can be specified only if the prompt argument is specified; however, prompt may be an empty string (“”).'",
+        "example": ""
+    },
+    "getenv": {
+        "prefix": "getenv",
+        "usage": "s = GETENV(s)\n\n",
+        "description": "'Returns the value of the specified environment variable.'",
+        "example": ""
+    },
+    "getdatetime": {
+        "prefix": "getdatetime",
+        "usage": "s = GETDATETIME([datetimevalue])\n\n",
+        "description": "'The GETDATETIME subroutine returns a date and time string value based on the current locale setting. If datetimevalue is not provided then the current date and time are used. The datetimevalue parameter is a numeric value based on either Unix time or Windows file time. Large values are assumed to be Windows file time, smaller values Unix time.\n\nNOTE: The Right(TBSVER,3)=”x16” version of TBScript does not support the datetimevalue parameter and will return an empty string.'",
+        "example": "sub main()\n\t// Extract components of current date/time\n\tdatetime = getdatetime()\n\tmonth = mid(datetime, 1, 2)\n\tday = mid(datetime, 4,2)\n\tyear = mid(datetime, 7, 4)\n\thour = mid(datetime, 12, 2)\n\tmin = mid(datetime, 15, 2)\n\tsec = mid(datetime, 18, 2)\nend sub"
+    },
+    "getdate": {
+        "prefix": "getdate",
+        "usage": "s = GETDATE()\n\n",
+        "description": "'The GETDATE subroutine returns the current date as a string.'",
+        "example": "sub main()\n\t// Extract components of current date\n\tdate = getdate()\n\tmonth = mid(date, 1, 2)\n\tday = mid(date, 4, 2)\n\tyear = mid(date, 7, 4)\nend sub"
+    },
+    "ext": {
+        "prefix": "ext",
+        "usage": "r = EXT(s [, capture])\n\n",
+        "description": "'Executes script extensions that may exist in a product. An error code is returned if there is one. The optional capture parameter (true or false) can be used to have the function return the output from the command. The return variable has the captured output in the .extcap member (there is a 64K character limit). If a “pause” option is used the output won’t be captured because the command will be interactive (e.g. “dir /p”, “type filename /p”, etc.).'",
+        "example": "sub main()\n\text(\"extcmd param1 param2\")\n\n\t// read value from INI file\n\tr = ext(\"list ini settings.ini options username\", 1)\n\tp = instr(r.extcap, \"^n\")\n\tif (p>1) then\n\t\tval = left(r.extcap, p-1)\n\telse\n\t\tval = r.extcap\n\tend if\nend sub"
+    },
+    "exec": {
+        "prefix": "exec",
+        "usage": "EXEC(s[,f])\n\n",
+        "description": "'Executes a shell command. The string s can be any valid shell command. Returns the return code (errorlevel) of the command.  The optional f parameter determines the format used to pass the parameters to external programs. It was added to maintain backwards compatibility.  By default (or zero) the parameters are parsed by exec and then passed to the program, otherwise if set to one (1) the raw non-parsed parameters are passed.'",
+        "example": "sub main()\n\texec(\"program ^\"^\"param one^\"^\"\" ---param2) // old format\n\texec(\"program ^\"param one^\" --param2\", 1)   // new format is easier\n\texec(\"script.tbs\")\n\texec(\"shellcommand\")\nend sub"
+    },
+    "directvideo": {
+        "prefix": "directvideo",
+        "usage": "DIRECTVIDEO([n])\n\n",
+        "description": "'This subroutine is used to set the DOS environment to either write directly to video memory or to use the BIOS. By default direct video mode is enabled as it’s much faster. If you have a need to use BIOS video then use this subroutine to turn off direct video mode.  This subroutine was added in TBSVER 4.'",
+        "example": "sub main()\n\tdirectvideo(0) // turn off\n\tdirectvideo()  // turn on\n\tdirectvideo(1) // turn on\nend sub"
+    },
+    "argc": {
+        "prefix": "argc",
+        "usage": "(ARG, ARGC) Subroutines\n\na = ARG(n)\nn = ARGC()\n\n",
+        "description": "'The ARG and ARGC subroutine are used to access any arguments that were passed on the command line (when the script was started). ARGC returns the number of arguments. ARG() returns the argument indicated by n, which can be in the range 1 through the value returned by ARGC.\n\nIn addition to the arguments described above, the ARG subroutine returns the fully qualified path of the script file when n = 0.'",
+        "example": "sub main()\n\tprintl(\"Script name = \", arg(0))\n\tfor i = 1 to argc()\n\t\tprintl(\"Arg \", i, \" = \", arg(i))\n\tnext\nend sub"
+    },
+    "arg": {
+        "prefix": "arg",
+        "usage": "(ARG, ARGC) Subroutines\n\na = ARG(n)\nn = ARGC()\n\n",
+        "description": "'The ARG and ARGC subroutine are used to access any arguments that were passed on the command line (when the script was started). ARGC returns the number of arguments. ARG() returns the argument indicated by n, which can be in the range 1 through the value returned by ARGC.\n\nIn addition to the arguments described above, the ARG subroutine returns the fully qualified path of the script file when n = 0.'",
+        "example": "sub main()\n\tprintl(\"Script name = \", arg(0))\n\tfor i = 1 to argc()\n\t\tprintl(\"Arg \", i, \" = \", arg(i))\n\tnext\nend sub"
+    },
+    "exitloop": {
+        "prefix": "exitloop",
+        "usage": "ExitLoop\n\n",
+        "description": "'Exits out of a While/Wend or For/Next loop.'",
+        "example": "sub main()\n\t// similar to a repeat/until loop\n\twhile 1\n\t\tkeyval=GetKey()\n\t\tprintl(\"You entered key code \", keyval)\n\t\tif keyval=asc(\"q\") then\n\t\t\texitloop\n\t\tend if\n\twend\nend sub"
+    },
+    "break": {
+        "prefix": "break",
+        "usage": "n = BREAK(n)\n\n",
+        "description": "'Enable (n=1) or disable (n=0) the ability to break out of the running of the script by use of the CTRL-C or CTRL-BREAK key on the keyboard. The return value is the break value prior to setting the new value.'",
+        "example": "sub main()\n\t// Disable CTRL-C and CTRL-Break\n\tBREAK(0)\nend sub"
+    },
+    "goto": {
+        "prefix": "goto",
+        "usage": "GOTO label\n\n",
+        "description": "'Use the GOTO keyword to jump to another line in the current script. A GOTO line is identified by a symbol followed by a colon (:). The GOTO statement and the label being jumped to must be within the same subroutine.\n\nNOTE: Caution must be taken when jumping into or out of a loop such as a FOR..NEXT or WHILE..WEND loop. For example, if you jumped into a FOR..NEXT loop, execution would continue until the NEXT is encountered, which would produce a “NEXT without FOR” error because the FOR keyword was skipped.'",
+        "example": "sub main()\n\tprintl(\"This line gets executed\")\n\tgoto jump\n\tprintl(\"This line does not get executed\")\njump:\n\tprintl(\"This line also gets executed\")\nend sub"
+    },
+    "return": {
+        "prefix": "return",
+        "usage": "RETURN [v]\n\n",
+        "description": "'Use the RETURN keyword to exit the current subroutine and return to the subroutine that called it. A RETURN statement has the same effect as encountering an END SUB.\n\nIf an expression is included after the RETURN keyword, the value of that expression is returned to the calling subroutine. If a value is returned from the MAIN subroutine, that value sets the script return code (errorlevel).'",
+        "example": ""
+    },
+    "for": {
+        "prefix": "for",
+        "usage": "(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description": "'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution continues on the next statement after the NEXT keyword. If end is less than start, the block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are cached. So, for example, if the loop modifies values used in the end expression, this will not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed after the NEXT statement.'",
+        "example": "sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "next": {
+        "prefix": "next",
+        "usage": "(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description": "'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution continues on the next statement after the NEXT keyword. If end is less than start, the block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are cached. So, for example, if the loop modifies values used in the end expression, this will not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed after the NEXT statement.'",
+        "example": "sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "to": {
+        "prefix": "to",
+        "usage": "(FOR..TO..NEXT) Keywords\n\nFOR var = start TO end\n\nNEXT\n\n",
+        "description": "'Use a FOR loop to execute a block of statements a specified number of times.\n\nInitially, var is set to the value specified by start. Then, each time the block of statements are executed, var is incremented. When var is greater than end, execution continues on the next statement after the NEXT keyword. If end is less than start, the block of statements is never executed.\n\nNOTE: The start and end values are evaluated only once and the resulting values are cached. So, for example, if the loop modifies values used in the end expression, this will not alter the number of times the block of statements is executed.\n\nNOTE 2: Unlike the BASIC language, the name of the variable is not required nor allowed after the NEXT statement.'",
+        "example": "sub main()\n\tfor i = 1 to 10\n\t\tprintl(\"This is line \", i)\n\tnext\nend sub"
+    },
+    "while": {
+        "prefix": "while",
+        "usage": "(WHILE..WEND) Keywords\n\nWHILE expression\n\tstatements\nWEND\n\n",
+        "description": "'Use a WHILE loop to execute a block of statements as long as an expression is true.'",
+        "example": "sub main()\n\ta = 1\n\twhile a <= 25\n\t\tprintl(\"This is test line \", a)\n\t\ta = a + 1\n\twend\nend sub"
+    },
+    "wend": {
+        "prefix": "wend",
+        "usage": "(WHILE..WEND) Keywords\n\nWHILE expression\n\tstatements\nWEND\n\n",
+        "description": "'Use a WHILE loop to execute a block of statements as long as an expression is true.'",
+        "example": "sub main()\n\ta = 1\n\twhile a <= 25\n\t\tprintl(\"This is test line \", a)\n\t\ta = a + 1\n\twend\nend sub"
+    },
+    "then": {
+        "prefix": "then",
+        "usage": "(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description": "'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only if the previous conditions are false and a new condition is true (ELSEIF), or that are executed only if all other blocks are false (ELSE).'",
+        "example": "sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "elseif": {
+        "prefix": "elseif",
+        "usage": "(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description": "'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only if the previous conditions are false and a new condition is true (ELSEIF), or that are executed only if all other blocks are false (ELSE).'",
+        "example": "sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "else": {
+        "prefix": "else",
+        "usage": "(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description": "'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only if the previous conditions are false and a new condition is true (ELSEIF), or that are executed only if all other blocks are false (ELSE).'",
+        "example": "sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "if": {
+        "prefix": "if",
+        "usage": "(IF..THEN..ELSEIF..ELSE..END IF) Keywords\n\nIF expression THEN\n\tstatements\n[ELSEIF expression2 THEN]\n\tstatements\n[ELSE]\n\tstatements\n[END IF]\n\n",
+        "description": "'Use the IF keyword to execute a block of statements only if a condition is true.\n\nOptionally, you can also specify additional blocks that are executed only if the previous conditions are false and a new condition is true (ELSEIF), or that are executed only if all other blocks are false (ELSE).'",
+        "example": "sub main()\n\ta = 10\n\tb = 0\n\tc = 0\n\n\tif a > 5 then\n\t\t printl(\"a > 5\")\n\telseif b > 5 then\n\t\tprintl(\"b > 5\")\n\telseif c > 5 then\n\t\tprintl(\"c > 5\")\n\telse\n\t\tprintl(\"a, b, and c < 5\")\n\tend if\n\t// Note the following difference due to b being numeric variable\n\tif b=\"X\" then\n\t\tprint(\"b = 0\")\n\tend if\n\n\tif \"X\"=b then\n\t\tprint(\"X = b\")\n\tend if\nend sub"
+    },
+    "tbosdt_key": {
+        "prefix": "tbosdt_key",
+        "usage": "(Global Variable)\n\n",
+        "description": "'This global variable indicates the license key running TBOSDT.'",
+        "example": "sub main()\n\tprintl(\"Key: \", tbosdt_key)\nend sub"
+    },
+    "tbosdt_user": {
+        "prefix": "tbosdt_user",
+        "usage": "(Global Variable)\n\n",
+        "description": "'This global variable indicates the licensed user running TBOSDT.'",
+        "example": "sub main()\n\tprintl(\"User: \", tbosdt_user)\nend sub"
+    },
+    "tbosdt": {
+        "prefix": "tbosdt",
+        "usage": "(Global Variable)\n\n",
+        "description": "'This global variable indicates the version of TBOSDT being used. The format of this string variable is: V.vv – L Where V.vv is the version number and L is the level. Level A indicates TBOSDT Professional, Level B indicates TBOSDT Professional for BootIt.'",
+        "example": "sub main()\n\tprintl(\"Version: \", tbosdt) // outputs Version: 1.29 - A\nend sub"
+    },
+    "tbsver": {
+        "prefix": "tbsver",
+        "usage": "(Global Variable)\n\n",
+        "description": "'Default Constant TBSVER contains the version string of the script engine.'",
+        "example": ""
+    },
+    "tbsenv": {
+        "prefix": "tbsenv",
+        "usage": "(Global Variable)\n\n",
+        "description": "'Default Constant TBSENV contains \"DOS\", \"LINUX\", \"WINDOWS\", or \"UEFI\" depending on which type of environment the script is running on.'",
+        "example": ""
+    },
+    "tbsenvch": {
+        "prefix": "tbsenvch",
+        "usage": "(Global Variable)\n\n",
+        "description": "'Default Constant TBSENVCH contains “UNICODE” if Windows Unicode version.'",
+        "example": ""
+    },
+    "tbsapppath": {
+        "prefix": "tbsapppath",
+        "usage": "(Global Variable)\n\n",
+        "description": "'Default Constant TBSAPPPATH contains the path name to the folder containing the main application.'",
+        "example": ""
+    },
+    "unset": {
+        "prefix": "unset",
+        "usage": "UNSET v\n\n",
+        "description": "'Use to clear a variable. Usage is recommended to clear GUI dialog and control variables when no longer needed.'",
+        "example": ""
+    },
+    "rand": {
+        "prefix": "rand",
+        "usage": "r = RAND([seed])\n\n",
+        "description": "'Returns a pseudo-random number from 0 to 32767. You can optionally provide a seed to generate a new sequence. The pseudo-random numbers generated are NOT cryptographically strong.'",
+        "example": ""
+    },
+    "include": {
+        "prefix": "include",
+        "usage": "INCLUDE \"filename\"\n\n",
+        "description": "'Use this keyword to reference another file in your script. The include keyword was added in TBSVER 7 and must be used outside of any subroutines.'",
+        "example": "include \"my_common_subroutines.inc\" // includes my_sqrt subroutine\n\nsub main()\n\tprintl(\"The square root of 81 is \", my_sqrt(81))\nend sub"
+    },
+    "global": {
+        "prefix": "global",
+        "usage": "GLOBAL name = value\n\n",
+        "description": "'Defines a global variable. Global variables are similar to regular variables except they are defined in your script outside of any subroutines.'",
+        "example": "global A = 100\n\nsub main()\n\tprintl(\"The value of A is \", A)\n\tChangeA()\n\tprintl(\"The value of A is \", A)\nend sub\n\nsub ChangeA()\n\tA=200\nEnd sub"
+    },
+    "const": {
+        "prefix": "const",
+        "usage": "CONST name = value\n\n",
+        "description": "'Defines a constant symbol. Constants are similar to variables except a) They are defined in your script outside of any subroutines, and b) Their value cannot be changed. Constants are useful, for example, when you write a script that uses a value in several places, but you want to be able to easily change that value at one location. There are also default constants: TBSVER contains the version string of the script engine TBSENV contains \"DOS\", \"LINUX\", \"WINDOWS\", or \"UEFI\" depending on which type of environment the script is running on;\nTBSENVCH contains \"UNICODE\" if Windows Unicode version; TBSAPPPATH contains\nthe path name to the folder containing the main application.'",
+        "example": "const A = 100\n\nsub main()\n\tprintl(\"The value of A is \", A)\nend sub"
+    },
+    "sub": {
+        "prefix": "sub",
+        "usage": "",
+        "description": "'A TBScript file consists of one or more subroutines. All scripts must define one subroutine called MAIN. Execution starts at this subroutine. Any subroutine can return a value using the RETURN keyword.'",
+        "example": "\/\/ Here is a sample script.\n\/\/ Text that follows \/\/ or ; are comments and\n\/\/ are ignored by the interpreter.\n\/\/ Execution begins at the following subroutine\nsub main()\n\tprintl(double(5))\nend sub\n\n\/\/ Here's another subroutine. It returns the\n\/\/ argument value times two\nsub double(val)\n\treturn val * 2;\nend sub"
+    },
+    "main": {
+        "prefix": "main",
+        "usage": "",
+        "description": "'A TBScript file consists of one or more subroutines. All scripts must define one subroutine called MAIN. Execution starts at this subroutine. Any subroutine can return a value using the RETURN keyword.'",
+        "example": "\/\/ Here is a sample script.\n\/\/ Text that follows \/\/ or ; are comments and\n\/\/ are ignored by the interpreter.\n\/\/ Execution begins at the following subroutine\nsub main()\n\tprintl(double(5))\nend sub\n\n\/\/ Here's another subroutine. It returns the\n\/\/ argument value times two\nsub double(val)\n\treturn val * 2;\nend sub"
+    }
+}

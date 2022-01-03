@@ -1,8 +1,7 @@
 # Release Notes
-## v1.0.9
-Support for Hovers is now working! Currently about 50% of the keywords are implemented.
-The rest will be completed on the next update.
-Fixed broken image file links.
+## v1.1.0
+Support for Hovers is now complete. Auto-completion for keywords are now implemented as well.
+Outline view now lists all `Subroutines`, `Constants` and `Globals`.
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 

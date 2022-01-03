@@ -9,6 +9,8 @@ Language support for TeraByte's tbscript programming language.
 
 ## Features
 - Syntax Highlighting
+- Keyword Auto-completion
+- Outline view now lists all `Subroutines`, `Constants` and `Globals`
 - Run your scripts from within VSCode
 - Snippet Support
 - Hover Support
@@ -63,7 +65,6 @@ Read the comments in the [tbscript.json](./src/snippets/tbscript.json) snippet f
 Feel free to delete, or modify these as you desire...
 
 ## To Do
-Add auto completion `intellisense` support eventually.
 Add more language specific snippets.
 
 ## Known Issues

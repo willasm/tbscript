@@ -1,0 +1,592 @@
+{
+    "keyword Subroutine": {
+        "prefix": "",
+        "body": "",
+        "description": ""
+    },
+    "GUIVertBarSep Subroutine": {
+        "prefix": "GUIVertBarSep",
+        "body": "GUIVertBarSep(${1|0,1|})",
+        "description": "Enable or disable the ability to use the vertical bar (|) as the separator for the GUI based subroutines in addition to the newline character (^n)."
+    },
+    "GUITree Subroutine": {
+        "prefix": "GUITree",
+        "body": "GUITree(${1:dialog}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, \"${6:title}\", \"${7:images}\", \"${8|Buttons,Lines,CheckBoxes,Edit,FullRow,LinesAtRoot,RToL,AlwaysSel,SelExpand|}\")",
+        "description": "Add a tree control to a dialog."
+    },
+    "GUITimeDate Subroutine": {
+        "prefix": "GUITimeDate",
+        "body": "GUITimeDate(${1:dialog}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, \"${6:title}\", ${7|LongDate,ShortDate,ShortDate4,ShowNone,Time,RightAlign,UpDown,TimeDate,ShortTime|})",
+        "description": "Add a date and time picker to a dialog."
+    },
+    "GUIStatic Subroutine": {
+        "prefix": "GUIStatic",
+        "body": "GUIStatic(${1:dialog}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, \"${6:title}\", ${7|WhiteFrame,WhiteRect,BlackFrame,BlackRect,GrayFrame,GrayRect,Center,Right,RightJust,Simple,Sunken,WordEllipsis,EndEllipsis,PathEllipsis,NoPrefix,NoWrap,Etched,EtchedHor,EtchedVert,EMF,SizeToControl,SizeToImage,CenterImage,Image|})",
+        "description": "Add text or an image to a dialog box."
+    },
+    "GUIShow Subroutine": {
+        "prefix": "GUIShow",
+        "body": "GUIShow(${1:dialog_or_control}, ${2:value})",
+        "description": "Sets the show state of the specified dialog or control."
+    },
+    "GUISetValue Subroutine": {
+        "prefix": "GUISetValue",
+        "body": "GUISetValue(${1:control}, ${2:value})",
+        "description": "Set the value of a control."
+    },
+    "GUISetText Subroutine": {
+        "prefix": "GUISetText",
+        "body": "GUISetText(${1:dialog_or_control}, ${2:text})",
+        "description": "Set the text for a dialog or control that supports text."
+    },
+    "GUISetFocus Subroutine": {
+        "prefix": "GUISetFocus",
+        "body": "GUISetFocus(${1:dialog_or_control})",
+        "description": "Sets the keyboard focus to the specified dialog or control."
+    },
+    "GUIRemoveItem Subroutine": {
+        "prefix": "GUIRemoveItem",
+        "body": "GUIRemoveItem(${1:control}, ${2:identifier})",
+        "description": "Remove an item from a List, Tree or Combo control."
+    },
+    "GUIRadioButton Subroutine": {
+        "prefix": "GUIRadioButton",
+        "body": "GUIRadioButton(${1:dialog}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, \"${6:title}\", \"${7:group}\")",
+        "description": "Add a radio button to a dialog."
+    },
+    "GUIProgress Subroutine": {
+        "prefix": "GUIProgress",
+        "body": "GUIProgress(${1:dialog}, ${2:x}, ${3:y}, ${4:width}, ${5:height}, ${6:title}, \"${7|marquee,smooth,smoothreverse,vertical|}\")",
+        "description": "Add a progress indicator to a dialog."
+    },
+    "GUIPos Subroutine": {
+        "prefix": "GUIPos",
+        "body": "GUIPos(${1:dialog_or_control})",
+        "description": "When specifying just the dialog or control the current position and size is returned (.x, .y, .width, .height). Otherwise, specify the new position and size to move or resize the dialog or control."
+    },
+    "GUIMenu Subroutine": {
+        "prefix": "GUIMenu",
+        "body": "GUIMenu(${1:dialog}, ${2:x}, ${3:y}, ${4:menuflag}, \"${5:menu_items}\")",
+        "description": "Displays a popup/context menu in the specified dialog."
+    },
+    "GUIList Subroutine": {
+        "prefix": "GUIList",
+        "body": "GUIList(${1:dialog, x, y, width, height, title, headers, images, ...})",
+        "description": "Add a list control to a dialog."
+    },
+    "GUIInsertItem Subroutine": {
+        "prefix": "GUIInsertItem",
+        "body": "GUIInsertItem(${1:control, text, identifier [, iconidx [, after_identifier [, parent_identifier]]]})",
+        "description": "Insert an item into a List, Tree or Combo control."
+    },
+    "GUIInput Subroutine": {
+        "prefix": "GUIInput",
+        "body": "GUIInput(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Add an input box (edit control) to a dialog."
+    },
+    "GUIGroupBox Subroutine": {
+        "prefix": "GUIGroupBox",
+        "body": "GUIGroupBox(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Add a group box to a dialog."
+    },
+    "GUIGetValue Subroutine": {
+        "prefix": "GUIGetValue",
+        "body": "GUIGetValue(${1:dialog_or_control [, which]})",
+        "description": "Returns the values for a dialog or control that supports values."
+    },
+    "GUIGetText Subroutine": {
+        "prefix": "GUIGetText",
+        "body": "GUIGetText(${1:dialog_or_control})",
+        "description": "Retrieve the text for a dialog or control that supports text."
+    },
+    "GUIGetEvent Subroutine": {
+        "prefix": "GUIGetEvent",
+        "body": "GUIGetEvent(${1:dialog_or_control})",
+        "description": "Returns events that have occurred for a given dialog or control since the last time the subroutine was called on it."
+    },
+    "GUIEventWait Subroutine": {
+        "prefix": "GUIEventWait",
+        "body": "GUIEventWait(${1:dialog [, milliseconds]})",
+        "description": "Wait for an event from the dialog or any of its controls."
+    },
+    "GUIEnable Subroutine": {
+        "prefix": "GUIEnable",
+        "body": "GUIEnable(${1:dialog_or_control}, ${2|0,1|})",
+        "description": "Enables or disables the specified dialog or control (0=disable, 1=enable)."
+    },
+    "GUIDialog Subroutine": {
+        "prefix": "GUIDialog",
+        "body": "GUIDialog(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Create a dialog on which to place controls."
+    },
+    "GUICombo Subroutine": {
+        "prefix": "GUICombo",
+        "body": "GUICombo(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Add a combo control (List and Input combined or dropdown list) to a dialog."
+    },
+    "GUICheckBox Subroutine": {
+        "prefix": "GUICheckBox",
+        "body": "GUICheckBox(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Add a checkbox to a dialog."
+    },
+    "GUIButton Subroutine": {
+        "prefix": "GUIButton",
+        "body": "GUIButton(${1:dialog, x, y, width, height, title, ...})",
+        "description": "Add a button to a dialog."
+    },
+    "gethdinfo Subroutine": {
+        "prefix": "gethdinfo",
+        "body": "gethdinfo(${1:num [,1|-1]})",
+        "description": "Obtains information about a hard drive and its partitions for the given hard drive number (zero-based)."
+    },
+    "getdrvltrinfo Subroutine": {
+        "prefix": "getdrvltrinfo",
+        "body": "getdrvltrinfo(${1|0,1|})",
+        "description": "Queries the system for drive letters and uses them for the GETHDINFO subroutine."
+    },
+    "sha256 Subroutine": {
+        "prefix": "sha256",
+        "body": "sha256(${1:file_or_data [, option_flags]})",
+        "description": "Returns a SHA256 hash (or empty string on error) of a file or data provided to the subroutine."
+    },
+    "osstat Subroutine": {
+        "prefix": "osstat",
+        "body": "osstat(\"${1:filename}\")",
+        "description": "This subroutine is used to obtain information on files and folders directly available to the OS."
+    },
+    "md5 Subroutine": {
+        "prefix": "md5",
+        "body": "md5(${1:file_or_data [, option_flags]})",
+        "description": "Returns a MD5 hash (or empty string on error) of a file or data provided to the subroutine."
+    },
+    "hdcacheinfo Subroutine": {
+        "prefix": "hdcacheinfo",
+        "body": "hdcacheinfo(${1:num})",
+        "description": "Obtains information about a given hard drives (zero-based) cache that was opened by OPEN CACHE."
+    },
+    "fsinfo Subroutine": {
+        "prefix": "fsinfo",
+        "body": "fsinfo(\"${1:path}\")",
+        "description": "Use this this subroutine to obtain information about a file system."
+    },
+    "writel Subroutine": {
+        "prefix": "writel",
+        "body": "writel(${1:n [, s]})",
+        "description": "Writes a line of text to an open file."
+    },
+    "setdrive Subroutine": {
+        "prefix": "setdrive",
+        "body": "setdrive(${1:drvltr})",
+        "description": "Changes the current drive to drvltr."
+    },
+    "setattr Subroutine": {
+        "prefix": "setattr",
+        "body": "setattr(${1:filepath}, ${2:attribute})",
+        "description": "Changes the attributes of a file to match attribute."
+    },
+    "seek Subroutine": {
+        "prefix": "seek",
+        "body": "seek(${1:n}, ${2:offset})",
+        "description": "Jumps to a position within an open file."
+    },
+    "rmfile Subroutine": {
+        "prefix": "rmfile",
+        "body": "rmfile(${1:filepath})",
+        "description": "Deletes a file. This subroutine returns zero on success or a non-zero failure code."
+    },
+    "rmdir Subroutine": {
+        "prefix": "rmdir",
+        "body": "rmdir(${1:path})",
+        "description": "Removes an empty directory. This subroutine returns zero on success or a non-zero failure code."
+    },
+    "rename Subroutine": {
+        "prefix": "rename",
+        "body": "rename(${1:oldname}, ${2:newname})",
+        "description": "Renames a file. This subroutine returns zero on success or a non-zero failure code."
+    },
+    "readl Subroutine": {
+        "prefix": "readl",
+        "body": "readl(${1:n [,size]})",
+        "description": "Reads a line of text (or data) from an open file."
+    },
+    "close Subroutine": {
+        "prefix": "close",
+        "body": "close(${1:n})",
+        "description": "The OPEN and CLOSE subroutines are used to open a file for access and then close it."
+    },
+    "open Subroutine": {
+        "prefix": "open",
+        "body": "open(\"${1:name}\", \"${2|in-out,in,in-out-trunc,uin,uin-out,uin-out-trunc|}\", ${3:\"binary\"})",
+        "description": "The OPEN and CLOSE subroutines are used to open a file for access and then close it."
+    },
+    "mkdir Subroutine": {
+        "prefix": "mkdir",
+        "body": "mkdir(${1:path})",
+        "description": "Creates a new directory. This subroutine returns zero on success or a non-zero failure code."
+    },
+    "lof Subroutine": {
+        "prefix": "lof",
+        "body": "lof(${1:n})",
+        "description": "Returns the length of an open file. n is a number returned by OPEN."
+    },
+    "isdrive Subroutine": {
+        "prefix": "isdrive",
+        "body": "isdrive(${1:drive letter})",
+        "description": "ISDRIVE returns 1 if the drive indicated by s is a valid disk drive. Otherwise, 0 is returned."
+    },
+    "getdrive Subroutine": {
+        "prefix": "getdrive",
+        "body": "getdrive()",
+        "description": "Returns the current drive letter followed by a colon (e.g. \"A:\") or empty string if no current drive."
+    },
+    "getcwd Subroutine": {
+        "prefix": "getcwd",
+        "body": "getcwd(${1:[drive:path]})",
+        "description": "Gets the current working directory of the given drive in path or the current drive if no drive letter provided."
+    },
+    "findnext Subroutine": {
+        "prefix": "findnext",
+        "body": "findnext(${1:handle})",
+        "description": "Use these subroutines to iterate through system files."
+    },
+    "findfirst Subroutine": {
+        "prefix": "findfirst",
+        "body": "findfirst(${1:[filespec]})",
+        "description": "Use these subroutines to iterate through system files."
+    },
+    "chdir Subroutine": {
+        "prefix": "chdir",
+        "body": "chdir(${1:path [, changedrive]})",
+        "description": "Changes the current directory to the given path."
+    },
+    "txwherey Subroutine": {
+        "prefix": "txwherey",
+        "body": "txwherey()",
+        "description": "Returns the Y location of the text cursor. The top most position is 1."
+    },
+    "txwherex Subroutine": {
+        "prefix": "txwherex",
+        "body": "txwherex()",
+        "description": "Returns the X location of the text cursor. The left most position is 1."
+    },
+    "txterm Subroutine": {
+        "prefix": "txterm",
+        "body": "txterm()",
+        "description": "Terminates the use of the various text console subroutines."
+    },
+    "txsetattr Subroutine": {
+        "prefix": "txsetattr",
+        "body": "txsetattr(${1:attribute})",
+        "description": "Sets the current text attribute to use on the next TX output subroutine."
+    },
+    "txputblock Subroutine": {
+        "prefix": "txputblock",
+        "body": "txputblock(${1:block [,x [,y]]})",
+        "description": "Write a blocked of saved text back to the console."
+    },
+    "txoutch Subroutine": {
+        "prefix": "txoutch",
+        "body": "txoutch(${1:char [,repeat]})",
+        "description": "Outputs a character to the current cursor location and optionally repeats it."
+    },
+    "txmode Subroutine": {
+        "prefix": "txmode",
+        "body": "txmode(${1|0,1,2,3,7,64|})",
+        "description": "Sets the video text mode."
+    },
+    "txinit Subroutine": {
+        "prefix": "txinit",
+        "body": "txinit()",
+        "description": "Initialize TBScript to use the various text mode subroutines."
+    },
+    "txgotoxy Subroutine": {
+        "prefix": "txgotoxy",
+        "body": "txgotoxy(${1:x}, ${2:y})",
+        "description": ""
+    },
+    "txgetinfo Subroutine": {
+        "prefix": "txgetinfo",
+        "body": "txgetinfo()",
+        "description": ""
+    },
+    "txgetblock Subroutine": {
+        "prefix": "txgetblock",
+        "body": "txgetblock(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})",
+        "description": ""
+    },
+    "txcursortype Subroutine": {
+        "prefix": "txcursortype",
+        "body": "txcursortype(${1|0,1,2|})",
+        "description": "Sets the shape of the text cursor.  0=None, 1=Block, 2=Underline."
+    },
+    "txascii Subroutine": {
+        "prefix": "txascii",
+        "body": "txascii(${1|0,1|})",
+        "description": "Enables output of ASCII characters under Windows."
+    },
+    "setcp Subroutine": {
+        "prefix": "setcp",
+        "body": "setcp(${1:whichcp}, ${2:cpvalue})",
+        "description": "Changes the code page for a given item."
+    },
+    "printl Subroutine": {
+        "prefix": "printl",
+        "body": "printl(${1:value})",
+        "description": "Print text to the screen."
+    },
+    "print Subroutine": {
+        "prefix": "print",
+        "body": "print(${1:value})",
+        "description": "Print text to the screen."
+    },
+    "conctl Subroutine": {
+        "prefix": "conctl",
+        "body": "conctl(\"${1:command}\")",
+        "description": "Allows moving, hiding, and getting the position of the console window."
+    },
+    "cls Subroutine": {
+        "prefix": "cls",
+        "body": "cls()",
+        "description": "Clears the screen and positions the text cursor at the top, left corner of the screen."
+    },
+    "ucase Subroutine": {
+        "prefix": "ucase",
+        "body": "ucase(${1:string})",
+        "description": "Returns an upper case version of a string."
+    },
+    "right Subroutine": {
+        "prefix": "right",
+        "body": "right(${1:string}, ${2:number [, codepage]})",
+        "description": ""
+    },
+    "pad Subroutine": {
+        "prefix": "pad",
+        "body": "pad(${1:string}, ${2:number [,0|1|2 [, codepage]]})",
+        "description": "Returns a string that contains at least number of characters. When the input string is less than n characters it can be justified left (default) (0), middle (1), or right (2) by providing a third parameter."
+    },
+    "oct Subroutine": {
+        "prefix": "oct",
+        "body": "oct(${1:number})",
+        "description": "The OCT subroutine returns a string octal representation of the number."
+    },
+    "mid Subroutine": {
+        "prefix": "mid",
+        "body": "mid((${1:string}, ${2:pos [, len [, codepage]]})",
+        "description": "Returns a substring of a string."
+    },
+    "len Subroutine": {
+        "prefix": "len",
+        "body": "len(${1:string}${2:[, codepage]})",
+        "description": ""
+    },
+    "left Subroutine": {
+        "prefix": "left",
+        "body": "left(${1:string}, ${2:number [, codepage]})",
+        "description": "Returns a string with the left-most characters of string."
+    },
+    "lcase Subroutine": {
+        "prefix": "lcase",
+        "body": "lcase(${1:string})",
+        "description": "Returns a lower case version of a string."
+    },
+    "isstrtype Subroutine": {
+        "prefix": "isstrtype",
+        "body": "isstrtype(${1:string}, ${2:type})",
+        "description": ""
+    },
+    "instr Subroutine": {
+        "prefix": "instr",
+        "body": "instr(${1:s1}, ${2:s2 [, codepage]})",
+        "description": "Use INSTR to find a substring within a string."
+    },
+    "hex Subroutine": {
+        "prefix": "hex",
+        "body": "hex(${1:number})",
+        "description": "The HEX subroutine returns a string hexadecimal representation of the number."
+    },
+    "chr Subroutine": {
+        "prefix": "chr",
+        "body": "chr(${1:number})",
+        "description": "The CHR subroutine returns a string with a single character, which has the ASCII value of the number."
+    },
+    "binary Subroutine": {
+        "prefix": "binary",
+        "body": "binary(${1:variant [[[[, type], startoffset], length], binvartoupdate]})",
+        "description": "This subroutine sets or extracts binary data types (used for binary file operations or uefi variables)."
+    },
+    "asc Subroutine": {
+        "prefix": "asc",
+        "body": "asc(\"${1:string}\")",
+        "description": "The ASC subroutine returns the ASCII value of the first character in the string."
+    },
+    "winsetvalue Subroutine": {
+        "prefix": "winsetvalue",
+        "body": "winsetvalue(${1:keynum}, \"${2:subkeyname}\", \"${3:valuename}\", \"${4:valuetype}\", \"${5:value}\")",
+        "description": "Adds or changes a registry value. The value types allowed are SZ, EXPANDSZ, HEX, DWORD, MULTISZ, QWORD, and NONE."
+    },
+    "wingetvalueord Subroutine": {
+        "prefix": "wingetvalueord",
+        "body": "wingetvalueord(${1:keynum}, \"${2:subkeyname}\", ${3:index})",
+        "description": "Obtains a value based on a zero-base index."
+    },
+    "wingetvalue Subroutine": {
+        "prefix": "wingetvalue",
+        "body": "wingetvalue(${1:keynum}, \"${2:subkeyname}\" \"${3:valuename}\")",
+        "description": "Obtains a registry value. The return value is 1 or 0 to indicate success or failure respectively. The return value also contains the following members: NAME, TYPE, and VALUE."
+    },
+    "wingetkeyord Subroutine": {
+        "prefix": "wingetkeyord",
+        "body": "wingetkeyord(${1:keynum}, \"${2:subkeyname}\", ${3:index})",
+        "description": "Obtains the key name based on a zero-based index."
+    },
+    "windelvalue Subroutine": {
+        "prefix": "windelvalue",
+        "body": "windelvalue(${1:keynum}, \"${2:subkeyname}\", \"${3:valuename}\")",
+        "description": "Deletes a registry value."
+    },
+    "windelkey Subroutine": {
+        "prefix": "windelkey",
+        "body": "windelkey(${1:keynum}, \"${2:keyname}\"${3:, \"all\"})",
+        "description": "Deletes the registry key \"keyname\" under an open key referenced by keynum. The optional \"all\" parameter can be used to delete a key and all subkeys."
+    },
+    "iselevated Subroutine": {
+        "prefix": "iselevated",
+        "body": "iselevated()",
+        "description": "Use this to determine if the currently running program is elevated under Windows."
+    },
+    "getvalueord Subroutine": {
+        "prefix": "getvalueord",
+        "body": "getvalueord(${1:keynum}, \"${2:subkeyname}\", ${3:index})",
+        "description": "Obtains a value based on a zero-base index."
+    },
+    "getvalue Subroutine": {
+        "prefix": "getvalue",
+        "body": "getvalue(${1:keynum}, \"${2:subkeyname}\" \"${3:valuename}\")",
+        "description": "Obtains a registry value. The return value is 1 or 0 to indicate success or failure respectively. The return value also contains the following members: NAME, TYPE, and VALUE."
+    },
+    "setvalue Subroutine": {
+        "prefix": "setvalue",
+        "body": "setvalue(${1:keynum}, \"${2:subkeyname}\", \"${3:valuename}\", \"${4:valuetype}\", \"${5:value}\")",
+        "description": "Adds or changes a registry value."
+    },
+    "getkeyord Subroutine": {
+        "prefix": "getkeyord",
+        "body": "getkeyord(${1:keynum}, \"${2:subkeyname}\", ${3:index})",
+        "description": "Obtains the key name based on a zero-based index."
+    },
+    "delvalue Subroutine": {
+        "prefix": "delvalue",
+        "body": "delvalue(${1:keynum}, \"${2:subkeyname}\", \"${3:valuename}\")",
+        "description": "Deletes a registry value."
+    },
+    "delkey Subroutine": {
+        "prefix": "delkey",
+        "body": "delkey(${1:keynum}, \"${2:keyname}\"${3:, \"all\"})",
+        "description": "Deletes the registry key \"keyname\". The optional \"all\" parameter can be used to delete a key and all subkeys."
+    },
+    "bcdbootmatch Subroutine": {
+        "prefix": "bcdbootmatch",
+        "body": "bcdbootmatch(\"${1:path}\", ${2:search}, ${3:diskref}, ${4:partref}${5:, optional sectorsize})",
+        "description": "Checks if a given BCD file at \"path\" is setup to boot an OS based on the additional parameters provided."
+    },
+    "wingetmonitors Subroutine": {
+        "prefix": "wingetmonitors",
+        "body": "WinGetMonitors()",
+        "description": "Get the Windows screen and monitor information."
+    },
+    "sleep Subroutine": {
+        "prefix": "sleep",
+        "body": "sleep(${1:seconds | -milliseconds})",
+        "description": "Pause for the specified number of seconds. Use a negative value to delay in milliseconds."
+    },
+    "setuefivar Subroutine": {
+        "prefix": "setuefivar",
+        "body": "setuefivar(${1:varname}, ${2:namespaceguid}${3:, optional bindata, optional attributes})",
+        "description": "Set a UEFI firmware variable (variable names are case sensitive)."
+    },
+    "setlocale Subroutine": {
+        "prefix": "setlocale",
+        "body": "setlocale(${1|0,1,2,3,4,5,6|})",
+        "description": "Set the current locale."
+    },
+    "setenv Subroutine": {
+        "prefix": "setenv",
+        "body": "setenv(\"${1:env}\", \"${2:val}\")",
+        "description": "Set an environment variable."
+    },
+    "getuefivar Subroutine": {
+        "prefix": "getuefivar",
+        "body": "getuefivar(\"${1:varname}\", \"${2:namespaceguid}\")",
+        "description": "Retrieve a UEFI firmware variable (variables are case sensitive) and its attributes in binvar.attributes."
+    },
+    "getsysinfo Subroutine": {
+        "prefix": "getsysino",
+        "body": "getsysino()",
+        "description": "Returns information about the current system."
+    },
+    "gettime Subroutine": {
+        "prefix": "gettime",
+        "body": "gettime()",
+        "description": "Returns the current time as a string."
+    },
+    "getstr Subroutine": {
+        "prefix": "getstr",
+        "body": "getstr(${1:\"optional prompt\"}${2:, optional maxchars})",
+        "description": "Returns a string entered by the user."
+    },
+    "getkey Subroutine": {
+        "prefix": "getkey",
+        "body": "getkey(\"${1:optional prompt, optional timeout}\")",
+        "description": "Returns the value of the next key pressed by the user."
+    },
+    "getenv Subroutine": {
+        "prefix": "getenv",
+        "body": "getenv(${1:env_var})",
+        "description": "Returns the value of the specified environment variable."
+    },
+    "getdatetime Subroutine": {
+        "prefix": "getdatetime",
+        "body": "getdatetime()",
+        "description": "Returns a date and time string value based on the current locale setting."
+    },
+    "getdate Subroutine": {
+        "prefix": "getdate",
+        "body": "getdate()",
+        "description": "Returns the current date as a string."
+    },
+    "ext Subroutine": {
+        "prefix": "ext",
+        "body": "ext(\"${1:extcmd param1 param2}\")",
+        "description": "Executes script extensions."
+    },
+    "exec Subroutine": {
+        "prefix": "exec",
+        "body": "exec(\"${1:command}\")",
+        "description": "Executes a shell command."
+    },
+    "directvideo Subroutine": {
+        "prefix": "directvideo",
+        "body": "directvideo(${1|0,1|})",
+        "description": "Set the DOS environment to write directly to video memory or to use the BIOS. (1) or () = On (0) = Off"
+    },
+    "argc Subroutine": {
+        "prefix": "argc",
+        "body": "argc()",
+        "description": "ARGC returns the number of arguments."
+    },
+    "arg Subroutine": {
+        "prefix": "arg",
+        "body": "arg(${1|0,1,2,3,4,5|})",
+        "description": "ARG() returns the argument which can be in the range 1 through the value returned by ARGC. ARG returns the fully qualified path of the script file when n = 0."
+    },
+    "Break Subroutine": {
+        "prefix": "break",
+        "body": "break(${1|0,1|})",
+        "description": "Enable (n=1) or disable (n=0) the ability to break out of the running of the script by use of the CTRL-C or CTRL-BREAK"
+    },
+    "Rand Subroutine": {
+        "prefix": "rand",
+        "body": "rand(${1:[seed]})",
+        "description": "Returns a pseudo-random number from 0 to 32767. You can optionally provide a seed to generate a new sequence."
+    }
+}

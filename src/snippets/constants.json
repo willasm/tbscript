@@ -1,0 +1,42 @@
+{
+    "keyword Constant": {
+        "prefix":"",
+        "body":"",
+        "description":""
+    },
+    "tbosdt_key Constant": {
+        "prefix":"tbosdt_key",
+        "body":"tbosdt_key",
+        "description":"'This global variable indicates the license key running TBOSDT.'"
+    },
+    "tbosdt_user Constant": {
+        "prefix":"tbosdt_user",
+        "body":"tbosdt_user",
+        "description":"'This global variable indicates the licensed user running TBOSDT.'"
+    },
+    "tbosdt Constant": {
+        "prefix":"tbosdt",
+        "body":"tbosdt",
+        "description":"'This global variable indicates the version of TBOSDT being used. The format of this string variable is: V.vv – L Where V.vv is the version number and L is the level. Level A indicates TBOSDT Professional, Level B indicates TBOSDT Professional for BootIt.'"
+    },
+    "tbsver Constant": {
+        "prefix":"tbsver",
+        "body":"tbsver",
+        "description":"Default Constant TBSVER contains the version string of the script engine."
+    },
+    "tbsenv Constant": {
+        "prefix":"tbsenv",
+        "body":"tbsenv",
+        "description":"Default Constant TBSENV contains \"DOS\", \"LINUX\", \"WINDOWS\", or \"UEFI\" depending on which type of environment the script is running on."
+    },
+    "tbsenvch Constant": {
+        "prefix Constant":"tbsenvch",
+        "body":"tbsenvch",
+        "description":"Default Constant TBSENVCH contains “UNICODE” if Windows Unicode version."
+    },
+    "tbsapppath Constant": {
+        "prefix":"tbsapppath",
+        "body":"tbsapppath",
+        "description":"Default Constant TBSAPPPATH contains the path name to the folder containing the main application."
+    }
+}

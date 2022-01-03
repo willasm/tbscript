@@ -17,6 +17,11 @@ All notable changes to the "tbscript" extension will be documented in this file.
 
 <!--- next entry here -->
 
+### [1.1.0] 2021-11-18
+- Hover support now completed!
+- Keyword Auto-completion is now implemented.
+- Outline view now lists all `Subroutines`, `Constants` and `Globals`.
+
 ### [1.0.9] 2021-11-18
 - Fixed broken image file links.
 

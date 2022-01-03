@@ -1,0 +1,172 @@
+{
+    "keyword TBCMD": {
+        "prefix": "",
+        "body": "",
+        "description": ""
+    },
+    "regimport TBCMD": {
+        "prefix": "regimport",
+        "body": "regimport",
+        "description": "Import registry key branch."
+    },
+    "regexport TBCMD": {
+        "prefix": "regexport",
+        "body": "regexport",
+        "description": "Export registry key branch."
+    },
+    "umount TBCMD": {
+        "prefix": "umount",
+        "body": "umount",
+        "description": "Remove file system association with a drive."
+    },
+    "mount TBCMD": {
+        "prefix": "mount",
+        "body": "mount",
+        "description": "Associate a file system with a drive."
+    },
+    "slide TBCMD": {
+        "prefix": "slide",
+        "body": "slide",
+        "description": "Slide command (Pro for BootIt version only)."
+    },
+    "runtbs TBCMD": {
+        "prefix": "runtbs",
+        "body": "runtbs",
+        "description": "Run a TBScript program (Pro version only)."
+    },
+    "exec TBCMD": {
+        "prefix": "exec",
+        "body": "exec",
+        "description": "Run a TBScript or native program (Pro version only)."
+    },
+    "run TBCMD": {
+        "prefix": "run",
+        "body": "run",
+        "description": "Run a TBOSDT script (or TBScript if extension is .TBS)."
+    },
+    "reboot TBCMD": {
+        "prefix": "reboot",
+        "body": "reboot",
+        "description": "Reboot or shutdown system."
+    },
+    "ver TBCMD": {
+        "prefix": "ver",
+        "body": "ver",
+        "description": "Program version."
+    },
+    "set TBCMD": {
+        "prefix": "set",
+        "body": "set",
+        "description": "Set command."
+    },
+    "resize TBCMD": {
+        "prefix": "resize",
+        "body": "resize",
+        "description": "Resize command (Pro for BootIt version only)."
+    },
+    "ren TBCMD": {
+        "prefix": "ren",
+        "body": "ren",
+        "description": "Rename command."
+    },
+    "del TBCMD": {
+        "prefix": "del",
+        "body": "del",
+        "description": "Delete command."
+    },
+    "add TBCMD": {
+        "prefix": "add",
+        "body": "add",
+        "description": "Add command."
+    },
+    "list TBCMD": {
+        "prefix": "list",
+        "body": "list",
+        "description": "List command."
+    },
+    "close TBCMD": {
+        "prefix": "close",
+        "body": "close",
+        "description": "Close command."
+    },
+    "open TBCMD": {
+        "prefix": "open",
+        "body": "open",
+        "description": "Open command."
+    },
+    "copy TBCMD": {
+        "prefix": "copy",
+        "body": "copy",
+        "description": "Copy command."
+    },
+    "extract TBCMD": {
+        "prefix": "extract",
+        "body": "extract",
+        "description": "Extract a file or files from a cab archive."
+    },
+    "ls TBCMD": {
+        "prefix": "ls",
+        "body": "ls",
+        "description": "List files."
+    },
+    "dir TBCMD": {
+        "prefix": "dir",
+        "body": "dir",
+        "description": "List files."
+    },
+    "stats TBCMD": {
+        "prefix": "stats",
+        "body": "stats",
+        "description": "Display stats of a file system."
+    },
+    "pwd TBCMD": {
+        "prefix": "pwd",
+        "body": "pwd",
+        "description": "Print working folder."
+    },
+    "type TBCMD": {
+        "prefix": "type",
+        "body": "type",
+        "description": "List contents of a file."
+    },
+    "vol TBCMD": {
+        "prefix": "vol",
+        "body": "vol",
+        "description": "List volume."
+    },
+    "rd TBCMD": {
+        "prefix": "rd",
+        "body": "rd",
+        "description": "Remove a folder."
+    },
+    "cd TBCMD": {
+        "prefix": "cd",
+        "body": "cd",
+        "description": "Change current folder."
+    },
+    "md TBCMD": {
+        "prefix": "md",
+        "body": "md",
+        "description": "Create a folder."
+    },
+    "cls TBCMD": {
+        "prefix": "cls",
+        "body": "cls",
+        "description": "Clears the TBOSDT window or screen."
+    },
+    "exit TBCMD": {
+        "prefix": "exit",
+        "body": "exit",
+        "description": "Use the EXIT command to terminate the shell."
+    },
+    "boot TBCMD": {
+        "prefix": "boot",
+        "body": "boot",
+        "description": "Boot a UEFI Kernel Loader. (UEFI Version Only)"
+    },
+    "elevate TBCMD": {
+        "prefix": "elevate",
+        "body": "elevate",
+        "description": "Elevate TBOSDT in windows."
+    }
+}
