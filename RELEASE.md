@@ -1,5 +1,5 @@
 # Release Notes
-## v1.1.1
+## [1.1.1] 2022-01-21
 - Updated package.json file
 - Updated language configuration files
 
