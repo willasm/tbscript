@@ -1,7 +1,7 @@
 # Release Notes
-## v1.1.0
-Support for Hovers is now complete. Auto-completion for keywords are now implemented as well.
-Outline view now lists all `Subroutines`, `Constants` and `Globals`.
+## v1.1.1
+- Updated package.json file
+- Updated language configuration files
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 

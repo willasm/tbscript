@@ -17,6 +17,10 @@ All notable changes to the "tbscript" extension will be documented in this file.
 
 <!--- next entry here -->
 
+### [1.1.1] 2022-01-21
+- Updated package.json file
+- Updated language configuration files
+
 ### [1.1.0] 2021-11-18
 - Hover support now completed!
 - Keyword Auto-completion is now implemented.

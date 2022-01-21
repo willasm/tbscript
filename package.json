@@ -1,131 +1,139 @@
 {
-    "name": "tbscript-vscode-ext",
-    "displayName": "TeraByte Script Language",
-    "description": "TeraByte Script Language Support",
-    "publisher": "willasm",
-    "author": {
-        "name": "William McKeever"
-    },
-    "license": "MIT - SEE LICENSE IN LICENSE.md",
-    "version": "1.1.0",
-    "engines": {
-        "vscode": "^1.61.0"
-    },
-    "categories": [
-        "Programming Languages", "Snippets"
-    ],
-    "icon": "images/icon.png",
-    "keywords": [
-        "tbscript",
-        "tbosdt",
-        "tbos",
-        "tbcmd",
-        "terabyte",
-        "tbosdtw",
-        "tbosdtw64",
-        "script"
-    ],
-    "main": "./src/extension.js",
-    "activationEvents": [
-        "onStartupFinished",
-        "onLanguage:tbscript",
-        "onCommand:tbscript.run"
-    ],
-    "bugs": {
-        "url": "https://github.com/willasm/tbscript/issues",
-        "email": "willmck63@gmail.com"
-    },
-    "homepage": "https://github.com/willasm/tbscript/blob/master/README.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/willasm/tbscript.git"
-    },
-    "capabilities": {
-        "hoverProvider": "true"
-    },
-    "contributes": {
-        "commands": [{
-                "command": "tbscript.run.internal",
-                "title": "TeraByte Script: Run Script in Internal TBCMD",
-                "when": "editorTextFocus || editorLangId == tbscript || resourceLangId == tbscript"
-            },
-            {
-                "command": "tbscript.run.external",
-                "title": "TeraByte Script: Run Script in External TBCMD",
-                "when": "editorTextFocus || editorLangId == tbscript || resourceLangId == tbscript"
-            }
-        ],
-        "menus": {
-            "commandPalette": [{
-                    "command": "tbscript.run.internal",
-                    "when": "editorLangId == tbscript"
-                },
-                {
-                    "command": "tbscript.run.external",
-                    "when": "editorLangId == tbscript"
-                }
-            ]
-        },
-        "keybindings": [{
-                "command": "tbscript.run.internal",
-                "key": "f6",
-                "when": "editorLangId == tbscript || resourceLangId == tbscript"
-            },
-            {
-                "command": "tbscript.run.external",
-                "key": "shift+f6",
-                "when": "editorLangId == tbscript || resourceLangId == tbscript"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "TeraByte Script Language",
-            "properties": {
-                "tbscript.executable": {
-                    "type": "string",
-                    "default": "tbosdtw64.exe",
-                    "linux": "tbosdt",
-                    "markdownDescription": "Full path and filename to your **tbosdtw.exe** or **tbosdtw64.exe** file."
-                }
-            }
-        },
-        "snippets": [{
-                "language": "tbscript",
-                "path": "./src/snippets/tbscript.json"
-            },
-            {
-                "language": "tbscript",
-                "path": "./src/snippets/constants.json"
-            },
-            {
-                "language": "tbscript",
-                "path": "./src/snippets/keywords.json"
-            },
-            {
-                "language": "tbscript",
-                "path": "./src/snippets/subroutines.json"
-            },
-            {
-                "language": "tbscript",
-                "path": "./src/snippets/tbcmd.json"
-            }
-        ],
-        "languages": [{
-            "id": "tbscript",
-            "aliases": [
-                "TeraByte Script",
-                "tbscript"
-            ],
-            "extensions": [
-                ".tbs",
-                ".inc"
-            ],
-            "configuration": "./src/syntaxes/language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "tbscript",
-            "scopeName": "source.tbscript",
-            "path": "./src/syntaxes/tbscript.tmLanguage.json"
-        }]
-    }
+	"name": "tbscript-vscode-ext",
+	"displayName": "TeraByte Script Language",
+	"description": "TeraByte Script Language Support",
+	"publisher": "willasm",
+	"author": {
+		"name": "William McKeever"
+	},
+	"license": "MIT - SEE LICENSE IN LICENSE.md",
+	"version": "1.1.1",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets"
+	],
+	"icon": "images/icon.png",
+	"keywords": [
+		"tbscript",
+		"tbosdt",
+		"tbos",
+		"tbcmd",
+		"terabyte",
+		"tbosdtw",
+		"tbosdtw64",
+		"script"
+	],
+	"main": "./src/extension.js",
+	"activationEvents": [
+		"onStartupFinished",
+		"onLanguage:tbscript",
+		"onCommand:tbscript.run"
+	],
+	"bugs": {
+		"url": "https://github.com/willasm/tbscript/issues",
+		"email": "willmck63@gmail.com"
+	},
+	"homepage": "https://github.com/willasm/tbscript/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/willasm/tbscript.git"
+	},
+	"capabilities": {
+		"hoverProvider": "true"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "tbscript.run.internal",
+				"title": "TeraByte Script: Run Script in Internal TBCMD",
+				"when": "editorTextFocus || editorLangId == tbscript || resourceLangId == tbscript"
+			},
+			{
+				"command": "tbscript.run.external",
+				"title": "TeraByte Script: Run Script in External TBCMD",
+				"when": "editorTextFocus || editorLangId == tbscript || resourceLangId == tbscript"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "tbscript.run.internal",
+					"when": "editorLangId == tbscript"
+				},
+				{
+					"command": "tbscript.run.external",
+					"when": "editorLangId == tbscript"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "tbscript.run.internal",
+				"key": "f6",
+				"when": "editorLangId == tbscript || resourceLangId == tbscript"
+			},
+			{
+				"command": "tbscript.run.external",
+				"key": "shift+f6",
+				"when": "editorLangId == tbscript || resourceLangId == tbscript"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "TeraByte Script Language",
+			"properties": {
+				"tbscript.executable": {
+					"type": "string",
+					"default": "tbosdtw64.exe",
+					"linux": "tbosdt",
+					"markdownDescription": "Full path and filename to your **tbosdtw.exe** or **tbosdtw64.exe** file."
+				}
+			}
+		},
+		"snippets": [
+			{
+				"language": "tbscript",
+				"path": "./src/snippets/tbscript.json"
+			},
+			{
+				"language": "tbscript",
+				"path": "./src/snippets/constants.json"
+			},
+			{
+				"language": "tbscript",
+				"path": "./src/snippets/keywords.json"
+			},
+			{
+				"language": "tbscript",
+				"path": "./src/snippets/subroutines.json"
+			},
+			{
+				"language": "tbscript",
+				"path": "./src/snippets/tbcmd.json"
+			}
+		],
+		"languages": [
+			{
+				"id": "tbscript",
+				"aliases": [
+					"TeraByte Script"
+				],
+				"extensions": [
+					".tbs",
+					".inc"
+				],
+				"configuration": "./src/syntaxes/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "tbscript",
+				"scopeName": "source.tbscript",
+				"path": "./src/syntaxes/tbscript.tmLanguage.json"
+			}
+		]
+	}
 }

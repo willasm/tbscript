@@ -1,9 +1,11 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-    "name": "TeraByte Script",
+    "name": "tbscript",
+    "scopeName": "source.tbscript",
     "patterns": [
 
         { "include": "#comments" },
+        { "include": "#comments2" },
         { "include": "#operators" },
         { "include": "#strings" },
         { "include": "#constants" },
@@ -20,19 +22,45 @@
 
     "repository": {
 
-
         "comments": {
-            "patterns": [{
-                    "name": "comment.line.double-slash.tbscript",
-                    "match": "//.*"
-                },
-                {
-                    "name": "comment.line.character.tbscript",
-                    "match": ";.*"
+            "begin": "(^[ \\t]+)?(?=//)",
+            "beginCaptures": {
+                "1": {
+                    "name": "comment.line.double-slash.tbscript"
                 }
-            ]
+            },
+            "end": "(?!\\G)",
+            "patterns": [{
+                "begin": "//",
+                "beginCaptures": {
+                    "0": {
+                        "name": "comment.line.double-slash.tbscript"
+                    }
+                },
+                "end": "\\n",
+                "name": "comment.line.double-slash.tbscript"
+            }]
         },
 
+        "comments2": {
+            "begin": "(^[ \\t]+)?(?=;)",
+            "beginCaptures": {
+                "1": {
+                    "name": "comment.semi-colon.tbscript"
+                }
+            },
+            "end": "(?!\\G)",
+            "patterns": [{
+                "begin": ";",
+                "beginCaptures": {
+                    "0": {
+                        "name": "comment.semi-colon.tbscript"
+                    }
+                },
+                "end": "\\n",
+                "name": "comment.semi-colon.tbscript"
+            }]
+        },
 
         "operators": {
             "patterns": [{
@@ -180,6 +208,5 @@
             }]
         }
 
-    },
-    "scopeName": "source.tbscript"
+    }
 }
