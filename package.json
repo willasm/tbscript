@@ -28,7 +28,6 @@
 	],
 	"main": "./src/extension.js",
 	"activationEvents": [
-		"onStartupFinished",
 		"onLanguage:tbscript",
 		"onCommand:tbscript.run"
 	],
@@ -45,7 +44,79 @@
 		"hoverProvider": "true"
 	},
 	"contributes": {
-		"commands": [
+		"configurationDefaults": {
+			"editor.tokenColorCustomizations": {
+					"textMateRules": [
+					{
+						"scope": "keyword.tbscript",
+						"settings": {
+						  "foreground": "#d5ec80"
+						}
+					  },
+					  {
+						"scope": "keyword.system.tbscript",
+						"settings": {
+						  "foreground": "#2de7d8"
+						}
+					  },
+					  {
+						"scope": "keyword.strings.tbscript",
+						"settings": {
+						  "foreground": "#afa1e9"
+						}
+					  },
+					  {
+						"scope": "keyword.terminal.tbscript",
+						"settings": {
+						  "foreground": "#627cd3"
+						}
+					  },
+					  {
+						"scope": "keyword.disk.tbscript",
+						"settings": {
+						  "foreground": "#b56df8"
+						}
+					  },
+					  {
+						"scope": "keyword.other.gui.tbscript",
+						"settings": {
+						  "foreground": "#bf3be7"
+						}
+					  },
+					  {
+						"scope": "keyword.other.members.tbscript",
+						"settings": {
+						  "foreground": "#18ffe0"
+						}
+					  },
+					  {
+						"scope": "constant.character.escaped.dbl.tbscript",
+						"settings": {
+						  "foreground": "#f57df5"
+						}
+					  },
+					  {
+						"scope": "constant.character.escaped.single.tbscript",
+						"settings": {
+						  "foreground": "#eb73eb"
+						}
+					  },
+					  {
+						"scope": "constant.numeric.tbscript",
+						"settings": {
+						  "foreground": "#1ccbd1"
+						}
+					  },
+					  {
+						"scope": "constant.numeric.hexidecimal.tbscript",
+						"settings": {
+						  "foreground": "#3ee2ab"
+						}
+					  }
+      			  ]
+				}
+			},
+        "commands": [
 			{
 				"command": "tbscript.run.internal",
 				"title": "TeraByte Script: Run Script in Internal TBCMD",
